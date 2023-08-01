@@ -2,20 +2,20 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 
 export default function Home() {
-  const [characters, setCharacters] = useState([])
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
     axios
-      .get("http://localhost:4242/characters")
-      .then((res) => setCharacters(res.data))
+      .get("http://localhost:4242/products")
+      .then((res) => setProducts(res.data))
   }, [])
 
   return (
     <header className="App-header">
-      {characters.map((character) => (
+      {products.map((product) => (
         <>
-          <img src={character.imgUrl} alt={character.name} />
-          <p>{character.firstname}</p>
+          <img src={product.imgUrl} alt={product.name} />
+          <p>{product.firstname}</p>
         </>
       ))}
     </header>

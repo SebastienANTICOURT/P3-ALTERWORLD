@@ -2,8 +2,15 @@ const express = require("express")
 
 const router = express.Router()
 
+const productsControllers = require("./controllers/productsControllers")
 const itemControllers = require("./controllers/itemControllers")
 const charactersControllers = require("./controllers/charactersControllers")
+
+router.get("/products", productsControllers.browse)
+router.get("/products/:id", productsControllers.read)
+router.post("/products", productsControllers.add)
+// router.put("/users/:id", usersControllers.edit)
+// router.delete("/users/:id", usersControllers.destroy)
 
 router.get("/characters", charactersControllers.browse)
 router.get("/characters/:id", charactersControllers.read)
