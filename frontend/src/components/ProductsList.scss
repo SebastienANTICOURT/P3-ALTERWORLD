@@ -1,0 +1,64 @@
+@import "../Style.scss";
+
+.ProductList {
+  background-color: $backColor;
+  display: flex;
+  flex-direction: column;
+
+  .BSh1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  hr {
+    border: none; /* Removes the default border */
+    height: 3px;
+    width: 50px;
+    background-color: $yellow; /* Color of the line */
+    // margin-top: 40px;
+  }
+
+  .BSProductsH {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    .CartProductsH {
+      background-color: $NBColor;
+      height: 310px;
+      width: 270px;
+      border: black solid 0px;
+      box-shadow: 6px 5px 0px 0px rgba(0, 0, 0, 0.5);
+      padding: 4px 0 0 4px;
+    }
+    p {
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 5px;
+    }
+    .PriceH {
+      height: auto;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 6px;
+      color: #2a8795;
+    }
+  }
+}
+.imageProd {
+  width: 230px;
+  height: 240px;
+}
+
+.LinkPL {
+  color: inherit;
+  text-decoration: none;
+}

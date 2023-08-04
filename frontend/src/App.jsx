@@ -1,12 +1,22 @@
+import { Route, Routes } from "react-router-dom"
+import NavBar from "./components/NavBar"
 import Home from "./pages/Home"
-
-import "./App.css"
+import Boutique from "./pages/Boutique"
+import Details from "./pages/Details"
+import Panier from "./pages/Panier"
+import "./Style.scss"
 
 function App() {
   return (
     <div className="App">
-      <Home />
-      <p>coucou</p>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/boutique" element={<Boutique />} />
+        <Route path="/details/:id" element={<Details />} />
+        <Route path="/panier" element={<Panier />} />
+      </Routes>
+      {/* <p>coucou</p> */}
     </div>
   )
 }

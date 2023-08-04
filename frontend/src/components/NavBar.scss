@@ -1,0 +1,33 @@
+.NavBar {
+  background-color: #ffffff;
+  ul {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    background-color: #ffffff;
+    // margin-top: auto;
+    // margin-bottom: auto;
+    li {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+  }
+}
+
+.loupeNB {
+  width: 150%;
+}
+
+.logoNB {
+  width: 100%;
+}
+
+.loginNB {
+  width: 100%;
+}
+
+.cadiNB {
+  width: 10%;
+}

@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react"
+// import ImagePrincipale from "../components/ImagePrincipale"
 import axios from "axios"
+import Text from "../components/Text"
+import FiltresBar from "../components/FiltresBar"
+import ProductsList from "../components/ProductsList"
 
-export default function Home() {
+function Home() {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
@@ -11,13 +15,18 @@ export default function Home() {
   }, [])
 
   return (
-    <header className="App-header">
-      {products.map((product) => (
-        <>
-          <img src={product.imgUrl} alt={product.name} />
-          <p>{product.firstname}</p>
-        </>
-      ))}
-    </header>
+    <>
+      <div className="TextH">
+        <Text />
+      </div>
+      <div>
+        <FiltresBar />
+      </div>
+      <div className="BestSellersH">
+        <ProductsList products={products} />
+      </div>
+    </>
   )
 }
+
+export default Home

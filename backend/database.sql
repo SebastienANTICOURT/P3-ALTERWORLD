@@ -143,7 +143,7 @@ DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
-  `image1` varchar(100) DEFAULT NULL,
+  `image1` varchar(800) DEFAULT NULL,
   `image2` varchar(100) DEFAULT NULL,
   `Prix` varchar(10) DEFAULT NULL,
   `Creator_id` int NOT NULL,
