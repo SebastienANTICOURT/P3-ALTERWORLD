@@ -1,0 +1,82 @@
+@import "../Style.scss";
+
+
+.Details {
+    height: 1000px;
+    background-color: $backColor;
+    
+    .DetailCardID {  
+        background-color: $NBColor;
+        height: 550px;
+        width: 60%;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        border: black solid 0px;
+        box-shadow: 8px 7px 0px 0px rgba(0, 0, 0, 0.5);
+        padding: 4px 0 0 4px;
+        position: relative;
+
+        .leftContainerD {
+            width:50%;
+            padding-top: 10px;
+
+            img {
+                width: 450px;
+                height: 470px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        .rightContainerD {
+            width: 40%;
+            padding-top: 10px;
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+            flex-direction: column;
+            gap:30px;
+
+            figcaption {
+                font-weight: bold;
+                font-size: 30px;
+                margin-top: 5px;
+            }
+
+            .PricesD {
+                height: auto;
+                width: 100%;
+                margin-top: 6px;
+                color: $greenD;
+                font-size: 20px;
+                font-weight: bold;
+                justify-content: center;
+            }
+
+            .quantityD {
+                display: flex;
+                gap: 10px;
+                color: $greenD;
+                font-weight: bold;
+            }
+
+            button {
+                width: 15px;
+                color: $greenD;
+                background-color: $NBColor;
+                font-size: 20px;
+                font-weight: bold;
+                border: 0px solid black;
+            }
+
+            p {
+                font-size: 20px;
+                font-weight: bold;
+            }
+        }
+    }
+}

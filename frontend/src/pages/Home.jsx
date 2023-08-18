@@ -14,6 +14,7 @@ function Home() {
       .then((res) => setProducts(res.data))
   }, [])
 
+  
   return (
     <>
       <div className="TextH">

@@ -1,24 +1,30 @@
 @import "../Style.scss";
 
 .FiltresBar {
-  height: 200px;
+  height: 250px;
   width: 100%;
   background-color: #325068;
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
   .FB {
     // margin-top: auto;
     // margin-bottom: auto;
-    margin-left: 10%;
-    .UniversFB {
+    margin-left: 5%;
+    .ulFB {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       gap: 10px;
       color: #ffffff;
       margin-top: 35px;
-      input {
-        height: 20px;
+      flex-wrap: wrap;
+      .TitleListFB {
+        font-size: 25px;
       }
+      li {
+        font-size: 18px;
+      }
+    }
     }
     .NatureFB {
       gap: 20px;
@@ -27,6 +33,7 @@
       margin-top: 20px;
     }
   }
+
   .buttonFB {
     width: 100%;
     button {
@@ -36,9 +43,12 @@
       display: flex;
       margin-left: auto;
       margin-right: auto;
-      margin-top: 15px;
+      margin-top: 50px;
       justify-content: center;
       font-weight: bold;
+      padding-top: 5px;
+      border: black 2px solid;
+      border-radius: 20px;
     }
   }
-}
+
