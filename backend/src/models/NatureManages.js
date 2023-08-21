@@ -6,12 +6,9 @@ class NatureManager extends AbstractManager {
   }
 
   insert(nature) {
-    return this.database.query(
-      `insert into ${this.nature} (name) values (?)`,
-      [
-        nature.name,
-      ]
-    )
+    return this.database.query(`insert into ${this.nature} (name) values (?)`, [
+      nature.name,
+    ])
   }
 
   update(characters) {

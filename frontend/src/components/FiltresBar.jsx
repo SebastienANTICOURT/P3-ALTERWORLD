@@ -13,14 +13,13 @@ function FiltresBar() {
           </ul>
         </div>
         <div>
-          
-        <ul className="ulFB">
-          <li className="TitleListFB">Objets :</li>
-          <li>Avatars</li>
-          <li>Armes</li>
-          <li>Monstres</li>
-          <li>Maps</li>
-        </ul>
+          <ul className="ulFB">
+            <li className="TitleListFB">Objets :</li>
+            <li>Avatars</li>
+            <li>Armes</li>
+            <li>Monstres</li>
+            <li>Maps</li>
+          </ul>
         </div>
       </div>
       <div className="buttonFB">

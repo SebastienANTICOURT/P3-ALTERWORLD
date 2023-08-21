@@ -2,10 +2,7 @@ import { Link } from "react-router-dom"
 import CardDetails from "./CardDetails"
 import "./ProductsList.scss"
 
-
 function ProductsList({ products }) {
- 
-
   return (
     <div className="ProductList">
       <div className="BSh1">
@@ -15,10 +12,14 @@ function ProductsList({ products }) {
       </div>
       <div className="BSProductsH">
         {products.map((product) => (
-          <Link className="LinkPL" to={`/details/${product.id}`} >
+          <Link
+            className="LinkPL"
+            key={product.id}
+            to={`/details/${product.id}`}
+          >
             <div className="CartProductsH">
               <span className="VoirPL">VOIR</span>
-              <CardDetails key={product.id} cardProduct={product}/>
+              <CardDetails key={product.id} cardProduct={product} />
             </div>
           </Link>
         ))}
