@@ -4,11 +4,11 @@
     height: auto;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     list-style-type: none;
     background-color: #ffffff;
-    // margin-top: auto;
-    // margin-bottom: auto;
+    gap: 100px;
+
     li {
       margin-top: auto;
       margin-bottom: auto;
@@ -17,17 +17,17 @@
 }
 
 .loupeNB {
-  width: 150%;
+  width: 50px;
 }
 
 .logoNB {
-  width: 100%;
+  width: 90%;
 }
 
 .loginNB {
-  width: 100%;
+  width: 50px;
 }
 
 .cadiNB {
-  width: 10%;
+  width: 50px;
 }

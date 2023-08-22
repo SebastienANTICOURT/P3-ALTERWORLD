@@ -15,7 +15,7 @@ function Home() {
   }, [])
 
   return (
-    <>
+    <div className="Home">
       <div className="TextH">
         <Text />
       </div>
@@ -25,7 +25,7 @@ function Home() {
       <div className="BestSellersH">
         <ProductsList products={products} />
       </div>
-    </>
+    </div>
   )
 }
 

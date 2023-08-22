@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import NavBar from "./components/NavBar"
 import Home from "./pages/Home"
+import Connexion from "./pages/Connexion"
 import Boutique from "./pages/Boutique"
 import Details from "./pages/Details"
 import Panier from "./pages/Panier"
@@ -13,6 +14,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/connexion" element={<Connexion />} />
         <Route path="/boutique" element={<Boutique />} />
         <Route path="/details/:id" element={<Details />} />
         <Route path="/panier" element={<Panier />} />

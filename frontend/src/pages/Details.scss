@@ -5,23 +5,18 @@
 
   .DetailCardID {
     background-color: $NBColor;
-    height: 550px;
+    height: 70vh;
     width: 70%;
     margin-top: 50px;
     margin-bottom: 50px;
     display: flex;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
     margin-left: auto;
     margin-right: auto;
     border: black solid 0px;
     box-shadow: 8px 7px 0px 0px rgba(0, 0, 0, 0.5);
     padding: 4px 0 0 4px;
     position: relative;
-    @media screen and (max-width: 700px) {
-      .DetailCardID {
-        height: 1000px;
-      }
-    }
 
     .leftContainerD {
       width: 50%;
@@ -90,7 +85,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
     gap: 40px;
 
     .buttonPanierD {
@@ -111,6 +106,15 @@
 
 @media screen and (max-width: 700px) {
   .DetailCardID {
-    height: 1000px;
+    height: 150vh;
+    flex-direction: column;
+  }
+
+  img {
+    width: 300px;
+    height: 320px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
