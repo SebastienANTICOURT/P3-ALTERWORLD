@@ -4,17 +4,19 @@ const router = express.Router()
 
 const productsControllers = require("./controllers/productsControllers")
 const usersControllers = require("./controllers/usersControllers")
+const { hashPassword } = require("./auth");
 const charactersControllers = require("./controllers/charactersControllers")
 
 router.get("/products", productsControllers.browse)
+router.get("/products", productsControllers.productsN)
 router.get("/products/:id", productsControllers.read)
-router.post("/products", productsControllers.add)
+router.post("/products",productsControllers.add)
 // router.put("/users/:id", usersControllers.edit)
 // router.delete("/users/:id", usersControllers.destroy)
 
 router.get("/users", usersControllers.browse)
 router.get("/users/:id", usersControllers.read)
-router.post("/users", usersControllers.add)
+router.post("/users", hashPassword, usersControllers.add)
 // router.put("/users/:id", usersControllers.edit)
 // router.delete("/users/:id", usersControllers.destroy)
 

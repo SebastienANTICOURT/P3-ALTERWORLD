@@ -1,6 +1,8 @@
 import "./FiltresBar.scss"
 
 function FiltresBar() {
+
+  
   return (
     <div className="FiltresBar">
       <div className="FB">

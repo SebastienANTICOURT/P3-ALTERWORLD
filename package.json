@@ -32,6 +32,7 @@
     "husky": "^8.0.3"
   },
   "dependencies": {
+    "argon2": "^0.31.0",
     "react-router-dom": "^6.14.2",
     "sass": "^1.64.2"
   }

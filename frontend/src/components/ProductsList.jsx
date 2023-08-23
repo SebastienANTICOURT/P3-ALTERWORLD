@@ -3,6 +3,7 @@ import CardDetails from "./CardDetails"
 import "./ProductsList.scss"
 
 function ProductsList({ products }) {
+  
   return (
     <div className="ProductList">
       <div className="BSh1">

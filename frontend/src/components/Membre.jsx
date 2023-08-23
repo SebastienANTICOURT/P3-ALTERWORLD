@@ -1,16 +1,15 @@
 import { useState } from "react"
 import "./Membre.scss"
 
-function Membre() {
+function Membre({ switchView }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
   return (
-    <div className="login-container">
+    <div className="Membre">
       <h2>Connectez vous</h2>
-
       <div>
-        <p>Email:</p>
+        <label>Email:</label>
         <input
           type="email"
           value={email}
@@ -19,7 +18,7 @@ function Membre() {
         />
       </div>
       <div>
-        <p>Password:</p>
+        <label>Password:</label>
         <input
           type="password"
           value={password}
@@ -27,8 +26,8 @@ function Membre() {
           placeholder="Enter your password"
         />
       </div>
-      <button>Connect</button>
-      <p>créez votre compte</p>
+      <button>Connexion</button>
+      <p onClick={switchView}>Pas encore inscrit ? créez votre compte</p>
     </div>
   )
 }

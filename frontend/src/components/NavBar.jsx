@@ -1,18 +1,11 @@
-import React, { useState } from "react"
-import loupe from "../assets/loupe.png"
 import alterworld from "../assets/alterworld.png"
 import caddie from "../assets/caddie.png"
 import login from "../assets/login.png"
+import { Link } from "react-router-dom"
 import "./NavBar.scss"
 import "../Style.scss"
 
 function NavBar() {
-  const [searchTerm, setSearchTerm] = useState("")
-
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value)
-  }
-
   return (
     <nav className="NavBar">
       <ul>
@@ -31,9 +24,11 @@ function NavBar() {
         <li>
           <img className="logoNB" src={alterworld} alt="logo" />
         </li>
-        <li>
-          <img className="loginNB" src={login} alt="login" />
-        </li>
+        <Link to="/connexion">
+          <li>
+            <img className="loginNB" src={login} alt="login" />
+          </li>
+        </Link>
         <li>
           <img className="cadiNB" src={caddie} alt="cadi" />
         </li>
