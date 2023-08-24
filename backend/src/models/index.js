@@ -29,16 +29,18 @@ pool.getConnection().catch(() => {
 
 const models = {}
 
-// const ItemManager = require("./ItemManager")
 const CharactersManager = require("./CharactersManager")
 const ProductsManager = require("./ProductsManager")
 const UsersManager = require("./UsersManager")
+
 
 models.characters = new CharactersManager()
 models.characters.setDatabase(pool)
 
 models.products = new ProductsManager()
 models.products.setDatabase(pool)
+
+
 
 models.users = new UsersManager()
 models.users.setDatabase(pool)

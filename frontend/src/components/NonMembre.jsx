@@ -8,8 +8,12 @@ function NonMembre({ switchView }) {
   const [nom, setNom] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  // const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = () => {
+  //   if (password !== confirmPassword) {
+  //     alert("Passwords do not match!");  
+  //   } else {
     axios.post("http://localhost:4242/users", {
       prenom,
       nom,
@@ -22,40 +26,40 @@ function NonMembre({ switchView }) {
     <div className="login-container">
       <h2>Créez votre compte</h2>
       <div>
-        <label>Prenom:</label>
+        <figcaption>Prenom:</figcaption>
         <input
           type="text"
           placeholder="prenom"
           value={prenom}
           onChange={(event) => setPrenom(event.target.value)}
         />
-        <label>Nom:</label>
+        <figcaption>Nom:</figcaption>
         <input
           type="text"
           placeholder="nom"
           value={nom}
           onChange={(event) => setNom(event.target.value)}
         />
-        <label>Email:</label>
+        <figcaption>Email:</figcaption>
         <input
           type="text"
           placeholder="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         />
-        <label>Mot de passe:</label>
+        <figcaption>Mot de passe:</figcaption>
         <input
-          type="text"
+          type="password"
           placeholder="Mot de passe"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-         {/* <label>Confirmation mot de passe:</label>
+        {/* <figcaption>Confirmation mot de passe:</figcaption>
         <input
-          type="text"
+          type="password"
           placeholder="Mot de passe"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          value={confirmPassword}
+          onChange={(event) => setConfirmPassword(event.target.value)}
         /> */}
       </div>
       <button onClick={handleSubmit}>S'inscrire</button>

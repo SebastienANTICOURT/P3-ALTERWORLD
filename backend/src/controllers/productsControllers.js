@@ -12,7 +12,7 @@ const browse = (req, res) => {
     })
 }
 
-const productsN =(req, res) => {
+const productsN = (req, res) => {
   models.products
     .findProduct()
     .then(([rows]) => {

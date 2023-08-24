@@ -9,7 +9,7 @@ function Membre({ switchView }) {
     <div className="Membre">
       <h2>Connectez vous</h2>
       <div>
-        <label>Email:</label>
+        <figcaption>Email:</figcaption>
         <input
           type="email"
           value={email}
@@ -18,7 +18,7 @@ function Membre({ switchView }) {
         />
       </div>
       <div>
-        <label>Password:</label>
+        <figcaption>Password:</figcaption>
         <input
           type="password"
           value={password}

@@ -1,6 +1,7 @@
 @import "../Style.scss";
 
 .login-container {
+  height: 500px;
   width: 400px;
   margin: 50px auto;
   margin-top: 50px;
@@ -18,7 +19,7 @@
     margin-bottom: 20px;
   }
 
-  label {
+  figcaption {
     display: block;
     margin-top: 20px;
     margin-bottom: 5px;

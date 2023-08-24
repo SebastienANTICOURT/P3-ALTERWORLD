@@ -14,11 +14,13 @@ function Details() {
   }, [])
 
   const decreaseQuantity = () => {
-    setQuantity(quantity - 1)
+    setQuantity(prevQuantity => Math.max(1, prevQuantity - 1));
   }
   const increaseQuantity = () => {
     setQuantity(quantity + 1)
   }
+
+  const totalCost = detail.Prix  * quantity;
 
   return (
     <div className="Details">
@@ -35,8 +37,9 @@ function Details() {
             <p>{quantity}</p>
             <button onClick={increaseQuantity}>+</button>
           </div>
-          <button>Ajouter au panier</button>
-          <button>Acheter maintenant</button>
+          <p>Total : {totalCost} €</p>
+          <button className="panierD">Ajouter au panier</button>
+          <button className="panierD">Acheter maintenant</button>
         </div>
       </div>
       <div className="buttonsD">

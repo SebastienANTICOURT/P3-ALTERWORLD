@@ -21,9 +21,11 @@ function NavBar() {
           />
           <button onClick={handleSearch}>Search</button>
         </li> */}
+        <Link to="/">
         <li>
           <img className="logoNB" src={alterworld} alt="logo" />
         </li>
+        </Link>
         <Link to="/connexion">
           <li>
             <img className="loginNB" src={login} alt="login" />

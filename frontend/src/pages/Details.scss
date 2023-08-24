@@ -6,7 +6,7 @@
   .DetailCardID {
     background-color: $NBColor;
     height: 70vh;
-    width: 70%;
+    width: 850px;
     margin-top: 50px;
     margin-bottom: 50px;
     display: flex;
@@ -35,12 +35,13 @@
       width: 50%;
       padding-top: 10px;
       display: flex;
-
-      // margin-right: auto;
+      text-align: center;
+      align-items: center;
       flex-direction: column;
-      gap: 30px;
+      gap: 40px;
 
       figcaption {
+        color: #19083b;
         font-weight: bold;
         font-size: 30px;
         margin-top: 5px;
@@ -76,6 +77,46 @@
         font-size: 20px;
         font-weight: bold;
       }
+
+      .panierD {
+        width:200px;
+        height: 30px;
+        font-size: 15px;
+        background-color: rgb(77, 16, 77);
+        font-weight: bold;
+      color: rgb(233, 224, 224);
+      padding-top: 3px;
+      border: black 2px solid;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      }
+    }
+    @media only screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      height: auto;
+      width: 100%;
+    
+      .leftContainerD,
+      .rightContainerD {
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+      }
+    
+      .leftContainerD img {
+        width: 80%;
+        height: auto;  // This makes the image keep its aspect ratio
+        margin: 0 auto;
+      }
+    
+      .rightContainerD {
+        gap: 20px;
+      }
+    
+      .panierD {
+        width: 80%;
+      }
     }
   }
 
@@ -104,17 +145,5 @@
   }
 }
 
-@media screen and (max-width: 700px) {
-  .DetailCardID {
-    height: 150vh;
-    flex-direction: column;
-  }
 
-  img {
-    width: 300px;
-    height: 320px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
+
