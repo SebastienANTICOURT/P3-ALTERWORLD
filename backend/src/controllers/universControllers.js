@@ -29,7 +29,7 @@ const read = (req, res) => {
 }
 
 const add = (req, res) => {
-  const naturs = req.body
+  const univers = req.body
   // TODO validations (length, format...)
   models.univers
     .insert(univers)

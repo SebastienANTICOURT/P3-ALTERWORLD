@@ -35,7 +35,6 @@ const UniversManager = require("./universManager")
 const NatureManager = require("./NatureManager")
 const UsersManager = require("./UsersManager")
 
-
 models.characters = new CharactersManager()
 models.characters.setDatabase(pool)
 

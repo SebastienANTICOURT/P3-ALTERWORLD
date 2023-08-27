@@ -15,7 +15,6 @@
     .DivFB {
       display: flex;
       flex-direction: column;
-      
     }
 
     h1 {
@@ -32,11 +31,25 @@
 
     .selected {
       color: $yellow;
-  }
-  
-  .defaultColor {
+    }
+
+    .defaultColor {
       color: white;
-  }
+    }
+
+    h1 {
+      color: whitesmoke;
+      text-decoration: underline;
+    }
+    p {
+      font-size: 20px;
+      display: flex;
+      color: whitesmoke;
+      margin-top: 5px;
+      cursor: pointer;
+    }
+
+
   }
 
   .NatureFB {

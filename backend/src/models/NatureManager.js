@@ -14,10 +14,7 @@ class NatureManager extends AbstractManager {
   update(nature) {
     return this.database.query(
       `UPDATE ${this.table} SET name = ? WHERE (id = ?)`,
-      [
-        nature.name,
-        
-      ]
+      [nature.name]
     )
   }
 }

@@ -8,53 +8,53 @@ import "./NavBar.scss"
 import "../Style.scss"
 
 function NavBar() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("")
 
   const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
+    setSearchTerm(event.target.value)
   }
 
-  const handleSearch = () => {
-    // code
-  };
+  // const handleSearch = () => {
+  //   // code
+  // }
 
   return (
     <nav className="NavBar">
-  <ul>
-    <div className="leftItems">
-      <li className="searchItem">
-        <div className="searchContainer">
-          <img className="loupeNB" src={loupe} alt="loupe" />
-          <input
-            type="text"
-            placeholder="Rechercher"
-            value={searchTerm}
-            onChange={handleSearchChange}
-          />
-          {/* <button onClick={handleSearch}>Search</button> */}
+      <ul>
+        <div className="leftItems">
+          <li className="searchItem">
+            <div className="searchContainer">
+              <img className="loupeNB" src={loupe} alt="loupe" />
+              <input
+                type="text"
+                placeholder="Rechercher"
+                value={searchTerm}
+                onChange={handleSearchChange}
+              />
+              {/* <button onClick={handleSearch}>Search</button> */}
+            </div>
+          </li>
         </div>
-      </li>
-    </div>
-    
-    <li>
-      <Link to="/">
-        <img className="logoNB" src={alterworld} alt="logo" />
-      </Link>
-    </li>
 
-    <div className="rightItems">
-      <Link to="/connexion">
         <li>
-          <img className="loginNB" src={login} alt="login" />
+          <Link to="/">
+            <img className="logoNB" src={alterworld} alt="logo" />
+          </Link>
         </li>
-      </Link>
-      <li>
-        <img className="cadiNB" src={caddie} alt="caddie" />
-      </li>
-    </div>
-  </ul>
-</nav>
-)
+
+        <div className="rightItems">
+          <Link to="/connexion">
+            <li>
+              <img className="loginNB" src={login} alt="login" />
+            </li>
+          </Link>
+          <li>
+            <img className="cadiNB" src={caddie} alt="caddie" />
+          </li>
+        </div>
+      </ul>
+    </nav>
+  )
 }
 
 export default NavBar
