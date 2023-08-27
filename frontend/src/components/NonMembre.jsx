@@ -11,9 +11,9 @@ function NonMembre({ switchView }) {
   // const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = () => {
-  //   if (password !== confirmPassword) {
-  //     alert("Passwords do not match!");  
-  //   } else {
+    //   if (password !== confirmPassword) {
+    //     alert("Passwords do not match!");
+    //   } else {
     axios.post("http://localhost:4242/users", {
       prenom,
       nom,

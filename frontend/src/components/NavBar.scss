@@ -1,33 +1,41 @@
 .NavBar {
   background-color: #ffffff;
+  
   ul {
     height: auto;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
     list-style-type: none;
     background-color: #ffffff;
-    gap: 100px;
 
-    li {
-      margin-top: auto;
-      margin-bottom: auto;
+    .leftItems, .rightItems {
+      display: flex;
+      align-items: center;
+      gap: 180px;
+    }
+
+    .searchItem {
+      margin-right: 30px;
+    }
+
+    .searchContainer {
+      display: flex;
+      align-items: center;
+    }
+
+    input {
+      height: 25px;
+      width:200px;
     }
   }
 }
 
-.loupeNB {
+.loupeNB, .loginNB, .cadiNB {
   width: 50px;
 }
 
 .logoNB {
   width: 90%;
-}
-
-.loginNB {
-  width: 50px;
-}
-
-.cadiNB {
-  width: 50px;
 }

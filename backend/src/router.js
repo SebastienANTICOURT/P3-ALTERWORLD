@@ -3,8 +3,10 @@ const express = require("express")
 const router = express.Router()
 
 const productsControllers = require("./controllers/productsControllers")
+const universControllers= require("./controllers/universControllers")
+const natureControllers= require("./controllers/natureControllers")
 const usersControllers = require("./controllers/usersControllers")
-const { validateUsers } = require("./validators.js");
+const { validateUsers } = require("./validators.js")
 const { hashPassword } = require("./auth")
 const charactersControllers = require("./controllers/charactersControllers")
 
@@ -15,7 +17,9 @@ router.post("/products", productsControllers.add)
 // router.put("/users/:id", usersControllers.edit)
 // router.delete("/users/:id", usersControllers.destroy)
 
+router.get("/univers", universControllers.browse)
 
+router.get("/nature", natureControllers.browse)
 
 router.get("/users", usersControllers.browse)
 router.get("/users/:id", usersControllers.read)

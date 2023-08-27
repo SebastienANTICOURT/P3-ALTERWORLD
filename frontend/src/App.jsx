@@ -5,7 +5,7 @@ import Connexion from "./pages/Connexion"
 import Boutique from "./pages/Boutique"
 import Details from "./pages/Details"
 import Panier from "./pages/Panier"
-import Footer from "./components/Footer"
+// import Footer from "./components/Footer"
 import "./Style.scss"
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/panier" element={<Panier />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

@@ -1,36 +1,44 @@
 @import "../Style.scss";
 
 .FiltresBar {
-  height: 200px;
+  height: 230px;
   width: 100%;
   background-color: #325068;
   display: flex;
   flex-direction: column;
 
   .FB {
-    // margin-top: auto;
-    // margin-bottom: auto;
+    display: flex;
+    justify-content: space-around;
     margin-left: 5%;
-    .ulFB {
+
+    .DivFB {
       display: flex;
-      align-items: baseline;
-      gap: 10px;
-      color: #e0e0e0;
-      margin-top: 35px;
-      flex-wrap: wrap;
-      .TitleListFB {
-        font-size: 25px;
-      }
-      li {
-        font-size: 18px;
-      }
-      @media screen and (max-width: 700px) {
-        li {
-          font-size: 10px;
-        }
-      }
+      flex-direction: column;
+      
     }
+
+    h1 {
+      color: whitesmoke;
+      text-decoration: underline;
+    }
+    p {
+      font-size: 20px;
+      display: flex;
+      color: whitesmoke;
+      margin-top: 5px;
+      cursor: pointer;
+    }
+
+    .selected {
+      color: $yellow;
   }
+  
+  .defaultColor {
+      color: white;
+  }
+  }
+
   .NatureFB {
     gap: 20px;
     font-size: 20px;
@@ -48,12 +56,14 @@
     display: flex;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
+    margin-top: 25px;
+    margin-bottom: 20px;
     justify-content: center;
     font-weight: bold;
     padding-top: 5px;
     border: black 2px solid;
     border-radius: 20px;
+    cursor: pointer;
   }
 }
 

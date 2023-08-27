@@ -79,16 +79,16 @@
       }
 
       .panierD {
-        width:200px;
+        width: 200px;
         height: 30px;
         font-size: 15px;
         background-color: rgb(77, 16, 77);
         font-weight: bold;
-      color: rgb(233, 224, 224);
-      padding-top: 3px;
-      border: black 2px solid;
-      border-radius: 20px;
-      margin-bottom: 20px;
+        color: rgb(233, 224, 224);
+        padding-top: 3px;
+        border: black 2px solid;
+        border-radius: 20px;
+        margin-bottom: 20px;
       }
     }
     @media only screen and (max-width: 768px) {
@@ -96,24 +96,24 @@
       align-items: center;
       height: auto;
       width: 100%;
-    
+
       .leftContainerD,
       .rightContainerD {
         width: 100%;
         text-align: center;
         padding: 20px;
       }
-    
+
       .leftContainerD img {
         width: 80%;
-        height: auto;  // This makes the image keep its aspect ratio
+        height: auto; // This makes the image keep its aspect ratio
         margin: 0 auto;
       }
-    
+
       .rightContainerD {
         gap: 20px;
       }
-    
+
       .panierD {
         width: 80%;
       }
@@ -144,6 +144,3 @@
     }
   }
 }
-
-
-

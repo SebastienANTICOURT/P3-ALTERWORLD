@@ -9,8 +9,7 @@ class AbstractManager {
 
   findProduct() {
     return this.database.query(`SELECT products.id,
-     products.name, products.image1, products.Prix, products.Creator_id,
-    nature.name, nature.id, univers.name, univers.id
+    products.name, products.image1, products.Prix, products.Creator_id
     FROM products
     INNER JOIN products_nature ON products.id = products_nature.Products_id
     INNER JOIN nature ON products_nature.Nature_id = nature.id

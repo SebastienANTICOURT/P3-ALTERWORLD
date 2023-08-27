@@ -2,18 +2,6 @@ const models = require("../models")
 
 const browse = (req, res) => {
   models.products
-    .browseAll()
-    .then(([rows]) => {
-      res.send(rows)
-    })
-    .catch((err) => {
-      console.error(err)
-      res.sendStatus(500)
-    })
-}
-
-const productsN = (req, res) => {
-  models.products
     .findProduct()
     .then(([rows]) => {
       res.send(rows)
@@ -56,7 +44,6 @@ const add = (req, res) => {
 
 module.exports = {
   browse,
-  productsN,
   read,
   add,
 }
