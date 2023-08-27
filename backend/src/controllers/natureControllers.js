@@ -1,7 +1,7 @@
 const models = require("../models")
 
 const browse = (req, res) => {
-  models.nature
+  models.natures
     .findAll()
     .then(([rows]) => {
       res.send(rows)

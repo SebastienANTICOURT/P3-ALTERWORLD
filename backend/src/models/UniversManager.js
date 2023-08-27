@@ -6,14 +6,14 @@ class UniversManager extends AbstractManager {
   }
 
   insert(univers) {
-    return this.database.query(`insert into ${this.table} (name) values (?)`, [
-      univers.name,
+    return this.database.query(`insert into ${this.table} (Name) values (?)`, [
+      univers.Name,
     ])
   }
 
   update(univers) {
     return this.database.query(
-      `UPDATE ${this.table} SET name = ? WHERE (id = ?)`,
+      `UPDATE ${this.table} SET Name = ? WHERE (id = ?)`,
       [univers.name]
     )
   }

@@ -1,11 +1,13 @@
 import { Route, Routes } from "react-router-dom"
 import NavBar from "./components/NavBar"
-import Home from "./pages/Home"
-import Connexion from "./pages/Connexion"
-import Boutique from "./pages/Boutique"
-import Details from "./pages/Details"
-import Panier from "./pages/Panier"
-// import Footer from "./components/Footer"
+
+// importer les pages en lazy loading pour se la raconter
+// interet : diminuer l'attente du client avant la premiere impression
+import Home from "./pages/home/Home"
+import Connexion from "./pages/connexion/Connexion"
+import Boutique from "./pages/boutique/Boutique"
+import Details from "./pages/details/Details"
+import Panier from "./pages/panier/Panier"
 import "./Style.scss"
 
 function App() {
@@ -19,7 +21,6 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/panier" element={<Panier />} />
       </Routes>
-      {/* <Footer /> */}
     </div>
   )
 }

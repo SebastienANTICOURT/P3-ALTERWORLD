@@ -8,9 +8,12 @@ function Details() {
   const [detail, setDetail] = useState([])
   const [quantity, setQuantity] = useState(1)
 
-  axios.get(`http://localhost:4242/products/${id}`).then((res) => {
-    setDetail(res.data)
-  }, [id])
+  axios.get(`http://localhost:4242/products/${id}`).then(
+    (res) => {
+      setDetail(res.data)
+    },
+    [id]
+  )
 
   const decreaseQuantity = () => {
     setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1))
@@ -25,7 +28,10 @@ function Details() {
     <div className="Details">
       <div className="DetailCardID">
         <div className="leftContainerD">
-          <img src={`http://localhost:4242${detail.image1}`} alt={detail.name} />
+          <img
+            src={`http://localhost:4242${detail.image1}`}
+            alt={detail.name}
+          />
         </div>
         <div className="rightContainerD">
           <figcaption>{detail.name}</figcaption>

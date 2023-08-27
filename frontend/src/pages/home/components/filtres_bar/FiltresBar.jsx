@@ -1,9 +1,6 @@
+import ProductsList from "../../../../components/ProductsList"
 import { useState, useEffect } from "react"
 import axios from "axios"
-import ProductsList from "./ProductsList"
-import { useState, useEffect } from "react"
-import axios from "axios"
-import ProductsList from "./ProductsList"
 import "./FiltresBar.scss"
 
 function FiltresBar() {
@@ -21,13 +18,12 @@ function FiltresBar() {
 
     axios.get(filterURL).then((res) => setProducts(res.data))
   }
-
   useEffect(() => {
     axios.get("http://localhost:4242/univers").then((res) => {
       setUnivers(res.data)
     })
     axios
-      .get("http://localhost:4242/nature")
+      .get("http://localhost:4242/natures")
       .then((res) => setNatures(res.data))
     fetchFilteredProducts()
   }, [selectedUnivers, selectedNatures])
@@ -85,10 +81,6 @@ function FiltresBar() {
         </div>
       </div>
       <div className="buttonFB">
-        <button onClick={fetchFilteredProducts}>SELECTIONNER</button>
-      </div>
-      <div className="BestSellersH">
-        <ProductsList products={products} />
         <button onClick={fetchFilteredProducts}>SELECTIONNER</button>
       </div>
       <div className="BestSellersH">

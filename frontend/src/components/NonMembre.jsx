@@ -30,6 +30,7 @@ function NonMembre({ switchView }) {
         <input
           type="text"
           placeholder="prenom"
+          name="prenom"
           value={prenom}
           onChange={(event) => setPrenom(event.target.value)}
         />

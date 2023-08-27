@@ -1,6 +1,6 @@
 import { useState } from "react"
-import Membre from "../components/Membre"
-import NonMembre from "../components/NonMembre"
+import Membre from "../../components/Membre"
+import NonMembre from "../../components/NonMembre"
 import "./Connexion.scss"
 
 function Connexion() {

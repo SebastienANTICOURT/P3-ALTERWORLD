@@ -5,10 +5,10 @@ function CardDetails({ cardProduct }) {
     <>
       <img
         className="imageProd"
-        src={`http://localhost:4242${cardProduct.image1}`}
+        src={`http://localhost:4242${cardProduct.image_url}`}
       />
       <figcaption>{cardProduct.name}</figcaption>
-      <p className="PriceH">{cardProduct.Prix} €</p>
+      <p className="PriceH">{cardProduct.price} €</p>
     </>
   )
 }

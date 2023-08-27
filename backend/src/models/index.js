@@ -44,8 +44,8 @@ models.products.setDatabase(pool)
 models.univers = new UniversManager()
 models.univers.setDatabase(pool)
 
-models.nature = new NatureManager()
-models.nature.setDatabase(pool)
+models.natures = new NatureManager()
+models.natures.setDatabase(pool)
 
 models.users = new UsersManager()
 models.users.setDatabase(pool)

@@ -19,7 +19,7 @@ router.post("/products", productsControllers.add)
 
 router.get("/univers", universControllers.browse)
 
-router.get("/nature", natureControllers.browse)
+router.get("/natures", natureControllers.browse)
 
 router.get("/users", usersControllers.browse)
 router.get("/users/:id", usersControllers.read)
