@@ -29,13 +29,13 @@ function Details() {
       <div className="DetailCardID">
         <div className="leftContainerD">
           <img
-            src={`http://localhost:4242${detail.image1}`}
+            src={`http://localhost:4242${detail.image_url}`}
             alt={detail.name}
           />
         </div>
         <div className="rightContainerD">
           <figcaption>{detail.name}</figcaption>
-          <p className="PricesD">{detail.Prix} €</p>
+          <p className="PricesD">{detail.price} €</p>
           <div className="quantityD">
             <button onClick={decreaseQuantity}>-</button>
             <p>{quantity}</p>
