@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import CardDetails from "./CardDetails"
+import CardDetails from "../../../../components/CardDetails"
 import "./ProductsList.scss"
 
 function ProductsList({ products }) {

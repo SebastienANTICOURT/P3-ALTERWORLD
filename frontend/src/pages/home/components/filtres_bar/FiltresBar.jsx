@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import ProductsList from "../../../../components/ProductsList"
+import FilterSection from "./FilterSection"
+import ProductsList from "./ProductsList"
 import Dropdown from "./Dropdown"
+
 import "./FiltresBar.scss"
 
 function FiltresBar() {
@@ -31,7 +33,7 @@ function FiltresBar() {
     )
 
     if (sortOrder === "Prix croissant") {
-      return filtered.sort((a, b) => a.price - b.price) // Assuming products have a 'price' property
+      return filtered.sort((a, b) => a.price - b.price)
     } else if (sortOrder === "Prix décroissant") {
       return filtered.sort((a, b) => b.price - a.price)
     }
@@ -41,53 +43,17 @@ function FiltresBar() {
 
   return (
     <div className="FiltresBar">
-      <div className="FB">
-        <div className="DivFB">
-          <h1>Univers :</h1>
-          {univers.map((univer) => (
-            <p
-              key={univer.id}
-              className={
-                selectedUnivers.includes(univer.id)
-                  ? "selected"
-                  : "defaultColor"
-              }
-              onClick={() => {
-                if (selectedUnivers.includes(univer.id)) {
-                  setSelectedUnivers(
-                    selectedUnivers.filter((id) => id !== univer.id)
-                  )
-                } else {
-                  setSelectedUnivers([...selectedUnivers, univer.id])
-                }
-              }}
-            >
-              {univer.name}
-            </p>
-          ))}
-        </div>
-        <div className="DivFB">
-          <h1>Types :</h1>
-          {types.map((type) => (
-            <p
-              key={type.id}
-              className={
-                selectedTypes.includes(type.id) ? "selected" : "defaultColor"
-              }
-              onClick={() => {
-                if (selectedTypes.includes(type.id)) {
-                  setSelectedTypes(selectedTypes.filter((id) => id !== type.id))
-                } else {
-                  setSelectedTypes([...selectedTypes, type.id])
-                }
-              }}
-            >
-              {type.name}
-            </p>
-          ))}
-        </div>
+      <div className="BlocFiltre">
+        <FilterSection
+          univers={univers}
+          selectedUnivers={selectedUnivers}
+          setSelectedUnivers={setSelectedUnivers}
+          types={types}
+          selectedTypes={selectedTypes}
+          setSelectedTypes={setSelectedTypes}
+        />
+        <Dropdown sortOrder={sortOrder} setSortOrder={setSortOrder} />
       </div>
-      <Dropdown sortOrder={sortOrder} setSortOrder={setSortOrder} />
       <ProductsList products={filteredProducts()} />
     </div>
   )
