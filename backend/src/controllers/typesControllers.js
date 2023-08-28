@@ -1,7 +1,7 @@
 const models = require("../models")
 
 const browse = (req, res) => {
-  models.natures
+  models.types
     .findAll()
     .then(([rows]) => {
       res.send(rows)
@@ -13,7 +13,7 @@ const browse = (req, res) => {
 }
 
 const read = (req, res) => {
-  models.nature
+  models.types
     .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
@@ -29,10 +29,10 @@ const read = (req, res) => {
 }
 
 const add = (req, res) => {
-  const nature = req.body
+  const types = req.body
   // TODO validations (length, format...)
-  models.nature
-    .insert(nature)
+  models.types
+    .insert(types)
     .then(([result]) => {
       res.json(result.insertId)
     })

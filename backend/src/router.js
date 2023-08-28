@@ -4,7 +4,7 @@ const router = express.Router()
 
 const productsControllers = require("./controllers/productsControllers")
 const universControllers = require("./controllers/universControllers")
-const natureControllers = require("./controllers/natureControllers")
+const typesControllers = require("./controllers/typesControllers")
 const usersControllers = require("./controllers/usersControllers")
 const { validateUsers } = require("./validators.js")
 const { hashPassword } = require("./auth")
@@ -19,7 +19,7 @@ router.post("/products", productsControllers.add)
 
 router.get("/univers", universControllers.browse)
 
-router.get("/natures", natureControllers.browse)
+router.get("/types", typesControllers.browse)
 
 router.get("/users", usersControllers.browse)
 router.get("/users/:id", usersControllers.read)

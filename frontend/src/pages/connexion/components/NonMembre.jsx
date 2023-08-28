@@ -4,19 +4,19 @@ import "./NonMembre.scss"
 
 function NonMembre({ switchView }) {
   //   const [users, setUsers] = useState([])
-  const [prenom, setPrenom] = useState("")
-  const [nom, setNom] = useState("")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  // const [confirmPassword, setConfirmPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("")
 
   const handleSubmit = () => {
-    //   if (password !== confirmPassword) {
-    //     alert("Passwords do not match!");
-    //   } else {
+    // if (password !== confirmPassword) {
+    //   alert("Passwords do not match!")
+    // } else {
     axios.post("http://localhost:4242/users", {
-      prenom,
-      nom,
+      firstName,
+      lastName,
       email,
       password,
     })
@@ -30,16 +30,15 @@ function NonMembre({ switchView }) {
         <input
           type="text"
           placeholder="prenom"
-          name="prenom"
-          value={prenom}
-          onChange={(event) => setPrenom(event.target.value)}
+          value={firstName}
+          onChange={(event) => setFirstName(event.target.value)}
         />
         <figcaption>Nom:</figcaption>
         <input
           type="text"
           placeholder="nom"
-          value={nom}
-          onChange={(event) => setNom(event.target.value)}
+          value={lastName}
+          onChange={(event) => setLastName(event.target.value)}
         />
         <figcaption>Email:</figcaption>
         <input

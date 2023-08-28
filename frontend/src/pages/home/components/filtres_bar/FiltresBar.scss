@@ -1,20 +1,23 @@
 @import "../../../../Style.scss";
 
 .FiltresBar {
-  height: 230px;
+  height: auto;
   width: 100%;
   background-color: #325068;
   display: flex;
   flex-direction: column;
 
   .FB {
+    height: 150px;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
-    margin-left: 5%;
+    margin-left: 15px;
 
     .DivFB {
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      gap: 10px;
     }
 
     h1 {

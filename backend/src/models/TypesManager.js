@@ -1,22 +1,22 @@
 const AbstractManager = require("./AbstractManager")
 
-class NatureManager extends AbstractManager {
+class TypesManager extends AbstractManager {
   constructor() {
-    super({ table: "natures" })
+    super({ table: "types" })
   }
 
-  insert(natures) {
+  insert(types) {
     return this.database.query(`insert into ${this.table} (name) values (?)`, [
-      natures.name,
+      types.name,
     ])
   }
 
-  update(natures) {
+  update(types) {
     return this.database.query(
       `UPDATE ${this.table} SET name = ? WHERE (id = ?)`,
-      [natures.name]
+      [types.name]
     )
   }
 }
 
-module.exports = NatureManager
+module.exports = TypesManager
