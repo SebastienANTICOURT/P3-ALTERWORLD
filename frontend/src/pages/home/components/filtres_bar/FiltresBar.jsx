@@ -10,7 +10,7 @@ function FiltresBar() {
   const [types, setTypes] = useState([])
   const [selectedUnivers, setSelectedUnivers] = useState([])
   const [selectedTypes, setSelectedTypes] = useState([])
-  const [selectedOption, setSelectedOption] = useState("Trier par")
+  const [sortOrder, setSortOrder] = useState("Trier par")
 
   useEffect(() => {
     axios
@@ -23,23 +23,21 @@ function FiltresBar() {
   }, [])
 
   const filteredProducts = () => {
-    return products.filter(
+    const filtered = products.filter(
       (product) =>
         (selectedUnivers.length === 0 ||
           selectedUnivers.includes(product.univer_id)) &&
         (selectedTypes.length === 0 || selectedTypes.includes(product.type_id))
     )
-  }
 
-  // const sortedProducts = () => {
-  //   if (selectedOption === "Prix croissant") {
-  //     return [...filteredProducts].sort((a, b) => a.price - b.price)
-  //   } else if (selectedOption === "Prix décroissant") {
-  //     return [...filteredProducts].sort((a, b) => b.price - a.price)
-  //   } else {
-  //     return filteredProducts
-  //   }
-  // }
+    if (sortOrder === "Prix croissant") {
+      return filtered.sort((a, b) => a.price - b.price) // Assuming products have a 'price' property
+    } else if (sortOrder === "Prix décroissant") {
+      return filtered.sort((a, b) => b.price - a.price)
+    }
+
+    return filtered
+  }
 
   return (
     <div className="FiltresBar">
@@ -89,10 +87,7 @@ function FiltresBar() {
           ))}
         </div>
       </div>
-      <Dropdown
-        setSelectedOption={setSelectedOption}
-        selectedOption={selectedOption}
-      />
+      <Dropdown sortOrder={sortOrder} setSortOrder={setSortOrder} />
       <ProductsList products={filteredProducts()} />
     </div>
   )
