@@ -8,20 +8,20 @@ function NonMembre({ switchView }) {
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  // const [confirmPassword, setConfirmPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
 
   const handleSubmit = () => {
-    // if (password !== confirmPassword) {
-    //   alert("Passwords do not match!")
-    // } else {
-    axios.post("http://localhost:4242/users", {
-      firstName,
-      lastName,
-      email,
-      password,
-    })
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!")
+    } else {
+      axios.post("http://localhost:4242/users", {
+        firstName,
+        lastName,
+        email,
+        password,
+      })
+    }
   }
-
   return (
     <div className="login-container">
       <h2>Créez votre compte</h2>
@@ -54,17 +54,18 @@ function NonMembre({ switchView }) {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-        {/* <figcaption>Confirmation mot de passe:</figcaption>
+        <figcaption>Confirmation mot de passe:</figcaption>
         <input
           type="password"
           placeholder="Mot de passe"
           value={confirmPassword}
           onChange={(event) => setConfirmPassword(event.target.value)}
-        /> */}
+        />
       </div>
       <button onClick={handleSubmit}>S'inscrire</button>
       <p onClick={switchView}>Déjà membre ?</p>
     </div>
   )
 }
+
 export default NonMembre

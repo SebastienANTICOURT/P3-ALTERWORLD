@@ -1,5 +1,6 @@
 .NavBar {
   background-color: #ffffff;
+
   ul {
     height: auto;
     width: 100%;
@@ -13,11 +14,16 @@
     .rightItems {
       display: flex;
       align-items: center;
-      gap: 180px;
+      gap: 5%; // changed to percentage for responsiveness
     }
 
     .searchItem {
-      margin-right: 30px;
+      margin-right: 2%; // changed to percentage for responsiveness
+    }
+
+    .logoNB {
+      max-width: 70%;
+      min-width: 50px;
     }
 
     .searchContainer {
@@ -26,21 +32,37 @@
     }
 
     input {
-      height: 25px;
-      width: 200px;
+      height: 2em; // using em for responsiveness
+      width: 50%; // changed to percentage for responsiveness
     }
   }
 }
 
-.loupeNB {
-  width: 30px;
-}
-
+.loupeNB,
 .loginNB,
 .cadiNB {
-  width: 50px;
+  max-width: 50px;
+  min-width: 30px;
 }
 
-.logoNB {
-  width: 90%;
+@media screen and (max-width: 700px) {
+  .NavBar ul .leftItems,
+  .NavBar ul .rightItems {
+    gap: 2%;
+  }
+
+  .NavBar ul input {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .NavBar ul .leftItems,
+  .NavBar ul .rightItems {
+    gap: 1%;
+  }
+
+  .NavBar ul input {
+    width: 30%;
+  }
 }

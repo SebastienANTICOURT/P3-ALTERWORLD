@@ -22,7 +22,7 @@ function Details() {
     setQuantity(quantity + 1)
   }
 
-  const totalCost = detail.Prix * quantity
+  const totalCost = detail.price * quantity
 
   return (
     <div className="Details">

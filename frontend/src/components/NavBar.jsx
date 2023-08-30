@@ -14,10 +14,6 @@ function NavBar() {
     setSearchTerm(event.target.value)
   }
 
-  // const handleSearch = () => {
-  //   // code
-  // }
-
   return (
     <nav className="NavBar">
       <ul>
