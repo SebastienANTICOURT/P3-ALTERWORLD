@@ -33,6 +33,7 @@ const CharactersManager = require("./CharactersManager")
 const ProductsManager = require("./ProductsManager")
 const UniversManager = require("./universManager")
 const TypesManager = require("./typesManager")
+const BasketManager = require("./BasketManager")
 const UsersManager = require("./UsersManager")
 
 models.characters = new CharactersManager()
@@ -46,6 +47,9 @@ models.univers.setDatabase(pool)
 
 models.types = new TypesManager()
 models.types.setDatabase(pool)
+
+models.basket = new BasketManager()
+models.basket.setDatabase(pool)
 
 models.users = new UsersManager()
 models.users.setDatabase(pool)

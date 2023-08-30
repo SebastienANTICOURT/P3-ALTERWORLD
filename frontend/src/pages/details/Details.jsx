@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import "./Details.scss"
@@ -8,12 +8,16 @@ function Details() {
   const [detail, setDetail] = useState([])
   const [quantity, setQuantity] = useState(1)
 
-  axios.get(`http://localhost:4242/products/${id}`).then(
-    (res) => {
-      setDetail(res.data)
-    },
-    [id]
-  )
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4242/products/${id}`)
+      .then((res) => {
+        setDetail(res.data)
+      })
+      .catch((error) => {
+        console.error("There was an error!", error)
+      })
+  }, [id])
 
   const decreaseQuantity = () => {
     setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1))
@@ -24,14 +28,18 @@ function Details() {
 
   const totalCost = detail.price * quantity
 
+  const addToBasket = () => {
+    axios.post("http://localhost:4242/basket", {
+      productsId: id,
+      quantity,
+    })
+  }
+
   return (
     <div className="Details">
       <div className="DetailCardID">
         <div className="leftContainerD">
-          <img
-            src={`http://localhost:4242${detail.image_url}`}
-            alt={detail.name}
-          />
+          <img src={`http://localhost:4242${detail.image}`} alt={detail.name} />
         </div>
         <div className="rightContainerD">
           <figcaption>{detail.name}</figcaption>
@@ -42,7 +50,9 @@ function Details() {
             <button onClick={increaseQuantity}>+</button>
           </div>
           <p>Total : {totalCost} €</p>
-          <button className="panierD">Ajouter au panier</button>
+          <button className="panierD" onClick={addToBasket}>
+            Ajouter au panier
+          </button>
           <button className="panierD">Acheter maintenant</button>
         </div>
       </div>
