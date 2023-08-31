@@ -1,1 +1,15 @@
 @import "../../Style.scss";
+
+.Basket {
+  width: 100%;
+  display: flex;
+  background-color: #e7eff3;
+  .LeftColumnB {
+    width: 50%;
+    margin-left: 5%;
+  }
+  .rightColumnB {
+    width: 50%;
+    justify-content: center;
+  }
+}

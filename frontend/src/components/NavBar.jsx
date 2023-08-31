@@ -44,9 +44,12 @@ function NavBar() {
               <img className="loginNB" src={login} alt="login" />
             </li>
           </Link>
-          <li>
-            <img className="cadiNB" src={caddie} alt="caddie" />
-          </li>
+
+          <Link to="/basket">
+            <li>
+              <img className="cadiNB" src={caddie} alt="caddie" />
+            </li>
+          </Link>
         </div>
       </ul>
     </nav>
