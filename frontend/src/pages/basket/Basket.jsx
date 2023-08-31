@@ -19,12 +19,15 @@ function Basket() {
     )
     setBasketItems(newBasketItems)
   }
-
   const increaseQuantity = (index) => {
     const newBasketItems = [...basketItems]
     newBasketItems[index].quantity += 1
     setBasketItems(newBasketItems)
   }
+
+  const totalPrice = basketItems.reduce((total, item) => {
+    return total + item.quantity * item.price
+  }, 0)
 
   return (
     <div className="Basket">
@@ -45,8 +48,8 @@ function Basket() {
         ))}
       </div>
       <div className="RightColumnB">
-        <h1>TOTAL :</h1>
-        <p>Dont TVA :</p>
+        <h1>TOTAL :{totalPrice}</h1>
+        <p>Dont TVA :{(totalPrice * 20) / 100}</p>
       </div>
     </div>
   )

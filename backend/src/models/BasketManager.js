@@ -12,6 +12,13 @@ class BasketManager extends AbstractManager {
     )
   }
 
+  findBasketWithProducts() {
+    return this.database
+      .query(`SELECT basket.quantity, products.name, products.image, products.price
+    FROM ${this.table}
+    INNER JOIN products ON basket.productsId = products.id;`)
+  }
+
   update(basket) {
     return this.database.query(
       `UPDATE ${this.table} SET Name = ? WHERE (id = ?)`,
