@@ -7,6 +7,7 @@
   .LeftColumnB {
     width: 50%;
     margin-left: 5%;
+    margin-top: 10px;
     .BasketItem {
       display: flex;
     }
@@ -18,4 +19,26 @@
     width: 50%;
     justify-content: center;
   }
+}
+
+.buttonAchats {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  background-color: #e7eff3;
+}
+.FinaliserAchats {
+  height: 30px;
+  width: 200px;
+  background-color: #2f1369;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 15px;
+  color: whitesmoke;
+  padding-top: 5px;
+  border: black 2px solid;
+  border-radius: 20px;
+  margin-bottom: 20px;
 }

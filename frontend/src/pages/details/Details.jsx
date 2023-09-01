@@ -29,10 +29,14 @@ function Details() {
   const totalCost = detail.price * quantity
 
   const addToBasket = () => {
-    axios.post("http://localhost:4242/basket", {
-      productsId: id,
-      quantity,
-    })
+    axios
+      .post("http://localhost:4242/basket", {
+        productsId: id,
+        quantity,
+      })
+      .then((response) => {
+        alert("Le produit a été ajouté au panier")
+      })
   }
 
   return (

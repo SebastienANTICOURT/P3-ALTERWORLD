@@ -14,7 +14,7 @@ class BasketManager extends AbstractManager {
 
   findBasketWithProducts() {
     return this.database
-      .query(`SELECT basket.quantity, products.name, products.image, products.price
+      .query(`SELECT basket.id, basket.quantity, products.name, products.image, products.price
     FROM ${this.table}
     INNER JOIN products ON basket.productsId = products.id;`)
   }

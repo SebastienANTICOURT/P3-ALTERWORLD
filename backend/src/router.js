@@ -24,6 +24,7 @@ router.get("/types", typesControllers.browse)
 
 router.get("/basket", basketControllers.browse)
 router.post("/basket", basketControllers.add)
+router.delete("/basket/:id", basketControllers.destroy)
 
 router.get("/users", usersControllers.browse)
 router.get("/users/:id", usersControllers.read)

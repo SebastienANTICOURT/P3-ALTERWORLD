@@ -6,6 +6,7 @@ $backColor: #e7eff3;
 $yellow: #f4b346;
 $greenD: #2a8795;
 $greendark: #325068;
+$purple: #0e0424;
 
 * {
   // background-color: $backColor;
@@ -17,4 +18,12 @@ $greendark: #325068;
 ul {
   display: flex;
   list-style-type: none;
+}
+
+button {
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0;
+  margin: 0;
 }
