@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "argon2": "^0.31.0",
+    "jsonwebtoken": "^9.0.2",
     "react-router-dom": "^6.14.2",
     "sass": "^1.64.2"
   }

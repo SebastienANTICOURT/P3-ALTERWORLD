@@ -2,8 +2,7 @@ import { useState } from "react"
 import axios from "axios"
 import "./NonMembre.scss"
 
-function NonMembre({ switchView }) {
-  //   const [users, setUsers] = useState([])
+function NonMembre({ switchView, users }) {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -13,6 +12,8 @@ function NonMembre({ switchView }) {
   const handleSubmit = () => {
     if (password !== confirmPassword) {
       alert("Passwords do not match!")
+    } else if (users.some((user) => user.email === email)) {
+      alert("email already exists!")
     } else {
       axios.post("http://localhost:4242/users", {
         firstName,

@@ -1,9 +1,18 @@
 import { useState } from "react"
 import "./Membre.scss"
 
-function Membre({ switchView }) {
+function Membre({ switchView, users, setUser }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
+  const handleClick = () => {
+    const matchedUser = users.find(
+      (user) => user.email === email && user.password === password
+    )
+    if (matchedUser) {
+      setUser(matchedUser)
+    }
+  }
 
   return (
     <div className="Membre">
@@ -26,7 +35,7 @@ function Membre({ switchView }) {
           placeholder="Enter your password"
         />
       </div>
-      <button>Connexion</button>
+      <button onClick={handleClick}>Connexion</button>
       <p onClick={switchView}>Pas encore inscrit ? créez votre compte</p>
     </div>
   )

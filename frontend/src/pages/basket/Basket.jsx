@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import axios from "axios"
 import "./Basket.scss"
 
@@ -66,7 +67,7 @@ function Basket() {
                   src={`http://localhost:4242${item.image}`}
                   alt={item.name}
                 />
-                <div>
+                <div className="QuantityB">
                   <h2>{item.name}</h2>
                   <button onClick={() => decreaseQuantity(index)}>-</button>
                   <p>{item.quantity}</p>
@@ -83,7 +84,9 @@ function Basket() {
         </div>
       </div>
       <div className="buttonAchats">
-        <button className="FinaliserAchats">Finaliser mes achats</button>
+        <Link to="/boutique">
+          <button className="FinaliserAchats">Finaliser mes achats</button>
+        </Link>
       </div>
     </div>
   )

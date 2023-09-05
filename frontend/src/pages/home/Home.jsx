@@ -1,11 +1,14 @@
 import FiltresBar from "./components/filtres_bar/FiltresBar"
 import "./Home.scss"
 
-function Home() {
+function Home({ user }) {
   return (
     <div className="Home">
       <div className="ContainerText">
-        <h1>Vivez votre popre aventure avec ALTERWORLD ! </h1>
+        <h1>
+          {user && `Bienvenu, ${user.firstName} `}Vivez votre propre aventure
+          avec ALTERWORLD !{" "}
+        </h1>
         <p>
           Enfin une boutique où les fans de RPG peuvent accéder à du contenu de
           qualité et proposer leurs créations. dans tous les univers possible.
