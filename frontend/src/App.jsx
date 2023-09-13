@@ -8,6 +8,8 @@ import Connexion from "./pages/connexion/Connexion"
 import Boutique from "./pages/boutique/Boutique"
 import Details from "./pages/details/Details"
 import Basket from "./pages/basket/Basket"
+import Achats from "./pages/Achats"
+import Administrator from "./pages/Administrator"
 import "./Style.scss"
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
         <Route path="/boutique" element={<Boutique />} />
         <Route path="/details/:id" element={<Details />} />
         <Route path="/basket" element={<Basket />} />
+        <Route path="/achats" element={<Achats />} />
+        <Route path="/administrator" element={<Administrator />} />
       </Routes>
     </div>
   )

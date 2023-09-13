@@ -41,10 +41,6 @@ function Basket() {
     setBasketItems(newBasketItems)
   }
 
-  // const quantity = Number(item.quantity)
-  // const price = Number(item.price)
-  // const Price = (quantity * price).toFixed(2)
-
   const totalPrice = basketItems
     .reduce((total, item) => {
       return total + item.quantity * item.price
@@ -57,22 +53,29 @@ function Basket() {
     <div>
       <div className="Basket">
         <div className="LeftColumnB">
-          <h1>Your Basket</h1>
+          <h1>Votre panier</h1>
           {basketItems.map((item, index) => {
             // console.log(item)
             return (
               <div className="BasketItem" key={index}>
-                <button onClick={() => deleteItem(index)}>X</button>
+                <button
+                  className="deleteButton"
+                  onClick={() => deleteItem(index)}
+                >
+                  X
+                </button>
                 <img
                   src={`http://localhost:4242${item.image}`}
                   alt={item.name}
                 />
                 <div className="QuantityB">
                   <h2>{item.name}</h2>
-                  <button onClick={() => decreaseQuantity(index)}>-</button>
-                  <p>{item.quantity}</p>
-                  <button onClick={() => increaseQuantity(index)}>+</button>
-                  <p>Price: {item.quantity * item.price}</p>
+                  <div className="QuantitéB">
+                    <button onClick={() => decreaseQuantity(index)}>-</button>
+                    <p>{item.quantity}</p>
+                    <button onClick={() => increaseQuantity(index)}>+</button>
+                  </div>
+                  <p>Price: {item.quantity * item.price} €</p>
                 </div>
               </div>
             )
@@ -84,7 +87,7 @@ function Basket() {
         </div>
       </div>
       <div className="buttonAchats">
-        <Link to="/boutique">
+        <Link to="/achats">
           <button className="FinaliserAchats">Finaliser mes achats</button>
         </Link>
       </div>

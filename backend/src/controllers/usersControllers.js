@@ -42,8 +42,26 @@ const add = (req, res) => {
     })
 }
 
+const loginUsers = (req, res, next) => {
+  console.info("test01")
+  models.users.loginUser(req.body.email).then(([users]) => {
+    if (users[0] != null) {
+      req.user = users[0]
+
+      next()
+    } else {
+      res.sendStatus(404).send("pas trouvé")
+    }
+  })
+  // .catch((err) => {
+  //   console.error("poulet")
+  //   res.status(518).send("Error retrieving data from database")
+  // })
+}
+
 module.exports = {
   browse,
   read,
   add,
+  loginUsers,
 }

@@ -1,8 +1,19 @@
 @import "../../Style.scss";
 
+.imageHome {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.imageCatastrophe {
+  width: 30%;
+}
+
 .ContainerText {
   height: 100px;
-  width: 100%;
+  width: 50%;
   display: flex;
   justify-content: center;
   flex-direction: column;

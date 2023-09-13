@@ -11,6 +11,12 @@ class UsersManager extends AbstractManager {
       [users.firstName, users.lastName, users.email, users.password]
     )
   }
+
+  loginUser(email) {
+    return this.database.query(`SELECT * FROM ${this.table} WHERE email = ?`, [
+      email,
+    ])
+  }
 }
 
 module.exports = UsersManager

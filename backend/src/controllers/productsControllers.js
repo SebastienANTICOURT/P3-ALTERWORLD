@@ -42,7 +42,6 @@ const read = (req, res) => {
 
 const add = (req, res) => {
   const products = req.body
-  // TODO validations (length, format...)
   models.products
     .insert(products)
     .then(([result]) => {

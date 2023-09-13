@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { useBasket } from "../../BasketContext"
 import axios from "axios"
 import "./Details.scss"
 
@@ -7,6 +8,7 @@ function Details() {
   const { id } = useParams()
   const [detail, setDetail] = useState([])
   const [quantity, setQuantity] = useState(1)
+  const { basketCount, setBasketCount } = useBasket()
 
   useEffect(() => {
     axios
@@ -36,6 +38,7 @@ function Details() {
       })
       .then((response) => {
         alert("Le produit a été ajouté au panier")
+        setBasketCount(basketCount + quantity)
       })
   }
 

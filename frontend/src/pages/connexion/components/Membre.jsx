@@ -1,17 +1,20 @@
 import { useState } from "react"
+import axios from "axios"
 import "./Membre.scss"
 
-function Membre({ switchView, users, setUser }) {
+function Membre({ switchView }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
   const handleClick = () => {
-    const matchedUser = users.find(
-      (user) => user.email === email && user.password === password
-    )
-    if (matchedUser) {
-      setUser(matchedUser)
-    }
+    axios
+      .post("http://localhost:4242/login", { email, password })
+      .then((res) => {
+        console.info(res.data)
+      })
+    // .catch((error) => {
+    //   // console.log(error)
+    // })
   }
 
   return (
@@ -29,7 +32,7 @@ function Membre({ switchView, users, setUser }) {
       <div>
         <figcaption>Password:</figcaption>
         <input
-          type="password"
+          type="text"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter your password"

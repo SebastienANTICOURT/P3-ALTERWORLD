@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken")
 const argon2 = require("argon2")
 
 const hashingOptions = {
@@ -23,36 +23,47 @@ const hashPassword = (req, res, next) => {
 }
 
 const verifyPassword = (req, res) => {
+  console.info(req.user)
   argon2
-    .verify(req.user.hashedPassword, req.body.password)
+    .verify(req.user.password, req.body.password)
     .then((isVerified) => {
       if (isVerified) {
-        const payload = { sub: req.user.id };
+        const payload = { sub: req.user.id }
 
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
           expiresIn: "1h",
-        });
+        })
 
-        delete req.user.hashedPassword;
-        res.send({ token, user: req.user });
+        delete req.user.password
+        res.send({ token, user: req.user })
       } else {
-        res.sendStatus(401);
+        res.sendStatus(401)
       }
     })
     .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
-};
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
 
 const verifyToken = (req, res, next) => {
   try {
-    next();
+    const authorizationHeader = req.get("Authorization")
+
+    if (authorizationHeader == null) {
+      throw new Error("Authorization header is missing")
+    }
+    const [type, token] = authorizationHeader.split(" ")
+    if (type !== "Bearer") {
+      throw new Error("Authorization header has not the 'Bearer' type")
+    }
+    req.payload = jwt.verify(token, process.env.JWT_SECRET)
+    next()
   } catch (err) {
-    console.error(err);
-    res.sendStatus(401);
+    console.error(err)
+    res.sendStatus(401)
   }
-};
+}
 
 module.exports = {
   hashPassword,

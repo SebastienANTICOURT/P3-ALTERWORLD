@@ -9,9 +9,7 @@ function Connexion({ setUser }) {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4242/users")
-      .then((res) => setUsers(res.data)) || console.log(res.data)
+    axios.get("http://localhost:4242/users").then((res) => setUsers(res.data))
   }, [])
 
   return (
@@ -25,7 +23,7 @@ function Connexion({ setUser }) {
       ) : (
         <NonMembre switchView={() => setIsMembreVisible(true)} users={users} />
       )}
-      <div>{users.map((user) => console.log(user))}</div>
+      {/* <div>{users.map((user) => console.log(user))}</div> */}
     </div>
   )
 }

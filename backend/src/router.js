@@ -6,10 +6,11 @@ const productsControllers = require("./controllers/productsControllers")
 const universControllers = require("./controllers/universControllers")
 const typesControllers = require("./controllers/typesControllers")
 const basketControllers = require("./controllers/basketControllers")
+const ordersControllers = require("./controllers/ordersControllers")
 const usersControllers = require("./controllers/usersControllers")
 const charactersControllers = require("./controllers/charactersControllers")
 const { validateUsers } = require("./validators.js")
-const { hashPassword } = require("./auth")
+const { hashPassword, verifyPassword, verifyToken } = require("./auth")
 
 router.get("/products", productsControllers.browse)
 router.get("/products", productsControllers.productsN)
@@ -26,9 +27,13 @@ router.get("/basket", basketControllers.browse)
 router.post("/basket", basketControllers.add)
 router.delete("/basket/:id", basketControllers.destroy)
 
+router.post("/orders", verifyToken, ordersControllers.add)
+
 router.get("/users", usersControllers.browse)
 router.get("/users/:id", usersControllers.read)
 router.post("/users", validateUsers, hashPassword, usersControllers.add)
+
+router.post("/login", usersControllers.loginUsers, verifyPassword)
 // router.put("/users/:id", usersControllers.edit)
 // router.delete("/users/:id", usersControllers.destroy)
 
