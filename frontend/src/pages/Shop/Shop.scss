@@ -1,0 +1,66 @@
+@import "../../Style.scss";
+
+.Basket {
+  width: 100%;
+  display: flex;
+  background-color: #e7eff3;
+  .LeftColumnB {
+    width: 50%;
+    margin-left: 5%;
+    margin-top: 10px;
+    .BasketItem {
+      display: flex;
+      gap: 10px;
+    }
+    .deleteButton {
+      font-size: 20px;
+      font-weight: bold;
+
+      border-radius: 60%;
+      align-items: center;
+    }
+    img {
+      width: 30%;
+    }
+    .QuantityB {
+      display: flex;
+      flex-direction: column;
+
+      align-items: baseline;
+      font-size: 20px;
+      font-weight: bold;
+      gap: 20px;
+      .QuantitéB {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+    }
+  }
+  .rightColumnB {
+    width: 50%;
+    justify-content: center;
+  }
+}
+
+.buttonAchats {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  background-color: #e7eff3;
+}
+.buttonPurple {
+  height: 30px;
+  width: 200px;
+  background-color: #2f1369;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 15px;
+  color: whitesmoke;
+  padding-top: 5px;
+  border: black 2px solid;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}

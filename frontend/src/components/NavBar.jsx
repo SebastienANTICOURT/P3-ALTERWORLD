@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useState, useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
-import { useBasket } from "../BasketContext"
+import BasketContext from "../BasketContext"
 import loupe from "../assets/loupe.png"
 import alterworld from "../assets/alterworld.png"
 import caddie from "../assets/caddie.png"
@@ -10,10 +10,15 @@ import "../Style.scss"
 
 function NavBar() {
   const [searchTerm, setSearchTerm] = useState("")
-  const { basketCount } = useBasket()
+  const { basketItems, fetchBasketItems } = useContext(BasketContext)
+
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value)
   }
+
+  useEffect(() => {
+    fetchBasketItems()
+  }, [])
 
   return (
     <nav className="NavBar">
@@ -49,8 +54,8 @@ function NavBar() {
           <Link to="/basket">
             <li>
               <img className="cadiNB" src={caddie} alt="caddie" />
-              {basketCount > 0 && (
-                <span className="basketCount">{basketCount}</span>
+              {basketItems.length > 0 && (
+                <span className="basketCount">{basketItems.length}</span>
               )}
             </li>
           </Link>

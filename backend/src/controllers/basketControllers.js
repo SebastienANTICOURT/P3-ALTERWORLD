@@ -29,11 +29,31 @@ const read = (req, res) => {
 }
 
 const add = (req, res) => {
+  // console.log("token", res.body)
   const basket = req.body
   models.basket
     .insert(basket)
     .then(([result]) => {
       res.json(result.insertId)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
+const edit = (req, res) => {
+  // console.log("Request Body:", req.body)
+  const basket = req.body
+  basket.id = parseInt(req.params.id)
+  models.basket
+    .update(basket)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404)
+      } else {
+        res.sendStatus(204)
+      }
     })
     .catch((err) => {
       console.error(err)
@@ -61,5 +81,6 @@ module.exports = {
   browse,
   read,
   add,
+  edit,
   destroy,
 }

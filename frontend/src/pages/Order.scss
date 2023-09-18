@@ -1,0 +1,13 @@
+@import "../Style.scss";
+
+.order {
+  width: 100%;
+  display: flex;
+  background-color: $backColor;
+  img {
+    width: 20%;
+  }
+  .dateO {
+    font-weight: bold;
+  }
+}

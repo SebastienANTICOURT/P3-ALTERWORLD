@@ -7,22 +7,28 @@ class BasketManager extends AbstractManager {
 
   insert(basket) {
     return this.database.query(
-      `insert into ${this.table} (productsId, quantity) values (?,?)`,
-      [basket.productsId, basket.quantity]
+      `insert into ${this.table} (usersId, productsId, quantity, total) values (?,?,?,?)`,
+      [basket.usersId, basket.productsId, basket.quantity, basket.total]
     )
   }
 
   findBasketWithProducts() {
     return this.database
-      .query(`SELECT basket.id, basket.quantity, products.name, products.image, products.price
+      .query(`SELECT basket.id, basket.usersId, basket.productsId, basket.quantity, products.name, products.image, products.price
     FROM ${this.table}
     INNER JOIN products ON basket.productsId = products.id;`)
   }
 
   update(basket) {
     return this.database.query(
-      `UPDATE ${this.table} SET Name = ? WHERE (id = ?)`,
-      [basket.name]
+      `UPDATE ${this.table} SET usersId = ?, productsId = ?, quantity = ?, total = ? WHERE (id = ?)`,
+      [
+        basket.usersId,
+        basket.productsId,
+        basket.quantity,
+        basket.total,
+        basket.id,
+      ]
     )
   }
 }

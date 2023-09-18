@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import axios from "axios"
 import "./Basket.scss"
@@ -8,6 +8,7 @@ function Basket() {
 
   useEffect(() => {
     axios.get("http://localhost:4242/basket").then((res) => {
+      // console.log(res.data)
       setBasketItems(res.data)
     })
   }, [])
@@ -29,16 +30,34 @@ function Basket() {
 
   const decreaseQuantity = (index) => {
     const newBasketItems = [...basketItems]
-    newBasketItems[index].quantity = Math.max(
-      1,
-      newBasketItems[index].quantity - 1
-    )
-    setBasketItems(newBasketItems)
+    const updatedItem = newBasketItems[index]
+    updatedItem.quantity = Math.max(1, updatedItem.quantity - 1)
+    axios
+      .put(`http://localhost:4242/basket/${updatedItem.id}`, {
+        quantity: updatedItem.quantity,
+      })
+      .then(() => {
+        setBasketItems(newBasketItems)
+      })
+      .catch((err) => {
+        console.error("Error updating quantity:", err)
+      })
   }
+
   const increaseQuantity = (index) => {
     const newBasketItems = [...basketItems]
-    newBasketItems[index].quantity += 1
-    setBasketItems(newBasketItems)
+    const updatedItem = newBasketItems[index]
+    updatedItem.quantity += 1
+    axios
+      .put(`http://localhost:4242/basket/${updatedItem.id}`, {
+        quantity: updatedItem.quantity,
+      })
+      .then(() => {
+        setBasketItems(newBasketItems)
+      })
+      .catch((err) => {
+        console.error("Error updating quantity:", err)
+      })
   }
 
   const totalPrice = basketItems
@@ -55,7 +74,6 @@ function Basket() {
         <div className="LeftColumnB">
           <h1>Votre panier</h1>
           {basketItems.map((item, index) => {
-            // console.log(item)
             return (
               <div className="BasketItem" key={index}>
                 <button
@@ -86,13 +104,12 @@ function Basket() {
           <p>Dont TVA :{TVA} €</p>
         </div>
       </div>
-      <div className="buttonAchats">
-        <Link to="/achats">
-          <button className="FinaliserAchats">Finaliser mes achats</button>
-        </Link>
-      </div>
+      <Link to="/order">
+        <div className="buttonAchats">
+          <button className="buttonPurple">Finaliser mes achats</button>
+        </div>
+      </Link>
     </div>
   )
 }
-
 export default Basket

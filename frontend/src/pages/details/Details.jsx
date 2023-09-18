@@ -1,14 +1,15 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { useParams } from "react-router-dom"
-import { useBasket } from "../../BasketContext"
 import axios from "axios"
+import BasketContext from "../../BasketContext"
 import "./Details.scss"
 
 function Details() {
   const { id } = useParams()
   const [detail, setDetail] = useState([])
   const [quantity, setQuantity] = useState(1)
-  const { basketCount, setBasketCount } = useBasket()
+  const [total, setTotal] = useState(0)
+  const fetchBasketItems = useContext(BasketContext)
 
   useEffect(() => {
     axios
@@ -28,17 +29,32 @@ function Details() {
     setQuantity(quantity + 1)
   }
 
-  const totalCost = detail.price * quantity
+  useEffect(() => {
+    // Mettez à jour le total lorsque la quantité change
+    setTotal(detail.price * quantity)
+  }, [quantity, detail.price])
+
+  // const totalCost = detail.price * quantity
 
   const addToBasket = () => {
+    const usersId = localStorage.getItem("usersId")
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    }
     axios
-      .post("http://localhost:4242/basket", {
-        productsId: id,
-        quantity,
-      })
+      .post(
+        "http://localhost:4242/basket",
+        {
+          usersId,
+          productsId: id,
+          quantity,
+          total,
+        },
+        { headers }
+      )
       .then((response) => {
         alert("Le produit a été ajouté au panier")
-        setBasketCount(basketCount + quantity)
+        fetchBasketItems()
       })
   }
 
@@ -56,15 +72,15 @@ function Details() {
             <p>{quantity}</p>
             <button onClick={increaseQuantity}>+</button>
           </div>
-          <p>Total : {totalCost} €</p>
-          <button className="panierD" onClick={addToBasket}>
+          <p>Total : {total} €</p>
+          <button className="buttonPurple" onClick={addToBasket}>
             Ajouter au panier
           </button>
-          <button className="panierD">Acheter maintenant</button>
+          <button className="buttonPurple">Acheter maintenant</button>
         </div>
       </div>
       <div className="buttonsD">
-        <button className="buttonPanierD">Revenir à la selection</button>
+        <button className="buttonYellow">Revenir à la selection</button>
       </div>
     </div>
   )

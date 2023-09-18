@@ -82,7 +82,7 @@
         font-size: 20px;
         font-weight: bold;
       }
-      .panierD {
+      .buttonPurple {
         height: 30px;
         width: 200px;
         background-color: #401f83;
@@ -136,19 +136,18 @@
     padding-bottom: 50px;
     margin-top: 40px;
     gap: 40px;
-
-    .buttonPanierD {
-      height: 30px;
-      width: 200px;
-      background-color: $yellow;
-      display: flex;
-      justify-content: center;
-      font-weight: bold;
-      color: black;
-      padding-top: 5px;
-      border: black 2px solid;
-      border-radius: 20px;
-      margin-top: 20px;
-    }
   }
+}
+.buttonYellow {
+  height: 30px;
+  width: 200px;
+  background-color: $yellow;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  color: black;
+  padding-top: 5px;
+  border: black 2px solid;
+  border-radius: 20px;
+  margin-top: 20px;
 }

@@ -24,10 +24,13 @@ router.get("/univers", universControllers.browse)
 router.get("/types", typesControllers.browse)
 
 router.get("/basket", basketControllers.browse)
-router.post("/basket", basketControllers.add)
+router.post("/basket", verifyToken, basketControllers.add)
+router.put("/basket/:id", basketControllers.edit)
 router.delete("/basket/:id", basketControllers.destroy)
 
-router.post("/orders", verifyToken, ordersControllers.add)
+// router.get("/orders", ordersControllers.browse)
+router.post("/orders", ordersControllers.add)
+router.get("/latestBillNumber", ordersControllers.newBillNumber)
 
 router.get("/users", usersControllers.browse)
 router.get("/users/:id", usersControllers.read)
