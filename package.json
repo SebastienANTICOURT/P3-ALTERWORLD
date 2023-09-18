@@ -33,7 +33,9 @@
   },
   "dependencies": {
     "argon2": "^0.31.0",
+    "chart.js": "^4.4.0",
     "jsonwebtoken": "^9.0.2",
+    "react-chartjs-2": "^5.2.0",
     "react-router-dom": "^6.14.2",
     "sass": "^1.64.2"
   }

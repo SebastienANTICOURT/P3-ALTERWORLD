@@ -71,44 +71,48 @@ function Basket() {
   return (
     <div>
       <div className="Basket">
-        <div className="LeftColumnB">
+        <div className="titleBasket">
           <h1>Votre panier</h1>
-          {basketItems.map((item, index) => {
-            return (
-              <div className="BasketItem" key={index}>
-                <button
-                  className="deleteButton"
-                  onClick={() => deleteItem(index)}
-                >
-                  X
-                </button>
-                <img
-                  src={`http://localhost:4242${item.image}`}
-                  alt={item.name}
-                />
-                <div className="QuantityB">
-                  <h2>{item.name}</h2>
-                  <div className="QuantitéB">
-                    <button onClick={() => decreaseQuantity(index)}>-</button>
-                    <p>{item.quantity}</p>
-                    <button onClick={() => increaseQuantity(index)}>+</button>
-                  </div>
-                  <p>Price: {item.quantity * item.price} €</p>
-                </div>
-              </div>
-            )
-          })}
         </div>
-        <div className="RightColumnB">
-          <h1>TOTAL :{totalPrice} €</h1>
-          <p>Dont TVA :{TVA} €</p>
+        <div className="countainerBasket">
+          <div className="LeftColumnB">
+            {basketItems.map((item, index) => {
+              return (
+                <div className="BasketItem" key={index}>
+                  <button
+                    className="deleteButton"
+                    onClick={() => deleteItem(index)}
+                  >
+                    X
+                  </button>
+                  <img
+                    src={`http://localhost:4242${item.image}`}
+                    alt={item.name}
+                  />
+                  <div className="QuantityB">
+                    <h2>{item.name}</h2>
+                    <div className="QuantitéB">
+                      <button onClick={() => decreaseQuantity(index)}>-</button>
+                      <p>{item.quantity}</p>
+                      <button onClick={() => increaseQuantity(index)}>+</button>
+                    </div>
+                    <p>Price: {item.quantity * item.price} €</p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+          <div className="RightColumnB">
+            <h1>TOTAL :{totalPrice} €</h1>
+            <p>Dont TVA :{TVA} €</p>
+            <Link to="/order">
+              <div className="buttonAchats">
+                <button className="buttonPurple">Finaliser mes achats</button>
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
-      <Link to="/order">
-        <div className="buttonAchats">
-          <button className="buttonPurple">Finaliser mes achats</button>
-        </div>
-      </Link>
     </div>
   )
 }
