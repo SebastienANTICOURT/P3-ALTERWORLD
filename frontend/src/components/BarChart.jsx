@@ -1,7 +1,7 @@
 import { Bar } from "react-chartjs-2"
 
-function BarChartComponent({ data, options }) {
+function BarChart({ data, options }) {
   return <Bar data={data} options={options} />
 }
 
-export default BarChartComponent
+export default BarChart

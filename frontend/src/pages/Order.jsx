@@ -24,35 +24,41 @@ function Order() {
   }, [])
 
   const addToOrder = () => {
+    // console.log("addToOrder déclenché")
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    }
+
     axios
       .get("http://localhost:4242/latestBillNumber")
-      .then((response) => {
-        const latestBillNumber = response.data
+      .then((responseBillNumber) => {
+        const latestBillNumber = responseBillNumber.data
         const newBillNumber = latestBillNumber + 1
-        const orders = basketItems.map((item) => ({
-          usersId: item.usersId,
-          productsId: item.productsId,
-          billNumber: newBillNumber,
-          quantity: item.quantity,
-          total: item.quantity * item.price,
-          date: dateStr,
-        }))
-        // console.log("commandes:", orders)
-        axios
-          .post("http://localhost:4242/orders", orders)
-          .then(() => {
-            alert("Tous les produits ont été ajoutés à la commande")
-            setBasketItems([])
-          })
-          .catch((error) => {
-            console.error("Erreur Axios :", error)
-            alert(
-              "Une erreur s'est produite lors de l'ajout des produits à la commande."
-            )
-          })
+
+        return axios.post(
+          "http://localhost:4242/orders",
+          basketItems.map((item) => ({
+            usersId: item.usersId,
+            productsId: item.productsId,
+            billNumber: newBillNumber,
+            quantity: item.quantity,
+            total: item.quantity * item.price,
+            date: dateStr,
+          })),
+          { headers }
+        )
+        // .then((responsePost) => {
+        //   console.log(responsePost)
+        //   return axios.delete(
+        //     `http://localhost:4242/basket/all?usersId=${responsePost.data.orders[0].usersId}`
+        //   )
+        // })
       })
       .catch((error) => {
-        console.error("Error fetching latest billNumber:", error)
+        console.error("Erreur lors du traitement :", error)
+        alert(
+          "Une erreur s'est produite lors de l'ajout des produits à la commande ou de la suppression du panier."
+        )
       })
   }
 

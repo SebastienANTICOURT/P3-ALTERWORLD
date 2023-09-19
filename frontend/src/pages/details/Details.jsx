@@ -1,7 +1,7 @@
-import { useState, useEffect, useContext } from "react"
+import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
-import BasketContext from "../../BasketContext"
+// import BasketContext from "../../BasketContext"
 import "./Details.scss"
 
 function Details() {
@@ -9,7 +9,7 @@ function Details() {
   const [detail, setDetail] = useState([])
   const [quantity, setQuantity] = useState(1)
   const [total, setTotal] = useState(0)
-  const fetchBasketItems = useContext(BasketContext)
+  // const fetchBasketItems = useContext(BasketContext)
 
   useEffect(() => {
     axios
@@ -54,7 +54,6 @@ function Details() {
       )
       .then((response) => {
         alert("Le produit a été ajouté au panier")
-        fetchBasketItems()
       })
   }
 

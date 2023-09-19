@@ -27,9 +27,11 @@ router.get("/basket", basketControllers.browse)
 router.post("/basket", verifyToken, basketControllers.add)
 router.put("/basket/:id", basketControllers.edit)
 router.delete("/basket/:id", basketControllers.destroy)
+router.delete("/basket/all", basketControllers.deleteAll)
 
-// router.get("/orders", ordersControllers.browse)
-router.post("/orders", ordersControllers.add)
+router.get("/orders", ordersControllers.browse)
+router.post("/orders", verifyToken, ordersControllers.add)
+
 router.get("/latestBillNumber", ordersControllers.newBillNumber)
 
 router.get("/users", usersControllers.browse)

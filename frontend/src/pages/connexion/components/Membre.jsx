@@ -1,4 +1,5 @@
 import { useState } from "react"
+
 import axios from "axios"
 import "./Membre.scss"
 
@@ -39,7 +40,7 @@ function Membre({ switchView, setUser }) {
           placeholder="Enter your password"
         />
       </div>
-      <button onClick={handleClick}>Connexion</button>
+      <button onClick={handleClick}>Connection</button>
       <p onClick={switchView}>Pas encore inscrit ? créez votre compte</p>
     </div>
   )

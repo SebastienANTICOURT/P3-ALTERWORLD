@@ -31,6 +31,13 @@ class BasketManager extends AbstractManager {
       ]
     )
   }
+
+  deleteAll(usersId) {
+    // console.log(usersId, "basketmanager")
+    return this.database.query(
+      `DELETE FROM ${this.table} WHERE usersId= ?`[usersId]
+    )
+  }
 }
 
 module.exports = BasketManager
