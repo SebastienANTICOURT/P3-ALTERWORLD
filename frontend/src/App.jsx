@@ -6,7 +6,7 @@ import Connexion from "./pages/connexion/Connexion"
 import Details from "./pages/details/Details"
 import Basket from "./pages/Basket"
 import Order from "./pages/Order"
-import Administrator from "./pages/Administrator"
+import Administrator from "./pages/administrator/Administrator"
 import "./Style.scss"
 
 function App() {

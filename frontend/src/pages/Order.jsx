@@ -23,42 +23,67 @@ function Order() {
     })
   }, [])
 
+  const handleOrderAndDelete = () => {
+    addToOrder()
+    deleteBasket()
+  }
+
   const addToOrder = () => {
-    // console.log("addToOrder déclenché")
-    const headers = {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    return new Promise((resolve, reject) => {
+      // console.log("addToOrder déclenché")
+      const headers = {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      }
+      axios
+        .get("http://localhost:4242/latestBillNumber")
+        .then((responseBillNumber) => {
+          const latestBillNumber = responseBillNumber.data
+          const newBillNumber = latestBillNumber + 1
+          return axios.post(
+            "http://localhost:4242/orders",
+            basketItems.map((item) => ({
+              usersId: item.usersId,
+              productsId: item.productsId,
+              billNumber: newBillNumber,
+              quantity: item.quantity,
+              total: item.quantity * item.price,
+              date: dateStr,
+            })),
+            { headers }
+          )
+        })
+        .then(() => {
+          resolve()
+        })
+        .catch((error) => {
+          console.error("Erreur lors du traitement :", error)
+          alert(
+            "Une erreur s'est produite lors de l'ajout des produits à la commande ou de la suppression du panier."
+          )
+          reject(error)
+        })
+    })
+  }
+
+  const deleteBasket = () => {
+    if (basketItems.length === 0) {
+      // console.log("Basket is empty, nothing to delete.")
+      return
     }
-
+    const usersId = basketItems[0].usersId
     axios
-      .get("http://localhost:4242/latestBillNumber")
-      .then((responseBillNumber) => {
-        const latestBillNumber = responseBillNumber.data
-        const newBillNumber = latestBillNumber + 1
-
-        return axios.post(
-          "http://localhost:4242/orders",
-          basketItems.map((item) => ({
-            usersId: item.usersId,
-            productsId: item.productsId,
-            billNumber: newBillNumber,
-            quantity: item.quantity,
-            total: item.quantity * item.price,
-            date: dateStr,
-          })),
-          { headers }
-        )
-        // .then((responsePost) => {
-        //   console.log(responsePost)
-        //   return axios.delete(
-        //     `http://localhost:4242/basket/all?usersId=${responsePost.data.orders[0].usersId}`
-        //   )
-        // })
+      .delete(`http://localhost:4242/basket/all?usersId=${usersId}`)
+      .then((response) => {
+        if (response.status === 204) {
+          // console.log("Basket deleted successfully.")
+          setBasketItems([])
+        } else if (response.status === 404) {
+          // console.log("No basket items found for this user.")
+        }
       })
       .catch((error) => {
-        console.error("Erreur lors du traitement :", error)
-        alert(
-          "Une erreur s'est produite lors de l'ajout des produits à la commande ou de la suppression du panier."
-        )
+        console.error("Error deleting the basket:", error)
+        alert("Une erreur s'est produite lors de la suppression du panier.")
       })
   }
 
@@ -94,7 +119,7 @@ function Order() {
         })}
       </div>
       <div className="buttonOrder">
-        <button className="buttonPurple" onClick={addToOrder}>
+        <button className="buttonPurple" onClick={handleOrderAndDelete}>
           Commander!
         </button>
       </div>

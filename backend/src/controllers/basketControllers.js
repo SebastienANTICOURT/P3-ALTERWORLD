@@ -80,7 +80,7 @@ const destroy = (req, res) => {
 const deleteAll = (req, res) => {
   const usersId = req.query.usersId
   models.basket
-    .deleteAllByUserId(usersId)
+    .deleteAll(usersId)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404)

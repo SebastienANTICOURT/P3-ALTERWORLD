@@ -11,6 +11,14 @@ class OrdersManager extends AbstractManager {
     )
   }
 
+  findOrdersWithName() {
+    return this.database.query(
+      `SELECT orders.*, products.name
+      FROM ${this.table}
+      JOIN p2alterworld.products ON orders.productsId = products.id;`
+    )
+  }
+
   insert(orders) {
     // console.log("test04", orders)
     // Si 'orders' n'est pas un tableau, convertir en tableau
