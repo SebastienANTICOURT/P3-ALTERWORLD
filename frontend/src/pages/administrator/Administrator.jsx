@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react"
-
-// import React from "react"
 import axios from "axios"
 import Graph from "./components/Graph"
+import Graph2 from "./components/Graph2"
 import "./Administrator.scss"
 
 function Administrator() {
@@ -19,6 +18,7 @@ function Administrator() {
       <h1>Produits par quantités vendues.</h1>
       <div className="BarChart">
         <Graph orders={ordersData} />
+        <Graph2 orders={ordersData} />
       </div>
       {/* <button onClick={handleExport}>Exporter vers Excel</button> */}
     </div>

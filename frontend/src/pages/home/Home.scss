@@ -1,10 +1,17 @@
 @import "../../Style.scss";
 
+.Home {
+  height: 150vh;
+  width: 100%;
+}
 .imageHome {
+  // height: 70vh;
   width: 100%;
   display: flex;
   justify-content: space-around;
-  margin-top: 35px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: $backColor;
 }
 
 .imageCatastrophe {
@@ -17,20 +24,40 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: $NBColor;
-  margin-top: 15px;
+  background-color: $backColor;
+  padding-top: 100px;
   h1 {
     display: flex;
     justify-content: center;
+    background-color: $backColor;
   }
-  p {
+  .textHome {
     display: flex;
     justify-content: center;
     font-size: 20px;
+    background-color: $backColor;
+  }
+  a {
+    text-decoration: none; /* This removes the underline */
+  }
+  button {
+    height: 35px;
+    width: 250px;
+    background-color: $yellow;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 5px;
+    border: black 2px solid;
+    border-radius: 20px;
+    cursor: pointer;
   }
 }
 
 .FiltresBarH {
   height: 500px;
-  margin-top: 50px;
 }

@@ -56,9 +56,7 @@ function FiltresBar() {
           setSortOrder={setSortOrder}
         />
       </div>
-      <div className="proposeCreation">
-        <p>Proposez vos créations !</p>
-      </div>
+      <div className="proposeCreation"></div>
       <ProductsList products={filteredProducts()} />
     </div>
   )

@@ -38,7 +38,6 @@ function NavBar() {
             </div>
           </li>
         </div>
-
         <li>
           <Link to="/">
             <img className="logoNB" src={alterworld} alt="logo" />

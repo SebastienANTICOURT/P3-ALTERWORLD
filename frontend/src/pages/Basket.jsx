@@ -8,7 +8,6 @@ function Basket() {
 
   useEffect(() => {
     axios.get("http://localhost:4242/basket").then((res) => {
-      // console.log(res.data)
       setBasketItems(res.data)
     })
   }, [])
@@ -18,7 +17,6 @@ function Basket() {
     axios
       .delete(`http://localhost:4242/basket/${itemId}`)
       .then((res) => {
-        // console.log(itemId)
         const newBasketItems = [...basketItems]
         newBasketItems.splice(index, 1)
         setBasketItems(newBasketItems)

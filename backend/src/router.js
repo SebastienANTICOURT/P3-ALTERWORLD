@@ -20,6 +20,7 @@ router.post("/products", productsControllers.add)
 // router.delete("/products/:id", productsControllers.destroy)
 
 router.get("/univers", universControllers.browse)
+router.post("/univers")
 
 router.get("/types", typesControllers.browse)
 

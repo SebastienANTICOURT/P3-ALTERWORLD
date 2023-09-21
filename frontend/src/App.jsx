@@ -7,6 +7,7 @@ import Connexion from "./pages/connexion/Connexion"
 import Details from "./pages/details/Details"
 import Basket from "./pages/Basket"
 import Order from "./pages/Order"
+import Contact from "./pages/Contact"
 import Administrator from "./pages/administrator/Administrator"
 import "./Style.scss"
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/basket" element={<Basket />} />
         <Route path="/order" element={<Order users={users} />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/administrator" element={<Administrator />} />
       </Routes>
     </div>
