@@ -13,6 +13,7 @@ function Basket() {
   }, [])
 
   const deleteItem = (index) => {
+    // index fait reference à la position d'un element particulier
     const itemId = basketItems[index].id
     axios
       .delete(`http://localhost:4242/basket/${itemId}`)
@@ -27,7 +28,7 @@ function Basket() {
   }
 
   const decreaseQuantity = (index) => {
-    const newBasketItems = [...basketItems]
+    const newBasketItems = basketItems.slice() //nouveau tableau pour non modification directe de l'état.
     const updatedItem = newBasketItems[index]
     updatedItem.quantity = Math.max(1, updatedItem.quantity - 1)
     axios
@@ -43,9 +44,11 @@ function Basket() {
   }
 
   const increaseQuantity = (index) => {
-    const newBasketItems = [...basketItems]
+    const newBasketItems = basketItems.slice()
     const updatedItem = newBasketItems[index]
-    updatedItem.quantity += 1
+    updatedItem.quantity += 1 // C'est égal à updatedItem.quantity = updatedItem.quantity + 1; operateur d'assignation composé
+    // qui prend la valeur de la variable de gauche, la modifie en ajoutant la valeur à droite,
+    // puis réaffecte le résultat à celle de gauche
     axios
       .put(`http://localhost:4242/basket/${updatedItem.id}`, {
         quantity: updatedItem.quantity,
