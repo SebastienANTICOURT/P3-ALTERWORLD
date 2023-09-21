@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import axios from "axios"
 import NavBar from "./components/NavBar"
 import Home from "./pages/home/Home"
 import Connexion from "./pages/connexion/Connexion"
@@ -10,17 +11,25 @@ import Administrator from "./pages/administrator/Administrator"
 import "./Style.scss"
 
 function App() {
+  const [users, setUsers] = useState([])
   const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    axios.get("http://localhost:4242/users").then((res) => setUsers(res.data))
+  }, [])
 
   return (
     <div className="App">
       <NavBar />
       <Routes>
         <Route path="/" element={<Home user={user} />} />
-        <Route path="/connexion" element={<Connexion setUser={setUser} />} />
+        <Route
+          path="/connexion"
+          element={<Connexion setUser={setUser} users={users} />}
+        />
         <Route path="/details/:id" element={<Details />} />
         <Route path="/basket" element={<Basket />} />
-        <Route path="/order" element={<Order />} />
+        <Route path="/order" element={<Order users={users} />} />
         <Route path="/administrator" element={<Administrator />} />
       </Routes>
     </div>

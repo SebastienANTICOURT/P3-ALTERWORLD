@@ -3,11 +3,80 @@
 .order {
   width: 100%;
   display: flex;
+  flex-direction: column;
   background-color: $backColor;
-  img {
-    width: 20%;
+  h1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
   }
-  .dateO {
-    font-weight: bold;
+  .countainerOrder {
+    display: flex;
+    margin-top: 20px;
+
+    .LeftColumnO {
+      width: 50%;
+      margin-left: 10%;
+      margin-top: 10px;
+      .dateO {
+        font-size: 25px;
+        // font-weight: bold;
+        margin-top: 10px;
+      }
+      .presentationO {
+        font-size: 25px;
+
+        margin-top: 10px;
+        .titleInfo {
+          font-size: 30px;
+          margin-top: auto;
+          margin-left: 0%;
+          text-decoration: underline;
+        }
+      }
+      .OrderItems {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        .BasketItem {
+          display: flex;
+          gap: 10px;
+        }
+        .deleteButton {
+          font-size: 20px;
+          font-weight: bold;
+          align-items: center;
+        }
+
+        img {
+          width: 30%;
+        }
+      }
+    }
+
+    .RightColumnO {
+      // height: auto;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+      margin-left: 10%;
+      gap: 20px;
+      p {
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .TVA {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .countainerOrder {
+    display: flex;
+    flex-direction: column;
   }
 }

@@ -78,7 +78,7 @@ function Basket() {
           <div className="LeftColumnB">
             {basketItems.map((item, index) => {
               return (
-                <div className="BasketItem" key={index}>
+                <div className="BasketItems" key={index}>
                   <button
                     className="deleteButton"
                     onClick={() => deleteItem(index)}

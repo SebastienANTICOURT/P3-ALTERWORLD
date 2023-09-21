@@ -10,7 +10,8 @@ import "../Style.scss"
 
 function NavBar() {
   const [searchTerm, setSearchTerm] = useState("")
-  const { basketItems, fetchBasketItems } = useContext(BasketContext)
+  const { basketItems, fetchBasketItems, triggerBasketChange } =
+    useContext(BasketContext)
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value)
@@ -18,7 +19,7 @@ function NavBar() {
 
   useEffect(() => {
     fetchBasketItems()
-  }, [])
+  }, [triggerBasketChange])
 
   return (
     <nav className="NavBar">

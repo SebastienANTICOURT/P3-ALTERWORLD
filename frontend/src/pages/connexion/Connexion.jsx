@@ -1,16 +1,10 @@
-import { useState, useEffect } from "react"
-import axios from "axios"
+import { useState } from "react"
 import Membre from "./components/Membre"
 import NonMembre from "./components/NonMembre"
 import "./Connexion.scss"
 
-function Connexion({ setUser }) {
+function Connexion({ setUser, users }) {
   const [isMembreVisible, setIsMembreVisible] = useState(true)
-  const [users, setUsers] = useState([])
-
-  useEffect(() => {
-    axios.get("http://localhost:4242/users").then((res) => setUsers(res.data))
-  }, [])
 
   return (
     <div className="Connexion">
