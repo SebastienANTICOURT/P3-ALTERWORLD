@@ -1,10 +1,12 @@
 import axios from "axios"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import "./Membre.scss"
 
 function Membre({ switchView, setUser }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const navigate = useNavigate()
 
   const handleClick = () => {
     axios

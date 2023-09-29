@@ -28,7 +28,7 @@ function Basket() {
   }
 
   const decreaseQuantity = (index) => {
-    const newBasketItems = basketItems.slice() //nouveau tableau pour non modification directe de l'état.
+    const newBasketItems = basketItems.slice() // nouveau tableau pour non modification directe de l'état.
     const updatedItem = newBasketItems[index]
     updatedItem.quantity = Math.max(1, updatedItem.quantity - 1)
     axios

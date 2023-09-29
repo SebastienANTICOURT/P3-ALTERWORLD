@@ -27,7 +27,8 @@ class OrdersManager extends AbstractManager {
       FROM p2alterworld.orders
       JOIN p2alterworld.products ON orders.productsId = products.id
       JOIN p2alterworld.users ON orders.usersId = users.usersId
-      ORDER BY orders.billNumber ASC;`, [usersId]
+      ORDER BY orders.billNumber ASC;`,
+      [usersId]
     )
   }
 
