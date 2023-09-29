@@ -14,9 +14,20 @@ class OrdersManager extends AbstractManager {
   findOrdersWithName() {
     return this.database.query(
       `SELECT orders.*, products.name, users.firstname
-      FROM ${this.table}
-      JOIN products ON orders.productsId = products.id
-      JOIN users ON users.usersId = users.usersId;`
+      FROM p2alterworld.orders
+      JOIN p2alterworld.products ON orders.productsId = products.id
+      JOIN p2alterworld.users ON orders.usersId = users.usersId
+      ORDER BY orders.billNumber ASC;`
+    )
+  }
+
+  findOrdersUsersId(usersId) {
+    return this.database.query(
+      `SELECT orders.*, products.name, users.firstname
+      FROM p2alterworld.orders
+      JOIN p2alterworld.products ON orders.productsId = products.id
+      JOIN p2alterworld.users ON orders.usersId = users.usersId
+      ORDER BY orders.billNumber ASC;`, [usersId]
     )
   }
 

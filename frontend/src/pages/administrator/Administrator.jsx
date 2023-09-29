@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react"
 import axios from "axios"
+import { useEffect, useState } from "react"
+import "./Administrator.scss"
 import Graph from "./components/Graph"
 import Graph2 from "./components/Graph2"
-import "./Administrator.scss"
 
 function Administrator() {
+  const [universe, setUniverse] = useState("")
   const [ordersData, setOrdersData] = useState([])
+  const [userOrdersData, setUserOrdersData] = useState([])
 
   useEffect(() => {
     axios.get("http://localhost:4242/orders").then((res) => {
@@ -13,14 +15,60 @@ function Administrator() {
     })
   }, [])
 
+  useEffect(() => {
+    const usersId = localStorage.getItem("usersId")
+    if (usersId) {
+      axios
+        .get("http://localhost:4242/orders", { params: { usersId } })
+        .then((res) => {
+          setUserOrdersData(res.data)
+        })
+        .catch((err) => {
+          console.error("Error fetching user orders:", err) // handle error
+        })
+    }
+  }, [])
+
+  // const addUniverse = () => {
+  //   axios.post("http://localhost:4242/orders")
+  // }
+
   return (
     <div className="Administrator">
-      <h1>Produits par quantités vendues.</h1>
-      <div className="BarChart">
-        <Graph orders={ordersData} />
-        <Graph2 orders={ordersData} />
+      <div className="updateData">
+        <div>
+          <figcaption>Nouvel univers:</figcaption>
+          <input
+            type="text"
+            placeholder="univers"
+            value={universe}
+            onChange={(event) => setUniverse(event.target.value)}
+          />
+        </div>
+        <div>
+          <figcaption>Nouveau type:</figcaption>
+          <input
+            type="text"
+            placeholder="type"
+            value={universe}
+            onChange={(event) => setUniverse(event.target.value)}
+          />
+        </div>
       </div>
-      {/* <button onClick={handleExport}>Exporter vers Excel</button> */}
+      <div>
+        {userOrdersData.map((order) => {
+          const uniqueKey = `${order.billNumber}-${order.usersId}-${order.productsId}-${order.date}-${order.quantity}-${order.total}`
+          return <div key={uniqueKey}>{order.date}</div>
+        })}
+      </div>
+      <div className="GraphA">
+        <h1>Produits par quantités vendues.</h1>
+        <div className="BarChart">
+          <Graph orders={ordersData} />
+          <Graph2 orders={ordersData} />
+        </div>
+        {/* <button onClick={handleExport}>Exporter vers Excel</button> */}
+      </div>
     </div>
   )
 }

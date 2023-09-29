@@ -1,13 +1,24 @@
 @import "../../Style.scss";
 
 .Administrator {
-  height: auto;
+  height: 100vh;
   width: 100%;
-  h1 {
-    font-size: 25px;
+  background-color: whitesmoke;
+  padding-left: 20px;
+  .updateData {
+    display: flex;
+    gap: 50px;
+    padding-top: 20px;
   }
-  .BarChart {
-    height: auto;
-    width: 50%;
+
+  .GraphA {
+    padding-top: 50px;
+    h1 {
+      font-size: 25px;
+    }
+    .BarChart {
+      height: auto;
+      width: 50%;
+    }
   }
 }

@@ -1,6 +1,5 @@
-import { useState } from "react"
-
 import axios from "axios"
+import { useState } from "react"
 import "./Membre.scss"
 
 function Membre({ switchView, setUser }) {
@@ -15,7 +14,8 @@ function Membre({ switchView, setUser }) {
         localStorage.setItem("usersId", res.data.user.usersId)
         setUser(res.data.user)
         console.info(res.data)
-        alert("vous etes connecte")
+        // alert("vous etes connecte")
+        navigate("/")
       })
   }
 

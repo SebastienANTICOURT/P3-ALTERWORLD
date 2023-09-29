@@ -1,12 +1,12 @@
-import { useState, useEffect, useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import BasketContext from "../BasketContext"
-import loupe from "../assets/loupe.png"
+import "../Style.scss"
 import alterworld from "../assets/alterworld.png"
 import caddie from "../assets/caddie.png"
 import login from "../assets/login.png"
+import loupe from "../assets/loupe.png"
 import "./NavBar.scss"
-import "../Style.scss"
 
 function NavBar() {
   const [searchTerm, setSearchTerm] = useState("")
@@ -25,6 +25,9 @@ function NavBar() {
     <nav className="NavBar">
       <ul>
         <div className="leftItems">
+          <Link to="administrator">
+            <button className="pesrsoButton">Espace personnel</button>
+          </Link>
           <li className="searchItem">
             <div className="searchContainer">
               <img className="loupeNB" src={loupe} alt="loupe" />

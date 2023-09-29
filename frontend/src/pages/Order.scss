@@ -1,7 +1,7 @@
 @import "../Style.scss";
 
 .order {
-  height: 90vh;
+  height: 120vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -11,6 +11,20 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+  }
+  .Merci {
+    // height: 90vh;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    p {
+      font-size: 30px;
+      font-weight: bold;
+    }
+    img {
+      padding-top: 5px;
+      width: 6%;
+    }
   }
   .countainerOrder {
     display: flex;
@@ -35,11 +49,15 @@
           margin-left: 0%;
           text-decoration: underline;
         }
+        button {
+          margin-bottom: 5px;
+        }
       }
       .OrderItems {
         display: flex;
+        flex-direction: column;
         gap: 10px;
-        margin-top: 20px;
+        margin-top: 30px;
         .BasketItem {
           display: flex;
           gap: 10px;

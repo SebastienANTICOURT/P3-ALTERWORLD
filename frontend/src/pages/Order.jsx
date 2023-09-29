@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react"
 import axios from "axios"
+import { useEffect, useState } from "react"
+import smiley from "../assets/smiley.png"
 import "./Order.scss"
 
-function Order({ users }) {
+function Order({ users, user }) {
   const [orders] = useState([])
   const [date] = useState(new Date())
   const dateStr = date.toISOString().split("T")[0]
   const [basketItems, setBasketItems] = useState([])
+  const [showMessage, setShowMessage] = useState(false)
 
   // const formatDate = (date) => {
   //   const day = String(date.getDate()).padStart(2, "0")
@@ -26,6 +28,7 @@ function Order({ users }) {
   const handleOrderAndDelete = () => {
     addToOrder()
     deleteBasket()
+    setShowMessage(true)
   }
 
   const addToOrder = () => {
@@ -98,6 +101,14 @@ function Order({ users }) {
   return (
     <div className="order">
       <h1>Votre commande</h1>
+      <div className="Merci">
+        {showMessage && (
+          <p>
+            {user && `Merci, ${user.firstName} `} <img src={smiley} alt="" /> à
+            bientot pour de nouvelles aventures.
+          </p>
+        )}
+      </div>
       <div className="countainerOrder">
         <div className="LeftColumnO">
           {/* <div className="dateO">{formattedDate}</div> */}
@@ -113,6 +124,8 @@ function Order({ users }) {
                       <p>adresse: {user.address}</p>
                       <p>code postal: {user.zipcode}</p>
                       <p>ville: {user.city}</p>
+                      <p>email: {user.email}</p>
+                      <button className="buttonYellow">Modifier</button>
                     </div>
                   )
                 }

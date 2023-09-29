@@ -31,6 +31,7 @@ router.delete("/basket/all", basketControllers.deleteAll)
 router.delete("/basket/:id", basketControllers.destroy)
 
 router.get("/orders", ordersControllers.browse)
+router.get("/orders/:usersId", ordersControllers.orderUsersId)
 router.post("/orders", verifyToken, ordersControllers.add)
 
 router.get("/latestBillNumber", ordersControllers.newBillNumber)
