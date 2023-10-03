@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import BarChart from "./BarChart"
+import "./Graphe.scss"
 
 function Graph({ orders }) {
   const [chartData, setChartData] = useState({
@@ -49,7 +50,7 @@ function Graph({ orders }) {
   }, [orders])
 
   return (
-    <div>
+    <div className="Graph">
       <BarChart data={chartData} />
     </div>
   )

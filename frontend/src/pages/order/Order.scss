@@ -1,4 +1,4 @@
-@import "../Style.scss";
+@import "../../Style.scss";
 
 .order {
   height: 120vh;
@@ -34,6 +34,10 @@
       width: 50%;
       margin-left: 10%;
       margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 30px;
       .dateO {
         font-size: 25px;
         // font-weight: bold;
@@ -41,7 +45,6 @@
       }
       .presentationO {
         font-size: 25px;
-
         margin-top: 10px;
         .titleInfo {
           font-size: 30px;
@@ -53,25 +56,18 @@
           margin-bottom: 5px;
         }
       }
-      .OrderItems {
+      .BasketItem {
         display: flex;
-        flex-direction: column;
         gap: 10px;
-        margin-top: 30px;
-        .BasketItem {
-          display: flex;
-          gap: 10px;
-          align-items: center;
-        }
-        .deleteButton {
-          font-size: 20px;
-          font-weight: bold;
-          align-items: center;
-        }
-
-        img {
-          width: 30%;
-        }
+        align-items: center;
+      }
+      .deleteButton {
+        font-size: 20px;
+        font-weight: bold;
+        align-items: center;
+      }
+      img {
+        width: 30%;
       }
     }
 

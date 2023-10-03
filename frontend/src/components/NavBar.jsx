@@ -9,6 +9,7 @@ import loupe from "../assets/loupe.png"
 import "./NavBar.scss"
 
 function NavBar() {
+  const [isMenuOpen, setMenuOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const { basketItems, fetchBasketItems, triggerBasketChange } =
     useContext(BasketContext)
@@ -23,7 +24,16 @@ function NavBar() {
 
   return (
     <nav className="NavBar">
-      <ul>
+      <div
+        className={`burger ${isMenuOpen ? "open" : ""}`}
+        onClick={() => setMenuOpen(!isMenuOpen)}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul className={isMenuOpen ? "open" : ""}>
         <div className="leftItems">
           <Link to="administrator">
             <button className="pesrsoButton">Espace personnel</button>
@@ -42,7 +52,7 @@ function NavBar() {
           </li>
         </div>
         <li>
-          <Link to="/">
+          <Link className="logoNBL" to="/">
             <img className="logoNB" src={alterworld} alt="logo" />
           </Link>
         </li>

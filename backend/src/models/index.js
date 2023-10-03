@@ -34,6 +34,7 @@ const ProductsManager = require("./ProductsManager")
 const UniversManager = require("./universManager")
 const TypesManager = require("./typesManager")
 const BasketManager = require("./BasketManager")
+const FavoritesManager = require("./FavoritesManager")
 const OrdersManager = require("./OrdersManager")
 const UsersManager = require("./UsersManager")
 
@@ -51,6 +52,9 @@ models.types.setDatabase(pool)
 
 models.basket = new BasketManager()
 models.basket.setDatabase(pool)
+
+models.favorites = new FavoritesManager()
+models.favorites.setDatabase(pool)
 
 models.orders = new OrdersManager()
 models.orders.setDatabase(pool)

@@ -3,30 +3,16 @@ import { useEffect, useState } from "react"
 import "./Administrator.scss"
 import Graph from "./components/Graph"
 import Graph2 from "./components/Graph2"
+import ListeFactures from "./components/ListeFactures"
 
 function Administrator() {
   const [universe, setUniverse] = useState("")
   const [ordersData, setOrdersData] = useState([])
-  const [userOrdersData, setUserOrdersData] = useState([])
 
   useEffect(() => {
     axios.get("http://localhost:4242/orders").then((res) => {
       setOrdersData(res.data[0])
     })
-  }, [])
-
-  useEffect(() => {
-    const usersId = localStorage.getItem("usersId")
-    if (usersId) {
-      axios
-        .get("http://localhost:4242/orders", { params: { usersId } })
-        .then((res) => {
-          setUserOrdersData(res.data)
-        })
-        .catch((err) => {
-          console.error("Error fetching user orders:", err) // handle error
-        })
-    }
   }, [])
 
   // const addUniverse = () => {
@@ -55,19 +41,19 @@ function Administrator() {
           />
         </div>
       </div>
-      <div>
-        {userOrdersData.map((order) => {
-          const uniqueKey = `${order.billNumber}-${order.usersId}-${order.productsId}-${order.date}-${order.quantity}-${order.total}`
-          return <div key={uniqueKey}>{order.date}</div>
-        })}
-      </div>
-      <div className="GraphA">
-        <h1>Produits par quantités vendues.</h1>
-        <div className="BarChart">
-          <Graph orders={ordersData} />
-          <Graph2 orders={ordersData} />
+      <div className="graphHistory">
+        <div className="GraphA">
+          <div className="BarChart">
+            <h1>Produits par quantités vendues.</h1>
+            <Graph orders={ordersData} />
+            <h1>clients par quantités vendues.</h1>
+            <Graph2 orders={ordersData} />
+          </div>
+          <div className="ListeFactures">
+            <ListeFactures />
+          </div>
+          {/* <button onClick={handleExport}>Exporter vers Excel</button> */}
         </div>
-        {/* <button onClick={handleExport}>Exporter vers Excel</button> */}
       </div>
     </div>
   )

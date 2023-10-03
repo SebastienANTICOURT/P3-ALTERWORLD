@@ -1,0 +1,22 @@
+@import "../../../Style.scss";
+
+.ListeFactures {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  .achats {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  p {
+    font-size: 18px;
+    font-style: italic;
+  }
+  li {
+    font-size: 18px;
+  }
+}

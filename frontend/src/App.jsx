@@ -1,15 +1,15 @@
-import { Route, Routes } from "react-router-dom"
-import { useState, useEffect } from "react"
 import axios from "axios"
+import { useEffect, useState } from "react"
+import { Route, Routes } from "react-router-dom"
+import "./Style.scss"
 import NavBar from "./components/NavBar"
-import Home from "./pages/home/Home"
-import Connexion from "./pages/connexion/Connexion"
-import Details from "./pages/details/Details"
+import Order from "./pages//order/Order"
 import Basket from "./pages/Basket"
-import Order from "./pages/Order"
 import Contact from "./pages/Contact"
 import Administrator from "./pages/administrator/Administrator"
-import "./Style.scss"
+import Connexion from "./pages/connexion/Connexion"
+import Details from "./pages/details/Details"
+import Home from "./pages/home/Home"
 
 function App() {
   const [users, setUsers] = useState([])
@@ -30,7 +30,7 @@ function App() {
         />
         <Route path="/details/:id" element={<Details />} />
         <Route path="/basket" element={<Basket />} />
-        <Route path="/order" element={<Order users={users} />} />
+        <Route path="/order" element={<Order users={users} user={user} />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/administrator" element={<Administrator />} />
       </Routes>

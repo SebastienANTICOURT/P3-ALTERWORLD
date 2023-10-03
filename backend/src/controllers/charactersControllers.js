@@ -14,9 +14,6 @@ const browse = (req, res) => {
 
 const add = (req, res) => {
   const characters = req.body
-
-  // TODO validations (length, format...)
-
   models.characters
     .insert(characters)
     .then(([result]) => {

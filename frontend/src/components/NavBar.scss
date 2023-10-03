@@ -7,11 +7,11 @@
     height: auto;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     list-style-type: none;
     background-color: #ffffff;
-
+    transition: all 0.3s;
     .leftItems,
     .rightItems {
       display: flex;
@@ -25,70 +25,121 @@
 
     .logoNB {
       max-width: 70%;
-      min-width: 50px;
     }
 
     .searchContainer {
       display: flex;
       align-items: center;
     }
+    .loupeNB,
+    .loginNB,
+    .cadiNB {
+      position: relative;
+      max-width: 50px;
+      min-width: 30px;
+    }
 
-    input {
-      height: 2em; // using em for responsiveness
-      width: 50%; // changed to percentage for responsiveness
+    .loginNB {
+      margin-right: 100px;
+    }
+
+    .cadiNB {
+      margin-right: 10px;
+    }
+
+    .basketCount {
+      position: absolute;
+      margin-top: 20px;
+      margin-right: 50px;
+      // top: 10;
+      // right: 0;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      padding: 7px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .pesrsoButton {
+      height: 35px;
+      width: 250px;
+      font-size: 20px;
+      font-weight: bold;
+      border: 1px solid black;
+      border-radius: 50px;
     }
   }
-}
 
-.loupeNB,
-.loginNB,
-.cadiNB {
-  position: relative;
-  max-width: 50px;
-  min-width: 30px;
-}
+  .burger {
+    width: 30px;
+    height: 20px;
+    position: relative;
+    display: none;
+    cursor: pointer;
+    right: 10px;
+    top: 10px;
 
-.basketCount {
-  position: absolute;
-  margin-top: 20px;
-  margin-right: 8px;
-  // top: 10;
-  // right: 0;
-  background-color: red;
-  color: white;
-  border-radius: 50%;
-  padding: 7px;
-  font-size: 14px;
-  font-weight: bold;
-}
+    @media (max-width: 900px) {
+      display: block;
+    }
 
-.pesrsoButton {
-  height: 35px;
-  width: 250px;
-  font-size: 20px;
-  font-weight: bold;
-  border: 1px solid black;
-  border-radius: 50px;
-}
+    span {
+      display: block;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background: #333; // Choose the color you prefer for the burger lines
+      border-radius: 3px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: 0.25s ease-in-out;
 
-@media screen and (max-width: 700px) {
-  .NavBar ul .leftItems,
-  .NavBar ul .rightItems {
-    gap: 2%;
+      &:nth-child(1) {
+        top: 0px;
+      }
+      &:nth-child(2),
+      &:nth-child(3) {
+        top: 8px;
+      }
+      &:nth-child(4) {
+        top: 16px;
+      }
+    }
+
+    &.open {
+      span {
+        &:nth-child(1) {
+          top: 8px;
+          left: 50%;
+          width: 0%;
+          visibility: hidden;
+        }
+        &:nth-child(2) {
+          transform: rotate(45deg);
+        }
+        &:nth-child(3) {
+          transform: rotate(-45deg);
+        }
+        &:nth-child(4) {
+          top: 8px;
+          width: 0%;
+          left: 50%;
+          visibility: hidden;
+        }
+      }
+    }
   }
 
-  .NavBar ul input {
-    width: 40%;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .NavBar ul .leftItems,
-  .NavBar ul .rightItems {
-    gap: 1%;
+  ul {
+    // ... existing styles
+    @media (max-width: 900px) {
+      display: none;
+    }
   }
 
-  .NavBar ul input {
-    width: 30%;
+  ul.open {
+    display: block;
   }
 }
