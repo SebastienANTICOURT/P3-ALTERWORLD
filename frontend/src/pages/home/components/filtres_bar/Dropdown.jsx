@@ -47,6 +47,7 @@ function Dropdown({
         <option value="Tous les créateurs">Tous les créateurs</option>
         <option value="Sebastien">Sebastien</option>
         <option value="XYZ">XYZ</option>
+        <option value="creator">Creator</option>
       </select>
     </div>
   )

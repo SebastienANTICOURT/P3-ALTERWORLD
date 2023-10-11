@@ -1,6 +1,6 @@
 @import "../../Style.scss";
 .Home {
-  height: 150vh;
+  height: 200vh;
   width: 100%;
 }
 .imageHome {
@@ -11,6 +11,11 @@
   padding-top: 50px;
   padding-bottom: 50px;
   background-color: whitesmoke;
+  @media (max-width: 900px) {
+    height:100vh;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .imageCatastrophe {

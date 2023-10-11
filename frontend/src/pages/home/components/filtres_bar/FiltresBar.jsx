@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react"
 import axios from "axios"
-import ProductsList from "./ProductsList"
+import { useEffect, useState } from "react"
 import Dropdown from "./Dropdown"
 import "./FiltresBar.scss"
+import ProductsList from "./ProductsList"
 
 function FiltresBar() {
+  const [users, setUsers] = useState([])
   const [products, setProducts] = useState([])
   const [univers, setUnivers] = useState([])
   const [types, setTypes] = useState([])
@@ -13,6 +14,7 @@ function FiltresBar() {
   const [sortOrder, setSortOrder] = useState("Trier par prix")
 
   useEffect(() => {
+    axios.get("http://localhost:4242/users").then((res) => setUsers(res.data))
     axios
       .get("http://localhost:4242/products")
       .then((res) => setProducts(res.data))
