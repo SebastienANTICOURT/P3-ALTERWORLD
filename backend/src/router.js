@@ -1,5 +1,5 @@
 const express = require("express")
-
+const multer = require("multer")
 const router = express.Router()
 
 const productsControllers = require("./controllers/productsControllers")
@@ -12,6 +12,18 @@ const usersControllers = require("./controllers/usersControllers")
 const charactersControllers = require("./controllers/charactersControllers")
 const { validateUsers } = require("./validators.js")
 const { hashPassword, verifyPassword, verifyToken } = require("./auth")
+
+// UPLOAD IMAGE MULTER
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./public/uploads")
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  },
+})
+const upload = multer({ storage })
+router.post("/upload", upload.single("image"))
 
 router.get("/products", productsControllers.browse)
 router.get("/products", productsControllers.productsN)
