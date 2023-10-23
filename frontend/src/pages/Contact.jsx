@@ -9,16 +9,22 @@ function Contact() {
   const [type, setType] = useState("")
   const [image, setImage] = useState()
 
-  // const addProducts = () => {
-  //   axios.post("http://localhost:4242/products", {
-  //     name,
+  const addProducts = () => {
+    // Create a FormData object to send the product data and image to the server
+    const formData = new FormData()
+    formData.append("name", name)
+    formData.append("price", price)
+    formData.append("univers", univers)
+    formData.append("type", type)
+    formData.append("image", image) // Append the selected image
 
-  //     price,
-  //     creatorId,
-  //     univerId,
-  //     typesId,
-  //   })
-  // }
+    axios.post("http://localhost:4242/products", formData).then((res) => {
+      // Handle the response from the server if needed
+    })
+    // .catch((error) => {
+    //   // console.log(error)
+    // })
+  }
 
   const handleImageChange = (event) => {
     const selectedImage = event.target.files[0]
@@ -91,7 +97,7 @@ function Contact() {
           value={type}
           onChange={(event) => setType(event.target.value)}
         />
-        {/* <button onClick={addProducts}>Envoyer</button> */}
+        <button onClick={addProducts}>Envoyer</button>
       </div>
     </div>
   )

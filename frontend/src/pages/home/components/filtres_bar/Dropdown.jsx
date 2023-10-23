@@ -7,9 +7,14 @@ function Dropdown({
   types,
   selectedTypes,
   setSelectedTypes,
+  creators,
+  selectedCreators,
+  setSelectedCreators,
   sortOrder,
   setSortOrder,
 }) {
+  const isCreator = creators.filter((creator) => creator.isCreator === 1)
+
   return (
     <div className="Dropdown">
       <div className="DivFB">
@@ -38,16 +43,21 @@ function Dropdown({
           ))}
         </select>
       </div>
+      <select
+        value={selectedCreators}
+        onChange={(e) => setSelectedCreators(e.target.value)}
+      >
+        <option value="all">Créateurs</option>
+        {isCreator.map((creator) => (
+          <option key={creator.usersId} value={creator.usersId}>
+            {creator.isCreator === 1 ? creator.lastName : ""}
+          </option>
+        ))}
+      </select>
       <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
         <option value="Trier par prix">Trier par prix</option>
         <option value="Prix croissant">Prix croissant</option>
         <option value="Prix décroissant">Prix décroissant</option>
-      </select>
-      <select name="" id="">
-        <option value="Tous les créateurs">Tous les créateurs</option>
-        <option value="Sebastien">Sebastien</option>
-        <option value="XYZ">XYZ</option>
-        <option value="creator">Creator</option>
       </select>
     </div>
   )

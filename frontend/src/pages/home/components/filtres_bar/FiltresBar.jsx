@@ -7,9 +7,11 @@ import ProductsList from "./ProductsList"
 function FiltresBar() {
   const [products, setProducts] = useState([])
   const [univers, setUnivers] = useState([])
-  const [types, setTypes] = useState([])
   const [selectedUnivers, setSelectedUnivers] = useState("all")
+  const [types, setTypes] = useState([])
   const [selectedTypes, setSelectedTypes] = useState("all")
+  const [creators, setCreators] = useState([])
+  const [selectedCreators, setSelectedCreators] = useState("all")
   const [sortOrder, setSortOrder] = useState("Trier par prix")
 
   useEffect(() => {
@@ -19,6 +21,9 @@ function FiltresBar() {
     axios
       .get("http://localhost:4242/univers")
       .then((res) => setUnivers(res.data))
+    axios
+      .get("http://localhost:4242/users")
+      .then((res) => setCreators(res.data))
     axios.get("http://localhost:4242/types").then((res) => setTypes(res.data))
   }, [])
 
@@ -32,6 +37,11 @@ function FiltresBar() {
     if (selectedTypes !== "all") {
       filtered = filtered.filter(
         (product) => product.typesId.toString() === selectedTypes
+      )
+    }
+    if (selectedCreators !== "all") {
+      filtered = filtered.filter(
+        (product) => product.creatorId.toString() === selectedCreators
       )
     }
     if (sortOrder === "Prix croissant") {
@@ -52,6 +62,9 @@ function FiltresBar() {
           types={types}
           selectedTypes={selectedTypes}
           setSelectedTypes={setSelectedTypes}
+          creators={creators}
+          selectedCreators={selectedCreators}
+          setSelectedCreators={setSelectedCreators}
           sortOrder={sortOrder}
           setSortOrder={setSortOrder}
         />
