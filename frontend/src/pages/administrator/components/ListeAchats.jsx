@@ -1,8 +1,8 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import "./ListeFactures.scss"
+import "./Listes.scss"
 
-function ListeFactures() {
+function ListeAchats() {
   const [orders, setOrders] = useState([])
   const userId = localStorage.getItem("usersId")
 
@@ -32,7 +32,7 @@ function ListeFactures() {
   const groupedOrders = groupByBillNumber(orders)
 
   return (
-    <div className="ListeFactures">
+    <div className="Listes">
       <h1>Historique des achats</h1>
       <div className="achats">
         {Object.entries(groupedOrders).map(([billNumber, orders]) => (
@@ -56,4 +56,4 @@ function ListeFactures() {
   )
 }
 
-export default ListeFactures
+export default ListeAchats

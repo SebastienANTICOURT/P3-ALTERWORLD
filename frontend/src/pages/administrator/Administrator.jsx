@@ -3,7 +3,8 @@ import { useEffect, useState } from "react"
 import "./Administrator.scss"
 import Graph from "./components/Graph"
 import Graph2 from "./components/Graph2"
-import ListeFactures from "./components/ListeFactures"
+import ListeAchats from "./components/ListeAchats"
+import ListeVentes from "./components/ListeVentes"
 
 function Administrator() {
   const [universe, setUniverse] = useState("")
@@ -50,7 +51,8 @@ function Administrator() {
             <Graph2 orders={ordersData} />
           </div>
           <div className="ListeFactures">
-            <ListeFactures />
+            <ListeAchats />
+            <ListeVentes orders={ordersData} />
           </div>
           {/* <button onClick={handleExport}>Exporter vers Excel</button> */}
         </div>

@@ -13,8 +13,8 @@ class OrdersManager extends AbstractManager {
 
   findOrdersWithName() {
     return this.database.query(
-      `SELECT orders.*, products.name, users.firstname
-      FROM p2alterworld.orders
+      `SELECT orders.*, products.name, products.creatorId, users.usersId, users.firstname
+      FROM ${this.table}
       JOIN p2alterworld.products ON orders.productsId = products.id
       JOIN p2alterworld.users ON orders.usersId = users.usersId
       ORDER BY orders.billNumber ASC;`
@@ -24,7 +24,7 @@ class OrdersManager extends AbstractManager {
   findOrdersUsersId(usersId) {
     return this.database.query(
       `SELECT orders.*, products.name, users.firstname
-      FROM p2alterworld.orders
+      FROM ${this.table}
       JOIN p2alterworld.products ON orders.productsId = products.id
       JOIN p2alterworld.users ON orders.usersId = users.usersId
       WHERE orders.usersId = ?
