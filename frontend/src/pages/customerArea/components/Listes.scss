@@ -4,9 +4,9 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  .achats {
+  .colonne {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 10px;
   }
   h2 {

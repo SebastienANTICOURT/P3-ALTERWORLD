@@ -1,17 +1,20 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
-import { BasketProvider } from "./BasketContext"
 import App from "./App"
+import { CurrentUserContextProvider } from "./components/AuthContext"
+import { BasketProvider } from "./components/BasketContext"
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <BasketProvider>
-        <App />
-      </BasketProvider>
+      <CurrentUserContextProvider>
+        <BasketProvider>
+          <App />
+        </BasketProvider>
+      </CurrentUserContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 )

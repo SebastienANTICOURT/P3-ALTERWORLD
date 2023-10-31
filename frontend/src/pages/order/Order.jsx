@@ -1,6 +1,8 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import smiley from "../../assets/smiley.png"
+import { useAuthContext } from "../../components/AuthContext"
+import { getBasket } from "../../components/Axios"
 import "./Order.scss"
 import ItemsOrder from "./components/ItemsOrder"
 import Presentation from "./components/Presentation"
@@ -11,11 +13,11 @@ function Order({ users, user }) {
   const dateStr = date.toISOString().split("T")[0]
   const [basketItems, setBasketItems] = useState([])
   const [showMessage, setShowMessage] = useState(false)
+  const { userLog } = useAuthContext()
 
   useEffect(() => {
-    axios.get("http://localhost:4242/basket").then((res) => {
-      // console.log(res.data)
-      setBasketItems(res.data)
+    getBasket().then((data) => {
+      setBasketItems(data)
     })
   }, [])
 
@@ -27,9 +29,8 @@ function Order({ users, user }) {
 
   const addToOrder = () => {
     return new Promise((resolve, reject) => {
-      // console.log("addToOrder déclenché")
       const headers = {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${userLog.token}`,
       }
       axios
         .get("http://localhost:4242/latestBillNumber")
@@ -64,7 +65,6 @@ function Order({ users, user }) {
 
   const deleteBasket = () => {
     if (basketItems.length === 0) {
-      // console.log("Basket is empty, nothing to delete.")
       return
     }
     const usersId = basketItems[0].usersId

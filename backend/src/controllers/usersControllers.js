@@ -42,6 +42,22 @@ const add = (req, res) => {
     })
 }
 
+const destroy = (req, res) => {
+  models.users
+    .deleteUser(req.params.id)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404)
+      } else {
+        res.sendStatus(204)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const loginUsers = (req, res, next) => {
   console.info("test01")
   models.users.loginUser(req.body.email).then(([users]) => {
@@ -63,5 +79,6 @@ module.exports = {
   browse,
   read,
   add,
+  destroy,
   loginUsers,
 }

@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from "react"
 import axios from "axios"
+import React, { useCallback, useState } from "react"
 
 const BasketContext = React.createContext()
 
@@ -14,7 +14,7 @@ export const BasketProvider = ({ children }) => {
   }, [])
 
   const triggerBasketChange = () => {
-    setBasketChanged((prevState) => !prevState) // Toggle the state
+    setBasketChanged((prevState) => !prevState)
   }
 
   return (
@@ -23,8 +23,8 @@ export const BasketProvider = ({ children }) => {
         basketItems,
         fetchBasketItems,
         triggerBasketChange,
-        basketChanged, // provide basketChanged in context
-        setBasketChanged, // providing this function is optional and is only needed if child components need to modify basketChanged directly.
+        basketChanged,
+        setBasketChanged,
       }}
     >
       {children}

@@ -1,5 +1,7 @@
 import { useState } from "react"
+
 import axios from "axios"
+
 import "./NonMembre.scss"
 
 function NonMembre({ switchView, users }) {

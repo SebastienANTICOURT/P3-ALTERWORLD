@@ -1,11 +1,13 @@
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useAuthContext } from "../../../components/AuthContext"
 import "./Membre.scss"
 
-function Membre({ switchView, setUser }) {
+function Membre({ switchView }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const { setUserLog } = useAuthContext()
   const navigate = useNavigate()
 
   const handleClick = () => {
@@ -14,7 +16,10 @@ function Membre({ switchView, setUser }) {
       .then((res) => {
         localStorage.setItem("token", res.data.token)
         localStorage.setItem("usersId", res.data.user.usersId)
-        setUser(res.data.user)
+        setUserLog({
+          token: res.data.token,
+          usersId: res.data.user.usersId,
+        })
         console.info(res.data)
         // alert("vous etes connecte")
         navigate("/")

@@ -1,22 +1,17 @@
 import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import BasketContext from "../BasketContext"
 import "../Style.scss"
 import alterworld from "../assets/alterworld.png"
 import caddie from "../assets/caddie.png"
 import login from "../assets/login.png"
-import loupe from "../assets/loupe.png"
+import BasketContext from "./BasketContext"
 import "./NavBar.scss"
 
-function NavBar() {
+function NavBar({ admin }) {
   const [isMenuOpen, setMenuOpen] = useState(false)
-  const [searchTerm, setSearchTerm] = useState("")
+
   const { basketItems, fetchBasketItems, triggerBasketChange } =
     useContext(BasketContext)
-
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value)
-  }
 
   useEffect(() => {
     fetchBasketItems()
@@ -35,21 +30,15 @@ function NavBar() {
       </div>
       <ul className={isMenuOpen ? "open" : ""}>
         <div className="leftItems">
-          <Link to="administrator">
-            <button className="pesrsoButton">Espace personnel</button>
+          <Link to="/administrator">
+            {admin && admin.isAdministrator === 1 ? (
+              <button className="adminButton">A</button>
+            ) : null}
           </Link>
-          <li className="searchItem">
-            <div className="searchContainer">
-              <img className="loupeNB" src={loupe} alt="loupe" />
-              <input
-                type="text"
-                placeholder="Rechercher"
-                value={searchTerm}
-                onChange={handleSearchChange}
-              />
-              {/* <button onClick={handleSearch}>Search</button> */}
-            </div>
-          </li>
+
+          <Link to="/customerArea">
+            <button className="persoButton">Espace Client</button>
+          </Link>
         </div>
         <li>
           <Link className="logoNBL" to="/">

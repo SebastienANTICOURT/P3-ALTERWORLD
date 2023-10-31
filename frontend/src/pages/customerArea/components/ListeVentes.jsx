@@ -20,7 +20,7 @@ function ListeVentes({ orders }) {
   return (
     <div className="Listes">
       <h1>Historique des ventes</h1>
-      <div className="ventes">
+      <div className="colonne">
         {Object.entries(groupedSales).map(([billNumber, sales]) => (
           <div key={billNumber}>
             <h2>Numéro de facture: {billNumber}</h2>

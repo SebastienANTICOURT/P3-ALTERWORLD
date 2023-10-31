@@ -4,23 +4,23 @@ import "./Contact.scss"
 
 function Contact() {
   const [name, setName] = useState("")
+  const [imagePath, setImagePath] = useState("")
   const [price, setPrice] = useState("")
   const [univers, setUnivers] = useState("")
   const [type, setType] = useState("")
   const [image, setImage] = useState()
 
   const addProducts = () => {
-    // Create a FormData object to send the product data and image to the server
     const formData = new FormData()
-    formData.append("name", name)
-    formData.append("price", price)
-    formData.append("univers", univers)
-    formData.append("type", type)
-    formData.append("image", image) // Append the selected image
 
-    axios.post("http://localhost:4242/products", formData).then((res) => {
-      // Handle the response from the server if needed
-    })
+    const CreatorId = localStorage.getItem("usersId")
+    formData.append("name", name)
+    formData.append("image", imagePath)
+    formData.append("price", price)
+    formData.append("creatorId", CreatorId)
+    formData.append("universId", univers)
+    formData.append("typesId", type)
+    axios.post("http://localhost:4242/products", formData).then((res) => {})
     // .catch((error) => {
     //   // console.log(error)
     // })
@@ -36,7 +36,9 @@ function Contact() {
   const upload = () => {
     const formData = new FormData()
     formData.append("image", image)
-    axios.post("http://localhost:4242/upload", formData).then((res) => {})
+    axios.post("http://localhost:4242/upload", formData).then((res) => {
+      setImagePath(res.data.path)
+    })
     // .catch((er) => console.log(er))
   }
 

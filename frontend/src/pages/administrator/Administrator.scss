@@ -5,18 +5,27 @@
   width: 100%;
   background-color: whitesmoke;
   padding-left: 20px;
+  .sectionButtons {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    button {
+      padding: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      border: 3px black solid;
+    }
+  }
   input {
-    height: 20px;
+    height: 30px;
   }
   .updateData {
     display: flex;
     gap: 50px;
     padding-top: 20px;
   }
-  .graphHistory {
-    flex-direction: row;
-  }
-
   .GraphA {
     width: 100%;
     padding-top: 50px;
@@ -29,11 +38,23 @@
       width: 50%;
     }
   }
+}
 
-  .ListeFactures {
+.container {
+  width: 100%;
+  .searchBar {
+    width: 100%;
     display: flex;
-    flex-direction: row;
+    align-items: center;
     gap: 20px;
-    margin-left: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .listUsers th,
+  .listUsers td {
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid #ddd;
+    text-align: left;
   }
 }

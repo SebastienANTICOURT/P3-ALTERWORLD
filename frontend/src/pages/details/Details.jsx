@@ -1,7 +1,8 @@
 import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import BasketContext from "../../BasketContext"
+import { useAuthContext } from "../../components/AuthContext"
+import BasketContext from "../../components/BasketContext"
 import "./Details.scss"
 
 function Details() {
@@ -10,10 +11,14 @@ function Details() {
   const [quantity, setQuantity] = useState(1)
   const [total, setTotal] = useState(0)
   const { triggerBasketChange } = useContext(BasketContext)
-  const usersId = localStorage.getItem("usersId")
+  const { userLog } = useAuthContext()
+  const usersId = userLog.usersId
   const headers = {
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
+    Authorization: `Bearer ${userLog.token}`,
   }
+
+  // console.log("usersId", usersId)
+  // console.log("headers", headers)
 
   useEffect(() => {
     axios
@@ -57,30 +62,6 @@ function Details() {
         triggerBasketChange()
       })
   }
-
-  // const changeFavorites = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:4242/favorites/${usersId}/${productsId}`
-  //     )
-
-  //     if (!response.data) {
-  //       await axios.post("http://localhost:4242/favorites", {
-  //         productsId: id,
-  //         usersId,
-  //         hearts: 0,
-  //       })
-  //     }
-  //     await axios.put(
-  //       `http://localhost:4242/favorites/${usersId}/${productsId}`,
-  //       {
-  //         hearts: response.data && response.data.hearts === 1 ? 0 : 1,
-  //       }
-  //     )
-  //   } catch (error) {
-  //     console.error("Error changing favorites", error)
-  //   }
-  // }
 
   return (
     <div className="Details">
