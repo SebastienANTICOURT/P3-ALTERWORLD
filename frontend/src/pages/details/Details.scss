@@ -1,0 +1,153 @@
+@import "../../Style.scss";
+
+.Details {
+  background-color: $backColor;
+  padding-top: 30px;
+
+  .DetailCardID {
+    background-color: $NBColor;
+    height: 70vh;
+    width: 850px;
+
+    display: flex;
+    // flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    border: black solid 0px;
+    box-shadow: 8px 7px 0px 0px rgba(0, 0, 0, 0.5);
+    padding: 4px 0 0 4px;
+
+    position: relative;
+
+    .leftContainerD {
+      width: 50%;
+      // padding-top: 10px;
+
+      img {
+        width: 450px;
+        height: 470px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        transition: transform 0.5s ease;
+        img:hover {
+          transform: scale(1.5);
+        }
+      }
+    }
+
+    .rightContainerD {
+      width: 50%;
+      padding-top: 10px;
+      display: flex;
+      text-align: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 40px;
+
+      figcaption {
+        color: #19083b;
+        font-weight: bold;
+        font-size: 30px;
+        margin-top: 5px;
+      }
+
+      .PricesD {
+        height: auto;
+        width: 100%;
+        margin-top: 6px;
+        color: #070a09;
+        font-size: 20px;
+        font-weight: bold;
+        justify-content: center;
+      }
+
+      .quantityD {
+        display: flex;
+        gap: 10px;
+        color: #070a09;
+        font-weight: bold;
+      }
+
+      button {
+        width: 15px;
+        color: #070a09;
+        background-color: $NBColor;
+        font-size: 20px;
+        font-weight: bold;
+        border: 0px solid black;
+      }
+
+      p {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .buttonPurple {
+        height: 30px;
+        width: 200px;
+        background-color: #401f83;
+        display: flex;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 15px;
+        color: whitesmoke;
+        padding-top: 5px;
+        border: black 2px solid;
+        border-radius: 20px;
+        margin-bottom: 20px;
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      height: auto;
+      width: 100%;
+
+      .leftContainerD,
+      .rightContainerD {
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .leftContainerD img {
+        width: 80%;
+        height: auto; // This makes the image keep its aspect ratio
+        margin: 0 auto;
+      }
+
+      .rightContainerD {
+        gap: 20px;
+      }
+
+      .panierD {
+        width: 80%;
+      }
+    }
+  }
+
+  .buttonsD {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 50px;
+    margin-top: 40px;
+    gap: 40px;
+  }
+}
+.buttonYellow {
+  height: 30px;
+  width: 200px;
+  background-color: $yellow;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  color: black;
+  padding-top: 5px;
+  border: black 2px solid;
+  border-radius: 20px;
+  margin-top: 20px;
+}

@@ -1,7 +1,7 @@
 const models = require("../models")
 
 const browse = (req, res) => {
-  models.item
+  models.users
     .findAll()
     .then(([rows]) => {
       res.send(rows)
@@ -13,7 +13,7 @@ const browse = (req, res) => {
 }
 
 const read = (req, res) => {
-  models.item
+  models.users
     .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
@@ -28,37 +28,13 @@ const read = (req, res) => {
     })
 }
 
-const edit = (req, res) => {
-  const item = req.body
-
-  // TODO validations (length, format...)
-
-  item.id = parseInt(req.params.id, 10)
-
-  models.item
-    .update(item)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404)
-      } else {
-        res.sendStatus(204)
-      }
-    })
-    .catch((err) => {
-      console.error(err)
-      res.sendStatus(500)
-    })
-}
-
 const add = (req, res) => {
-  const item = req.body
-
-  // TODO validations (length, format...)
-
-  models.item
-    .insert(item)
+  const users = req.body
+  users.password = req.body.hashedPassword
+  models.users
+    .insert(users)
     .then(([result]) => {
-      res.location(`/items/${result.insertId}`).sendStatus(201)
+      res.json(result.insertId)
     })
     .catch((err) => {
       console.error(err)
@@ -67,8 +43,8 @@ const add = (req, res) => {
 }
 
 const destroy = (req, res) => {
-  models.item
-    .delete(req.params.id)
+  models.users
+    .deleteUser(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404)
@@ -82,10 +58,27 @@ const destroy = (req, res) => {
     })
 }
 
+const loginUsers = (req, res, next) => {
+  models.users.loginUser(req.body.email).then(([users]) => {
+    if (users[0] != null) {
+      req.user = users[0]
+
+      next()
+    } else {
+      res.sendStatus(404).send("pas trouvé")
+    }
+  })
+}
+
+const logoutUsers = (req, res) => {
+  res.clearCookie("token").clearCookie("usersId").sendStatus(200)
+}
+
 module.exports = {
   browse,
   read,
-  edit,
   add,
   destroy,
+  loginUsers,
+  logoutUsers,
 }

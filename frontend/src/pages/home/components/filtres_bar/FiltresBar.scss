@@ -1,0 +1,41 @@
+@import "../../../../Style.scss";
+
+.FiltresBar {
+  height: 300px;
+  width: 100%;
+  background-color: $greendark;
+  display: flex;
+  flex-direction: column;
+
+  .BlocFiltre {
+    display: flex;
+    justify-content: center;
+  }
+  .proposeCreation {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: $yellow;
+    align-items: center;
+
+    button {
+      font-size: 20px;
+      height: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .TitleListFB {
+    font-size: 18px;
+  }
+  li {
+    font-size: 10px;
+  }
+  button {
+    font-size: 10px;
+  }
+}

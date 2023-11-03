@@ -1,0 +1,14 @@
+@import "../../../../Style.scss";
+
+.Dropdown {
+  display: flex;
+
+  select {
+    background-color: $greendark;
+    color: whitesmoke;
+    font-size: 15px;
+    font-weight: bold;
+    height: 35px;
+    width: 250px;
+  }
+}

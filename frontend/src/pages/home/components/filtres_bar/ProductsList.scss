@@ -1,0 +1,85 @@
+@import "../../../../Style.scss";
+
+.ProductList {
+  background-color: $backColor;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 30px;
+
+  .BSh1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  hr {
+    border: none; /* Removes the default border */
+    height: 3px;
+    width: 50px;
+    background-color: $yellow; /* Color of the line */
+    // margin-top: 40px;
+  }
+
+  .BSProductsH {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+
+    .CartProductsH {
+      background-color: $NBColor;
+      height: 310px;
+      width: 270px;
+      border: black solid 0px;
+      box-shadow: 6px 5px 0px 0px rgba(0, 0, 0, 0.5);
+      padding: 4px 0 0 4px;
+      position: relative;
+    }
+
+    .CartProductsH:hover::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 132, 255, 0.1);
+      pointer-events: none;
+    }
+
+    .VoirPL {
+      height: 35px;
+      width: 100px;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+      color: #000;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s;
+      color: whitesmoke;
+      background-color: #2a8795;
+      display: flex;
+      justify-content: center;
+      padding-top: 10px;
+      border-radius: 20px;
+    }
+
+    .CartProductsH:hover .VoirPL {
+      opacity: 1;
+    }
+
+    .LinkPL {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}

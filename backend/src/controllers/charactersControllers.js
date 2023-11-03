@@ -14,9 +14,6 @@ const browse = (req, res) => {
 
 const add = (req, res) => {
   const characters = req.body
-
-  // TODO validations (length, format...)
-
   models.characters
     .insert(characters)
     .then(([result]) => {
@@ -45,11 +42,7 @@ const read = (req, res) => {
 
 const edit = (req, res) => {
   const characters = req.body
-
-  // TODO validations (length, format...)
-
   characters.id = parseInt(req.params.id, 10)
-
   models.characters
     .update(characters)
     .then(([result]) => {
@@ -64,6 +57,7 @@ const edit = (req, res) => {
       res.sendStatus(500)
     })
 }
+
 const destroy = (req, res) => {
   models.characters
     .delete(req.params.id)

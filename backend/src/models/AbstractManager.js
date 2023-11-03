@@ -3,18 +3,24 @@ class AbstractManager {
     this.table = table
   }
 
-  find(id) {
-    return this.database.query(`select * from  ${this.table} where id = ?`, [
-      id,
-    ])
-  }
-
   findAll() {
     return this.database.query(`select * from  ${this.table}`)
   }
 
+  find(id) {
+    return this.database.query(
+      `select * from  ${this.table} 
+    where id = ?`,
+      [id]
+    )
+  }
+
   delete(id) {
-    return this.database.query(`delete from ${this.table} where id = ?`, [id])
+    return this.database.query(
+      `delete from ${this.table} 
+    where id = ?`,
+      [id]
+    )
   }
 
   setDatabase(database) {
