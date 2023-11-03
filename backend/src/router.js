@@ -9,7 +9,6 @@ const basketControllers = require("./controllers/basketControllers")
 const favoritesControllers = require("./controllers/favoritesControllers")
 const ordersControllers = require("./controllers/ordersControllers")
 const usersControllers = require("./controllers/usersControllers")
-const charactersControllers = require("./controllers/charactersControllers")
 const { validateUsers } = require("./validators.js")
 const { hashPassword, verifyPassword, verifyToken } = require("./auth")
 
@@ -58,14 +57,14 @@ router.get("/users/:id", usersControllers.read)
 router.post("/users", validateUsers, hashPassword, usersControllers.add)
 router.delete("/users/:id", usersControllers.destroy)
 
+// ROUTE DE CONNEXION
 router.post("/login", usersControllers.loginUsers, verifyPassword)
-// router.put("/users/:id", usersControllers.edit)
-// router.delete("/users/:id", usersControllers.destroy)
+router.get("/logout", usersControllers.logoutUsers)
 
-router.get("/characters", charactersControllers.browse)
-router.get("/characters/:id", charactersControllers.read)
-router.post("/characters", charactersControllers.add)
-// router.put("/characters/:id", charactersControllers.edit)
-// router.delete("/characters/:id", charactersControllers.destroy)
+// router.get("/characters", charactersControllers.browse)
+// router.get("/characters/:id", charactersControllers.read)
+// router.post("/characters", charactersControllers.add)
+// // router.put("/characters/:id", charactersControllers.edit)
+// // router.delete("/characters/:id", charactersControllers.destroy)
 
 module.exports = router

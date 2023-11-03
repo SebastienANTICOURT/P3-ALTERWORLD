@@ -1,7 +1,7 @@
-import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuthContext } from "../../../components/AuthContext"
+import { login } from "../../../components/Axios"
 import "./Membre.scss"
 
 function Membre({ switchView }) {
@@ -11,19 +11,16 @@ function Membre({ switchView }) {
   const navigate = useNavigate()
 
   const handleClick = () => {
-    axios
-      .post("http://localhost:4242/login", { email, password })
-      .then((res) => {
-        localStorage.setItem("token", res.data.token)
-        localStorage.setItem("usersId", res.data.user.usersId)
-        setUserLog({
-          token: res.data.token,
-          usersId: res.data.user.usersId,
-        })
-        console.info(res.data)
-        // alert("vous etes connecte")
-        navigate("/")
+    login(email, password).then((data) => {
+      setUserLog({
+        token: data.token,
+        usersId: data.usersId,
       })
+      navigate("/")
+    })
+    // .catch((error) => {
+    //   "erreur de connexion"
+    // })
   }
 
   return (

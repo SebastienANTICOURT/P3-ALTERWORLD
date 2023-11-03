@@ -22,10 +22,10 @@ const hashPassword = (req, res, next) => {
     })
 }
 
-const verifyPassword = (req, res) => {
-  console.info(req.user)
+const verifyPassword = (req, res, next) => {
   argon2
     .verify(req.user.password, req.body.password)
+
     .then((isVerified) => {
       if (isVerified) {
         const payload = { sub: req.user.id }
@@ -35,14 +35,24 @@ const verifyPassword = (req, res) => {
         })
 
         delete req.user.password
-        res.send({ token, user: req.user })
+        res.cookie("token", token, {
+          httpOnly: false,
+          secure: false,
+          sameSite: "strict",
+        })
+        res.cookie("usersId", req.user.usersId, {
+          httpOnly: false,
+          secure: false,
+        })
+        res.send({ utilisateur: req.user })
       } else {
-        res.sendStatus(401)
+        res.sendStatus(401).send("Ivalid Credential")
       }
     })
     .catch((err) => {
       console.error(err)
-      res.sendStatus(500)
+
+      res.sendStatus(520)
     })
 }
 

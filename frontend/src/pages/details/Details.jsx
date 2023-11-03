@@ -16,7 +16,7 @@ function Details() {
   const headers = {
     Authorization: `Bearer ${userLog.token}`,
   }
-
+  // console.log("detail", userLog)
   // console.log("usersId", usersId)
   // console.log("headers", headers)
 

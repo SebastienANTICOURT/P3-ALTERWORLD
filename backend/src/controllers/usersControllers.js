@@ -59,7 +59,6 @@ const destroy = (req, res) => {
 }
 
 const loginUsers = (req, res, next) => {
-  console.info("test01")
   models.users.loginUser(req.body.email).then(([users]) => {
     if (users[0] != null) {
       req.user = users[0]
@@ -69,10 +68,10 @@ const loginUsers = (req, res, next) => {
       res.sendStatus(404).send("pas trouvé")
     }
   })
-  // .catch((err) => {
-  //   console.error("poulet")
-  //   res.status(518).send("Error retrieving data from database")
-  // })
+}
+
+const logoutUsers = (req, res) => {
+  res.clearCookie("token").clearCookie("usersId").sendStatus(200)
 }
 
 module.exports = {
@@ -81,4 +80,5 @@ module.exports = {
   add,
   destroy,
   loginUsers,
+  logoutUsers,
 }

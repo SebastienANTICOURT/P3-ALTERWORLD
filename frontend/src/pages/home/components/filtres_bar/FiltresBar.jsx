@@ -38,17 +38,20 @@ function FiltresBar() {
     let filtered = products
     if (selectedUnivers !== "all") {
       filtered = filtered.filter(
-        (product) => product.univerId.toString() === selectedUnivers
+        (product) =>
+          product.univerId && product.univerId.toString() === selectedUnivers
       )
     }
     if (selectedTypes !== "all") {
       filtered = filtered.filter(
-        (product) => product.typesId.toString() === selectedTypes
+        (product) =>
+          product.typesId && product.typesId.toString() === selectedTypes
       )
     }
     if (selectedCreators !== "all") {
       filtered = filtered.filter(
-        (product) => product.creatorId.toString() === selectedCreators
+        (product) =>
+          product.creatorId && product.creatorId.toString() === selectedCreators
       )
     }
     if (sortOrder === "Prix croissant") {

@@ -1,9 +1,9 @@
+import { useAuthContext } from "../../../components/AuthContext"
 import "./Listes.scss"
 
 function ListeVentes({ orders }) {
-  const sales = orders.filter(
-    (order) => order.creatorId === parseInt(localStorage.getItem("usersId"))
-  )
+  const { userLog } = useAuthContext()
+  const sales = orders.filter((order) => order.creatorId === userLog.usersId)
 
   const groupByBillNumber = (sales) => {
     return sales.reduce((acc, sale) => {
