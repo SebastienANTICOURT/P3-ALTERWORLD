@@ -42,7 +42,6 @@ const read = (req, res) => {
 
 const add = (req, res) => {
   const products = req.body
-  console.log("products", products)
   models.products
     .insert(products)
     .then(([result]) => {

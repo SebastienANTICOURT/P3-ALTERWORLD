@@ -14,10 +14,10 @@ function Contact() {
 
   const creatorId = userLog.usersId
   const productData = {
-    name: name,
+    name,
     image: imagePath,
-    price: price,
-    creatorId: creatorId,
+    price,
+    creatorId,
     univerId: univers,
     typesId: type,
   }
@@ -25,7 +25,7 @@ function Contact() {
     axios
       .post("http://localhost:4242/products", productData)
       .then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
       })
       .catch((error) => {
         console.error(error)

@@ -23,15 +23,13 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage })
 router.post("/upload", upload.single("image"), (req, res) => {
-  console.log("router", req.file, req.body)
   if (req.file) {
-    const imagePath = `/assets/images/${req.file.filename}`;
-    res.json({ path: imagePath });
+    const imagePath = `/assets/images/${req.file.filename}`
+    res.json({ path: imagePath })
   } else {
-    res.status(400).send('No image uploaded');
+    res.status(400).send("No image uploaded")
   }
-});
-
+})
 
 router.get("/products", productsControllers.browse)
 router.get("/products", productsControllers.productsN)
