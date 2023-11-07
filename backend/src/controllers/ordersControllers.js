@@ -3,7 +3,7 @@ const models = require("../models")
 const browse = (req, res) => {
   models.orders
     .findOrdersWithName()
-    .then((rows) => {
+    .then(([rows]) => {
       res.send(rows)
     })
     .catch((err) => {
@@ -15,7 +15,7 @@ const browse = (req, res) => {
 const orderUsersId = (req, res) => {
   models.orders
     .findOrdersUsersId(req.params.usersId)
-    .then((rows) => {
+    .then(([rows]) => {
       res.send(rows)
     })
     .catch((err) => {

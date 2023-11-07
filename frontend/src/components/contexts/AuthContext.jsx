@@ -1,26 +1,28 @@
 import Cookies from "js-cookie"
 import { createContext, useContext, useEffect, useState } from "react"
 
-const CurrentUserContext = createContext()
+const AuthContext = createContext()
 
-export const useAuthContext = () => useContext(CurrentUserContext)
+export const useAuthContext = () => useContext(AuthContext)
 
-export const CurrentUserContextProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
   const [userLog, setUserLog] = useState({
     usersId: parseInt(Cookies.get("usersId")) || null,
     token: Cookies.get("token") || null,
+    firstName: Cookies.get("firstName") || null,
   })
 
   useEffect(() => {
     setUserLog({
       usersId: parseInt(Cookies.get("usersId")) || null,
       token: Cookies.get("token") || null,
+      firstName: Cookies.get("firstName") || null,
     })
-  }, [Cookies.get("usersId"), Cookies.get("token")])
+  }, [Cookies.get("usersId"), Cookies.get("token"), Cookies.get("firstName")])
 
   return (
-    <CurrentUserContext.Provider value={{ userLog, setUserLog }}>
+    <AuthContext.Provider value={{ userLog, setUserLog }}>
       {children}
-    </CurrentUserContext.Provider>
+    </AuthContext.Provider>
   )
 }

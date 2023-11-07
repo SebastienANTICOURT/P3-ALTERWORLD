@@ -25,15 +25,12 @@ const hashPassword = (req, res, next) => {
 const verifyPassword = (req, res, next) => {
   argon2
     .verify(req.user.password, req.body.password)
-
     .then((isVerified) => {
       if (isVerified) {
         const payload = { sub: req.user.id }
-
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
           expiresIn: "1h",
         })
-
         delete req.user.password
         res.cookie("token", token, {
           httpOnly: false,
@@ -44,14 +41,17 @@ const verifyPassword = (req, res, next) => {
           httpOnly: false,
           secure: false,
         })
+        res.cookie("firstName", req.user.firstName, {
+          httpOnly: false,
+          secure: false,
+        })
         res.send({ utilisateur: req.user })
       } else {
-        res.sendStatus(401).send("Ivalid Credential")
+        res.sendStatus(401)
       }
     })
     .catch((err) => {
       console.error(err)
-
       res.sendStatus(520)
     })
 }

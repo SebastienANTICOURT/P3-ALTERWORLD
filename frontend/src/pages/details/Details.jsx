@@ -1,8 +1,8 @@
 import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { useAuthContext } from "../../components/AuthContext"
-import BasketContext from "../../components/BasketContext"
+import { useAuthContext } from "../../components/contexts/AuthContext"
+import BasketContext from "../../components/contexts/BasketContext"
 import "./Details.scss"
 
 function Details() {
@@ -57,9 +57,13 @@ function Details() {
         },
         { headers }
       )
-      .then((response) => {
+      .then(() => {
         alert("Le produit a été ajouté au panier")
         triggerBasketChange()
+      })
+      .catch((error) => {
+        console.error(error)
+        alert("Echec de l'ajout au panier", error)
       })
   }
 

@@ -1,8 +1,8 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import smiley from "../../assets/smiley.png"
-import { useAuthContext } from "../../components/AuthContext"
-import { getBasket } from "../../components/Axios"
+import { useAuthContext } from "../../components/contexts/AuthContext"
+import BasketContext from "../../components/contexts/BasketContext"
 import "./Order.scss"
 import ItemsOrder from "./components/ItemsOrder"
 import Presentation from "./components/Presentation"
@@ -11,15 +11,14 @@ import RightColumn from "./components/RightColumn"
 function Order({ users, user }) {
   const [date] = useState(new Date())
   const dateStr = date.toISOString().split("T")[0]
-  const [basketItems, setBasketItems] = useState([])
   const [showMessage, setShowMessage] = useState(false)
+  const { basketItems, fetchBasketItems, setBasketItems } =
+    useContext(BasketContext)
   const { userLog } = useAuthContext()
 
   useEffect(() => {
-    getBasket().then((data) => {
-      setBasketItems(data)
-    })
-  }, [])
+    fetchBasketItems()
+  }, [fetchBasketItems])
 
   const handleOrderAndDelete = () => {
     addToOrder()

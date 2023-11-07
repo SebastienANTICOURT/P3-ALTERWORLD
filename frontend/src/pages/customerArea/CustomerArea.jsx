@@ -1,17 +1,10 @@
-import { useEffect, useState } from "react"
-import { getOrders } from "../../components/Axios"
+import { useOrdersContext } from "../../components/contexts/OrdersContext"
 import "./CulstomerArea.scss"
 import ListeAchats from "./components/ListeAchats"
 import ListeVentes from "./components/ListeVentes"
 
 function CustomerArea() {
-  const [ordersData, setOrdersData] = useState([])
-
-  useEffect(() => {
-    getOrders().then((data) => {
-      setOrdersData(data[0])
-    })
-  }, [])
+  const { ordersData } = useOrdersContext()
 
   return (
     <div className="CustomerArea">

@@ -4,10 +4,10 @@ import "../Style.scss"
 import alterworld from "../assets/alterworld.png"
 import caddie from "../assets/caddie.png"
 import login from "../assets/login.png"
-import { useAuthContext } from "./AuthContext"
 import { Logout } from "./Axios"
-import BasketContext from "./BasketContext"
 import "./NavBar.scss"
+import { useAuthContext } from "./contexts/AuthContext"
+import BasketContext from "./contexts/BasketContext"
 
 function NavBar({ admin }) {
   const [isMenuOpen, setMenuOpen] = useState(false)
@@ -21,7 +21,7 @@ function NavBar({ admin }) {
 
   const handleDisconnect = () => {
     Logout().then(() => {
-      setUserLog({ usersId: null, token: null })
+      setUserLog({ usersId: null, token: null, firstName: null })
     })
   }
 
@@ -62,7 +62,7 @@ function NavBar({ admin }) {
               </button>
             </li>
           ) : (
-            <Link to="/connexion">
+            <Link to="/membre">
               <li>
                 <img className="loginNB" src={login} alt="login" />
               </li>

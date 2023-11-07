@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-import { useAuthContext } from "../components/AuthContext"
+import { useAuthContext } from "../components/contexts/AuthContext"
 import "./Contact.scss"
 
 function Contact() {
@@ -28,7 +28,7 @@ function Contact() {
         // console.log(response.data)
       })
       .catch((error) => {
-        console.error(error)
+        console.error("Erreur lors de la création de l'utilisateur:", error)
       })
   }
 

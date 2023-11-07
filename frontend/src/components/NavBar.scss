@@ -25,6 +25,9 @@
 
     .logoNB {
       max-width: 70%;
+      @media (max-width: 1000px) {
+        display:none;
+      }
     }
 
     .searchContainer {
@@ -94,7 +97,7 @@
     right: 10px;
     top: 10px;
 
-    @media (max-width: 900px) {
+    @media (max-width: 1000px) {
       display: block;
     }
 
@@ -148,7 +151,7 @@
 
   ul {
     // ... existing styles
-    @media (max-width: 900px) {
+    @media (max-width: 1000px) {
       display: none;
     }
   }

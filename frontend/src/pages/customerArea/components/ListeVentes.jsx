@@ -1,4 +1,4 @@
-import { useAuthContext } from "../../../components/AuthContext"
+import { useAuthContext } from "../../../components/contexts/AuthContext"
 import "./Listes.scss"
 
 function ListeVentes({ orders }) {

@@ -11,7 +11,7 @@ export async function getProducts() {
     const res = await instance.get("/products")
     return res.data
   } catch (error) {
-    console.error("Error fetching orders:", error)
+    console.error("Error axios", error)
     throw error
   }
 }
@@ -21,7 +21,7 @@ export async function getUsers() {
     const res = await instance.get("/users")
     return res.data
   } catch (error) {
-    console.error("Error fetching orders:", error)
+    console.error("Error axios", error)
     throw error
   }
 }
@@ -31,7 +31,7 @@ export async function getBasket() {
     const res = await instance.get("/basket")
     return res.data
   } catch (error) {
-    console.error("Error fetching basket:", error)
+    console.error("Error axios", error)
     throw error
   }
 }
@@ -41,7 +41,7 @@ export async function getOrders() {
     const res = await instance.get("/orders")
     return res.data
   } catch (error) {
-    console.error("Error fetching orders:", error)
+    console.error("Error axios", error)
     throw error
   }
 }
@@ -51,7 +51,7 @@ export async function getUnivers() {
     const res = await instance.get("/univers")
     return res.data
   } catch (error) {
-    console.error("Error fetching orders:", error)
+    console.error("Error axios", error)
     throw error
   }
 }
@@ -61,7 +61,7 @@ export async function getTypes() {
     const res = await instance.get("/types")
     return res.data
   } catch (error) {
-    console.error("Error fetching orders:", error)
+    console.error("Error axios", error)
     throw error
   }
 }
@@ -71,18 +71,33 @@ export async function Logout() {
     const res = await instance.get("/logout")
     return res.data
   } catch (error) {
-    console.error("Error fetching orders:", error)
+    console.error("Error axios", error)
     throw error
   }
 }
 
 // POST
+export async function creationUser(firstName, lastName, email, password) {
+  try {
+    const response = await instance.post("/users", {
+      firstName,
+      lastName,
+      email,
+      password,
+    })
+    return response.data
+  } catch (error) {
+    console.error("Error axios", error)
+    throw error
+  }
+}
+
 export async function login(email, password) {
   try {
     const response = await instance.post("/login", { email, password })
     return response.data
   } catch (error) {
-    console.error("Error during login:", error)
+    console.error("Error axios", error)
     throw error
   }
 }
@@ -95,10 +110,7 @@ export async function updateBasketQuantity(itemId, newQuantity) {
     })
     return response.data
   } catch (error) {
-    console.error(
-      `Error decreasing quantity for item with ID ${itemId}:`,
-      error
-    )
+    console.error("Error axios", error)
     throw error
   }
 }
@@ -109,7 +121,7 @@ export async function deleteUserById(userId) {
     const res = await instance.delete(`/users/${userId}`)
     return res.data
   } catch (error) {
-    console.error(`Error deleting user with ID ${userId}:`, error)
+    console.error("Error axios", error)
     throw error
   }
 }
@@ -119,7 +131,7 @@ export async function deleteItemFromBasket(itemId) {
     const res = await instance.delete(`/basket/${itemId}`)
     return res.data
   } catch (error) {
-    console.error(`Error deleting user with ID ${itemId}:`, error)
+    console.error("Error axios", error)
     throw error
   }
 }
