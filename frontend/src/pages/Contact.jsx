@@ -1,8 +1,10 @@
 import axios from "axios"
 import { useState } from "react"
+import { useAuthContext } from "../components/AuthContext"
 import "./Contact.scss"
 
 function Contact() {
+  const { userLog } = useAuthContext()
   const [name, setName] = useState("")
   const [imagePath, setImagePath] = useState("")
   const [price, setPrice] = useState("")
@@ -10,20 +12,24 @@ function Contact() {
   const [type, setType] = useState("")
   const [image, setImage] = useState()
 
+  const creatorId = userLog.usersId
+  const productData = {
+    name: name,
+    image: imagePath,
+    price: price,
+    creatorId: creatorId,
+    univerId: univers,
+    typesId: type,
+  }
   const addProducts = () => {
-    const formData = new FormData()
-
-    const CreatorId = localStorage.getItem("usersId")
-    formData.append("name", name)
-    formData.append("image", imagePath)
-    formData.append("price", price)
-    formData.append("creatorId", CreatorId)
-    formData.append("universId", univers)
-    formData.append("typesId", type)
-    axios.post("http://localhost:4242/products", formData).then((res) => {})
-    // .catch((error) => {
-    //   // console.log(error)
-    // })
+    axios
+      .post("http://localhost:4242/products", productData)
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   const handleImageChange = (event) => {
@@ -37,9 +43,10 @@ function Contact() {
     const formData = new FormData()
     formData.append("image", image)
     axios.post("http://localhost:4242/upload", formData).then((res) => {
+      // Mettre à jour l'état avec le chemin de l'image
       setImagePath(res.data.path)
     })
-    // .catch((er) => console.log(er))
+    // Gérer les erreurs ici
   }
 
   return (
@@ -88,17 +95,13 @@ function Contact() {
         <figcaption>Image</figcaption>
         <input type="file" onChange={handleImageChange} />
         {image && (
-          <img src={image} alt="Selected" style={{ maxWidth: "200px" }} />
+          <img
+            src={URL.createObjectURL(image)}
+            alt="Selected"
+            style={{ maxWidth: "200px" }}
+          />
         )}
         <button onClick={upload}>selectionner</button>
-        <figcaption>Description</figcaption>
-        <input
-          className="Description"
-          type="text"
-          placeholder="Type"
-          value={type}
-          onChange={(event) => setType(event.target.value)}
-        />
         <button onClick={addProducts}>Envoyer</button>
       </div>
     </div>

@@ -10,8 +10,8 @@ import BasketContext from "./BasketContext"
 import "./NavBar.scss"
 
 function NavBar({ admin }) {
-  const { userLog, setUserLog } = useAuthContext()
   const [isMenuOpen, setMenuOpen] = useState(false)
+  const { userLog, setUserLog } = useAuthContext()
   const { basketItems, fetchBasketItems, triggerBasketChange } =
     useContext(BasketContext)
 
@@ -57,7 +57,9 @@ function NavBar({ admin }) {
         <div className="rightItems">
           {userLog.token ? (
             <li>
-              <button onClick={handleDisconnect}>Deconnexion</button>
+              <button className="loginNB" onClick={handleDisconnect}>
+                Deconnexion
+              </button>
             </li>
           ) : (
             <Link to="/connexion">

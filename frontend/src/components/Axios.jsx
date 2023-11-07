@@ -6,19 +6,9 @@ const instance = axios.create({
   withCredentials: true,
 })
 
-export async function getBasket() {
+export async function getProducts() {
   try {
-    const res = await instance.get("/basket")
-    return res.data
-  } catch (error) {
-    console.error("Error fetching basket:", error)
-    throw error
-  }
-}
-
-export async function getOrders() {
-  try {
-    const res = await instance.get("/orders")
+    const res = await instance.get("/products")
     return res.data
   } catch (error) {
     console.error("Error fetching orders:", error)
@@ -36,9 +26,19 @@ export async function getUsers() {
   }
 }
 
-export async function getProducts() {
+export async function getBasket() {
   try {
-    const res = await instance.get("/products")
+    const res = await instance.get("/basket")
+    return res.data
+  } catch (error) {
+    console.error("Error fetching basket:", error)
+    throw error
+  }
+}
+
+export async function getOrders() {
+  try {
+    const res = await instance.get("/orders")
     return res.data
   } catch (error) {
     console.error("Error fetching orders:", error)
@@ -87,13 +87,39 @@ export async function login(email, password) {
   }
 }
 
+// PUT
+export async function updateBasketQuantity(itemId, newQuantity) {
+  try {
+    const response = await instance.put(`/basket/${itemId}`, {
+      quantity: newQuantity,
+    })
+    return response.data
+  } catch (error) {
+    console.error(
+      `Error decreasing quantity for item with ID ${itemId}:`,
+      error
+    )
+    throw error
+  }
+}
+
 // DELETE
 export async function deleteUserById(userId) {
   try {
-    const res = await axios.delete(`http://localhost:4242/users/${userId}`)
+    const res = await instance.delete(`/users/${userId}`)
     return res.data
   } catch (error) {
     console.error(`Error deleting user with ID ${userId}:`, error)
+    throw error
+  }
+}
+
+export async function deleteItemFromBasket(itemId) {
+  try {
+    const res = await instance.delete(`/basket/${itemId}`)
+    return res.data
+  } catch (error) {
+    console.error(`Error deleting user with ID ${itemId}:`, error)
     throw error
   }
 }

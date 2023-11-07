@@ -1,5 +1,5 @@
-import axios from "axios"
 import React, { useCallback, useState } from "react"
+import { getBasket } from "./Axios"
 
 const BasketContext = React.createContext()
 
@@ -8,8 +8,8 @@ export const BasketProvider = ({ children }) => {
   const [basketChanged, setBasketChanged] = useState(false)
 
   const fetchBasketItems = useCallback(() => {
-    axios.get("http://localhost:4242/basket").then((res) => {
-      setBasketItems(res.data)
+    getBasket().then((data) => {
+      setBasketItems(data)
     })
   }, [])
 
