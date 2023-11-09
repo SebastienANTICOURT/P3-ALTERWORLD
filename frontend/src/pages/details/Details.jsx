@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import { basket } from "../../components/Axios"
 import { useAuthContext } from "../../components/contexts/AuthContext"
 import BasketContext from "../../components/contexts/BasketContext"
 import "./Details.scss"
@@ -13,12 +14,6 @@ function Details() {
   const { triggerBasketChange } = useContext(BasketContext)
   const { userLog } = useAuthContext()
   const usersId = userLog.usersId
-  const headers = {
-    Authorization: `Bearer ${userLog.token}`,
-  }
-  // console.log("detail", userLog)
-  // console.log("usersId", usersId)
-  // console.log("headers", headers)
 
   useEffect(() => {
     axios
@@ -39,24 +34,11 @@ function Details() {
   }
 
   useEffect(() => {
-    // Mettez à jour le total lorsque la quantité change
     setTotal(detail.price * quantity)
   }, [quantity, detail.price])
 
-  // const totalCost = detail.price * quantity
-
   const addToBasket = () => {
-    axios
-      .post(
-        "http://localhost:4242/basket",
-        {
-          usersId,
-          productsId: id,
-          quantity,
-          total,
-        },
-        { headers }
-      )
+    basket(usersId, id, quantity, total)
       .then(() => {
         alert("Le produit a été ajouté au panier")
         triggerBasketChange()

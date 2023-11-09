@@ -21,7 +21,7 @@ function NavBar({ admin }) {
 
   const handleDisconnect = () => {
     Logout().then(() => {
-      setUserLog({ usersId: null, token: null, firstName: null })
+      setUserLog({ usersId: null, firstName: null })
     })
   }
 
@@ -55,7 +55,7 @@ function NavBar({ admin }) {
         </li>
 
         <div className="rightItems">
-          {userLog.token ? (
+          {userLog.firstName ? (
             <li>
               <button className="loginNB" onClick={handleDisconnect}>
                 Deconnexion

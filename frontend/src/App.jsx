@@ -17,7 +17,6 @@ import Home from "./pages/home/Home"
 
 function App() {
   const [users, setUsers] = useState([])
-  const [user, setUser] = useState(null)
   const { userLog } = useAuthContext()
   const { ordersData } = useOrdersContext()
 
@@ -36,17 +35,14 @@ function App() {
       <NavBar admin={admin} />
       <Routes>
         <Route path="/" element={<Home userLog={userLog} />} />
-        <Route
-          path="/membre"
-          element={<Membre setUser={setUser} users={users} />}
-        />
-        <Route
-          path="/nonMembre"
-          element={<NonMembre setUser={setUser} users={users} />}
-        />
+        <Route path="/membre" element={<Membre />} />
+        <Route path="/nonMembre" element={<NonMembre users={users} />} />
         <Route path="/details/:id" element={<Details />} />
         <Route path="/basket" element={<Basket />} />
-        <Route path="/order" element={<Order users={users} user={user} />} />
+        <Route
+          path="/order"
+          element={<Order users={users} userLog={userLog} />}
+        />
         <Route path="/contact" element={<Contact />} />
         <Route path="/customerArea" element={<CustomerArea />} />
         {admin && admin.isAdministrator === 1 ? (

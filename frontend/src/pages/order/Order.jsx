@@ -1,20 +1,19 @@
 import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import smiley from "../../assets/smiley.png"
-import { useAuthContext } from "../../components/contexts/AuthContext"
+import { postOrder } from "../../components/Axios"
 import BasketContext from "../../components/contexts/BasketContext"
 import "./Order.scss"
 import ItemsOrder from "./components/ItemsOrder"
 import Presentation from "./components/Presentation"
 import RightColumn from "./components/RightColumn"
 
-function Order({ users, user }) {
+function Order({ users, userLog }) {
   const [date] = useState(new Date())
   const dateStr = date.toISOString().split("T")[0]
   const [showMessage, setShowMessage] = useState(false)
   const { basketItems, fetchBasketItems, setBasketItems } =
     useContext(BasketContext)
-  const { userLog } = useAuthContext()
 
   useEffect(() => {
     fetchBasketItems()
@@ -28,26 +27,13 @@ function Order({ users, user }) {
 
   const addToOrder = () => {
     return new Promise((resolve, reject) => {
-      const headers = {
-        Authorization: `Bearer ${userLog.token}`,
-      }
       axios
         .get("http://localhost:4242/latestBillNumber")
         .then((responseBillNumber) => {
           const latestBillNumber = responseBillNumber.data
           const newBillNumber = latestBillNumber + 1
-          return axios.post(
-            "http://localhost:4242/orders",
-            basketItems.map((item) => ({
-              usersId: item.usersId,
-              productsId: item.productsId,
-              billNumber: newBillNumber,
-              quantity: item.quantity,
-              total: item.quantity * item.price,
-              date: dateStr,
-            })),
-            { headers }
-          )
+          // Utilisez la fonction importée pour envoyer la commande.
+          return postOrder(basketItems, newBillNumber, dateStr)
         })
         .then(() => {
           resolve()
@@ -55,7 +41,7 @@ function Order({ users, user }) {
         .catch((error) => {
           console.error("Erreur lors du traitement :", error)
           alert(
-            "Une erreur s'est produite lors de l'ajout des produits à la commande ou de la suppression du panier."
+            "Une erreur s'est produite lors de l'ajout des produits à la commande."
           )
           reject(error)
         })
@@ -94,8 +80,8 @@ function Order({ users, user }) {
       <div className="Merci">
         {showMessage && (
           <p>
-            {user && `Merci, ${user.firstName} `} <img src={smiley} alt="" /> à
-            bientot pour de nouvelles aventures.
+            {userLog && `Merci, ${userLog.firstName} `}{" "}
+            <img src={smiley} alt="" /> à bientot pour de nouvelles aventures.
           </p>
         )}
       </div>

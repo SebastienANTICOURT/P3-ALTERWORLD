@@ -1,11 +1,11 @@
 import axios from "axios"
 
-// GET
 const instance = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
   withCredentials: true,
 })
 
+// GET
 export async function getProducts() {
   try {
     const res = await instance.get("/products")
@@ -100,6 +100,35 @@ export async function login(email, password) {
     console.error("Error axios", error)
     throw error
   }
+}
+
+export async function basket(usersId, productsId, quantity, total) {
+  try {
+    const basketData = {
+      usersId: usersId,
+      productsId: productsId,
+      quantity: quantity,
+      total: total,
+    }
+    const response = await instance.post("/basket", basketData)
+    return response.data
+  } catch (error) {
+    console.error("Error axios", error)
+    throw error
+  }
+}
+
+export function postOrder(basketItems, newBillNumber, dateStr) {
+  const ordersData = basketItems.map((item) => ({
+    usersId: item.usersId,
+    productsId: item.productsId,
+    billNumber: newBillNumber,
+    quantity: item.quantity,
+    total: item.quantity * item.price,
+    date: dateStr,
+  }))
+
+  return instance.post("/orders", ordersData)
 }
 
 // PUT

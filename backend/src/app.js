@@ -23,6 +23,10 @@ app.use(
   })
 )
 app.use(cookieParser())
+// app.use((req, res, next) => {
+//   console.log('Cookies:', req.cookies);
+//   next();
+// });
 
 // import and mount the API routes
 

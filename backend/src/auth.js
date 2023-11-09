@@ -33,17 +33,19 @@ const verifyPassword = (req, res, next) => {
         })
         delete req.user.password
         res.cookie("token", token, {
-          httpOnly: false,
+          httpOnly: true,
           secure: false,
           sameSite: "strict",
         })
         res.cookie("usersId", req.user.usersId, {
           httpOnly: false,
           secure: false,
+          sameSite: "strict",
         })
         res.cookie("firstName", req.user.firstName, {
           httpOnly: false,
           secure: false,
+          sameSite: "strict",
         })
         res.send({ utilisateur: req.user })
       } else {
@@ -58,22 +60,18 @@ const verifyPassword = (req, res, next) => {
 
 const verifyToken = (req, res, next) => {
   try {
-    const authorizationHeader = req.get("Authorization")
-
-    if (authorizationHeader == null) {
-      throw new Error("Authorization header is missing")
+    const token = req.cookies.token; 
+    console.log("token", req.cookies.token)
+    if (!token) {
+      throw new Error("No token provided");
     }
-    const [type, token] = authorizationHeader.split(" ")
-    if (type !== "Bearer") {
-      throw new Error("Authorization header has not the 'Bearer' type")
-    }
-    req.payload = jwt.verify(token, process.env.JWT_SECRET)
-    next()
+    req.payload = jwt.verify(token, process.env.JWT_SECRET);
+    next();
   } catch (err) {
-    console.error(err)
-    res.sendStatus(401)
+    console.error(err);
+    res.sendStatus(401);
   }
-}
+};
 
 module.exports = {
   hashPassword,
