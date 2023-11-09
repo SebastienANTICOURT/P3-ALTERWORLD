@@ -1,28 +1,30 @@
 import { useState } from "react"
-
-import axios from "axios"
-
+import { Link, useNavigate } from "react-router-dom"
+import { creationUser } from "../components/Axios"
 import "./NonMembre.scss"
 
-function NonMembre({ switchView, users }) {
+function NonMembre({ users }) {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const navigate = useNavigate()
 
   const handleSubmit = () => {
     if (password !== confirmPassword) {
-      alert("Passwords do not match!")
+      alert("Les mots de passe ne correspondent pas")
     } else if (users.some((user) => user.email === email)) {
-      alert("email already exists!")
+      alert("L'email existe déja!")
     } else {
-      axios.post("http://localhost:4242/users", {
-        firstName,
-        lastName,
-        email,
-        password,
-      })
+      creationUser(firstName, lastName, email, password)
+        .then(() => {
+          navigate("/membre")
+        })
+        .catch((error) => {
+          console.error(error)
+          alert("Echec de la création de l'utilisateur.")
+        })
     }
   }
   return (
@@ -66,7 +68,9 @@ function NonMembre({ switchView, users }) {
         />
       </div>
       <button onClick={handleSubmit}>S'inscrire</button>
-      <p onClick={switchView}>Déjà membre ?</p>
+      <Link to="membre">
+        <p>Déjà membre ?</p>
+      </Link>
     </div>
   )
 }

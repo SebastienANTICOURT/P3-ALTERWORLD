@@ -4,21 +4,21 @@ import smiley from "../../assets/smiley.png"
 import "./Home.scss"
 import FiltresBar from "./components/filtres_bar/FiltresBar"
 
-function Home({ user }) {
+function Home({ userLog }) {
   return (
     <div className="Home">
       <div className="imageHome">
-        <img
-          className="imageCatastrophe"
-          src={hydreHome}
-          alt="imageCatastrophe"
-        />
+        <img className="hydreHome" src={hydreHome} alt="hydreHome" />
         <div className="ContainerText">
           <div className="bienvenu">
             <p>
-              {user && `Bienvenu, ${user.firstName}`}{" "}
-              {user && <img src={smiley} alt="" />} Vivez votre propre aventure
-              avec ALTERWORLD !
+              {userLog && userLog.firstName ? (
+                <>
+                  Bienvenu, {userLog.firstName}{" "}
+                  <img src={smiley} alt="smiley" />
+                </>
+              ) : null}{" "}
+              Vivez votre propre aventure avec ALTERWORLD !
             </p>
             <p className="textHome">
               Enfin une boutique où les fans de RPG peuvent accéder à du contenu

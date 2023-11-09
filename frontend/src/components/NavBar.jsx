@@ -4,14 +4,14 @@ import "../Style.scss"
 import alterworld from "../assets/alterworld.png"
 import caddie from "../assets/caddie.png"
 import login from "../assets/login.png"
-import { useAuthContext } from "./AuthContext"
 import { Logout } from "./Axios"
-import BasketContext from "./BasketContext"
 import "./NavBar.scss"
+import { useAuthContext } from "./contexts/AuthContext"
+import BasketContext from "./contexts/BasketContext"
 
 function NavBar({ admin }) {
-  const { userLog, setUserLog } = useAuthContext()
   const [isMenuOpen, setMenuOpen] = useState(false)
+  const { userLog, setUserLog } = useAuthContext()
   const { basketItems, fetchBasketItems, triggerBasketChange } =
     useContext(BasketContext)
 
@@ -21,7 +21,7 @@ function NavBar({ admin }) {
 
   const handleDisconnect = () => {
     Logout().then(() => {
-      setUserLog({ usersId: null, token: null })
+      setUserLog({ usersId: null, firstName: null })
     })
   }
 
@@ -55,12 +55,14 @@ function NavBar({ admin }) {
         </li>
 
         <div className="rightItems">
-          {userLog.token ? (
+          {userLog.firstName ? (
             <li>
-              <button onClick={handleDisconnect}>Deconnexion</button>
+              <button className="loginNB" onClick={handleDisconnect}>
+                Deconnexion
+              </button>
             </li>
           ) : (
-            <Link to="/connexion">
+            <Link to="/membre">
               <li>
                 <img className="loginNB" src={login} alt="login" />
               </li>

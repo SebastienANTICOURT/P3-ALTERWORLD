@@ -1,20 +1,23 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import {
+  deleteItemFromBasket,
+  getBasket,
+  updateBasketQuantity,
+} from "../components/Axios"
 import "./Basket.scss"
 
 function Basket() {
   const [basketItems, setBasketItems] = useState([])
 
   useEffect(() => {
-    axios.get("http://localhost:4242/basket").then((res) => {
-      setBasketItems(res.data)
+    getBasket().then((data) => {
+      setBasketItems(data)
     })
   }, [])
 
   const deleteItem = (itemId) => {
-    axios
-      .delete(`http://localhost:4242/basket/${itemId}`)
+    deleteItemFromBasket(itemId)
       .then(() => {
         setBasketItems((prevItems) =>
           prevItems.filter((item) => item.id !== itemId)
@@ -28,14 +31,13 @@ function Basket() {
   const decreaseQuantity = (itemId) => {
     const item = basketItems.find((item) => item.id === itemId)
     const updatedQuantity = Math.max(1, item.quantity - 1)
-    axios
-      .put(`http://localhost:4242/basket/${itemId}`, {
-        quantity: updatedQuantity,
-      })
+    updateBasketQuantity(itemId, updatedQuantity)
       .then(() => {
         setBasketItems((prevItems) =>
-          prevItems.map((item) =>
-            item.id === itemId ? { ...item, quantity: updatedQuantity } : item
+          prevItems.map((existingItem) =>
+            existingItem.id === itemId
+              ? { ...existingItem, quantity: updatedQuantity }
+              : existingItem
           )
         )
       })
@@ -47,10 +49,7 @@ function Basket() {
   const increaseQuantity = (itemId) => {
     const item = basketItems.find((item) => item.id === itemId)
     const updatedQuantity = item.quantity + 1
-    axios
-      .put(`http://localhost:4242/basket/${itemId}`, {
-        quantity: updatedQuantity,
-      })
+    updateBasketQuantity(itemId, updatedQuantity)
       .then(() => {
         setBasketItems((prevItems) =>
           prevItems.map((item) =>

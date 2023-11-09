@@ -1,15 +1,15 @@
-import axios from "axios"
-import React, { useCallback, useState } from "react"
+import React, { createContext, useCallback, useState } from "react"
+import { getBasket } from "../Axios"
 
-const BasketContext = React.createContext()
+const BasketContext = createContext()
 
 export const BasketProvider = ({ children }) => {
   const [basketItems, setBasketItems] = useState([])
   const [basketChanged, setBasketChanged] = useState(false)
 
   const fetchBasketItems = useCallback(() => {
-    axios.get("http://localhost:4242/basket").then((res) => {
-      setBasketItems(res.data)
+    getBasket().then((data) => {
+      setBasketItems(data)
     })
   }, [])
 
@@ -21,6 +21,7 @@ export const BasketProvider = ({ children }) => {
     <BasketContext.Provider
       value={{
         basketItems,
+        setBasketItems,
         fetchBasketItems,
         triggerBasketChange,
         basketChanged,

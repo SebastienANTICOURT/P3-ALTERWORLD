@@ -15,14 +15,21 @@ const { hashPassword, verifyPassword, verifyToken } = require("./auth")
 // UPLOAD IMAGE MULTER
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./public/uploads")
+    cb(null, "./public/assets/images")
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   },
 })
 const upload = multer({ storage })
-router.post("/upload", upload.single("image"))
+router.post("/upload", upload.single("image"), (req, res) => {
+  if (req.file) {
+    const imagePath = `/assets/images/${req.file.filename}`
+    res.json({ path: imagePath })
+  } else {
+    res.status(400).send("No image uploaded")
+  }
+})
 
 router.get("/products", productsControllers.browse)
 router.get("/products", productsControllers.productsN)

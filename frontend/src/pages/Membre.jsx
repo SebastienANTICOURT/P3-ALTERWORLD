@@ -1,26 +1,29 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useAuthContext } from "../../../components/AuthContext"
-import { login } from "../../../components/Axios"
+import { Link, useNavigate } from "react-router-dom"
+import { login } from "../components/Axios"
+import { useAuthContext } from "../components/contexts/AuthContext"
 import "./Membre.scss"
 
-function Membre({ switchView }) {
+function Membre() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const { setUserLog } = useAuthContext()
   const navigate = useNavigate()
 
   const handleClick = () => {
-    login(email, password).then((data) => {
-      setUserLog({
-        token: data.token,
-        usersId: data.usersId,
+    login(email, password)
+      .then((data) => {
+        setUserLog({
+          // token: data.token,
+          usersId: data.usersId,
+          firstName: data.firstName,
+        })
+        navigate("/")
       })
-      navigate("/")
-    })
-    // .catch((error) => {
-    //   "erreur de connexion"
-    // })
+      .catch((error) => {
+        console.error(error)
+        alert("Utilisateur non trouvé")
+      })
   }
 
   return (
@@ -45,7 +48,9 @@ function Membre({ switchView }) {
         />
       </div>
       <button onClick={handleClick}>Connection</button>
-      <p onClick={switchView}>Pas encore inscrit ? créez votre compte</p>
+      <Link to="/nonMembre">
+        <p>Pas encore inscrit ? créez votre compte</p>
+      </Link>
     </div>
   )
 }
