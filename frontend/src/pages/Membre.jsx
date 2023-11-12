@@ -14,8 +14,6 @@ function Membre() {
     login(email, password)
       .then((data) => {
         setUserLog({
-          // token: data.token,
-          usersId: data.usersId,
           firstName: data.firstName,
         })
         navigate("/")

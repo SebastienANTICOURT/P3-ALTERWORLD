@@ -13,8 +13,24 @@ const browse = (req, res) => {
 }
 
 const orderUsersId = (req, res) => {
+  const usersId = req.payload.sub;
+  console.log("usersId",usersId)
   models.orders
-    .findOrdersUsersId(req.params.usersId)
+    .findOrdersUsersId(usersId)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
+const orderCreatorId = (req, res) => {
+  const creatorId = req.payload.sub;
+  console.log("usersId",creatorId)
+  models.orders
+    .findOrdersCreatorId(creatorId)
     .then(([rows]) => {
       res.send(rows)
     })
@@ -79,9 +95,11 @@ const add = (req, res) => {
   }
 }
 
+
 module.exports = {
   orderUsersId,
   browse,
   newBillNumber,
   add,
+  orderCreatorId,
 }

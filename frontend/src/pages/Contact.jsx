@@ -1,10 +1,9 @@
 import axios from "axios"
 import { useState } from "react"
-import { useAuthContext } from "../components/contexts/AuthContext"
+import { instance } from "../components/Axios"
 import "./Contact.scss"
 
 function Contact() {
-  const { userLog } = useAuthContext()
   const [name, setName] = useState("")
   const [imagePath, setImagePath] = useState("")
   const [price, setPrice] = useState("")
@@ -12,18 +11,16 @@ function Contact() {
   const [type, setType] = useState("")
   const [image, setImage] = useState()
 
-  const creatorId = userLog.usersId
   const productData = {
     name,
     image: imagePath,
     price,
-    creatorId,
     univerId: univers,
     typesId: type,
   }
   const addProducts = () => {
-    axios
-      .post("http://localhost:4242/products", productData)
+    instance
+      .post("/products", productData)
       .then((response) => {
         // console.log(response.data)
       })

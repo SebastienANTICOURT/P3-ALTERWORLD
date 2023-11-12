@@ -32,7 +32,7 @@ function FiltresBar() {
     getTypes().then((data) => {
       setTypes(data)
     })
-  })
+  }, [])
 
   const filteredProducts = () => {
     let filtered = products

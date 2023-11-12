@@ -9,7 +9,7 @@ import "./NavBar.scss"
 import { useAuthContext } from "./contexts/AuthContext"
 import BasketContext from "./contexts/BasketContext"
 
-function NavBar({ admin }) {
+function NavBar({ isAdmin }) {
   const [isMenuOpen, setMenuOpen] = useState(false)
   const { userLog, setUserLog } = useAuthContext()
   const { basketItems, fetchBasketItems, triggerBasketChange } =
@@ -17,7 +17,7 @@ function NavBar({ admin }) {
 
   useEffect(() => {
     fetchBasketItems()
-  }, [triggerBasketChange])
+  }, [basketItems])
 
   const handleDisconnect = () => {
     Logout().then(() => {
@@ -39,9 +39,7 @@ function NavBar({ admin }) {
       <ul className={isMenuOpen ? "open" : ""}>
         <div className="leftItems">
           <Link to="/administrator">
-            {admin && admin.isAdministrator === 1 ? (
-              <button className="adminButton">A</button>
-            ) : null}
+            {isAdmin ? <button className="adminButton">A</button> : null}
           </Link>
 
           <Link to="/customerArea">

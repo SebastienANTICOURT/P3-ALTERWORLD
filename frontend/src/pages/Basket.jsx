@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
-import {
-  deleteItemFromBasket,
-  getBasket,
-  updateBasketQuantity,
-} from "../components/Axios"
+import { deleteItemFromBasket, getBasket } from "../components/Axios"
+import BasketContext from "../components/contexts/BasketContext"
 import "./Basket.scss"
 
 function Basket() {
-  const [basketItems, setBasketItems] = useState([])
+  const { basketItems, setBasketItems } = useContext(BasketContext)
 
   useEffect(() => {
     getBasket().then((data) => {
@@ -25,40 +22,6 @@ function Basket() {
       })
       .catch((err) => {
         console.error("Error deleting item:", err)
-      })
-  }
-
-  const decreaseQuantity = (itemId) => {
-    const item = basketItems.find((item) => item.id === itemId)
-    const updatedQuantity = Math.max(1, item.quantity - 1)
-    updateBasketQuantity(itemId, updatedQuantity)
-      .then(() => {
-        setBasketItems((prevItems) =>
-          prevItems.map((existingItem) =>
-            existingItem.id === itemId
-              ? { ...existingItem, quantity: updatedQuantity }
-              : existingItem
-          )
-        )
-      })
-      .catch((err) => {
-        console.error("Error updating quantity:", err)
-      })
-  }
-
-  const increaseQuantity = (itemId) => {
-    const item = basketItems.find((item) => item.id === itemId)
-    const updatedQuantity = item.quantity + 1
-    updateBasketQuantity(itemId, updatedQuantity)
-      .then(() => {
-        setBasketItems((prevItems) =>
-          prevItems.map((item) =>
-            item.id === itemId ? { ...item, quantity: updatedQuantity } : item
-          )
-        )
-      })
-      .catch((err) => {
-        console.error("Error updating quantity:", err)
       })
   }
 
@@ -93,15 +56,7 @@ function Basket() {
                   />
                   <div className="QuantityB">
                     <h2>{item.name}</h2>
-                    <div className="QuantitéB">
-                      <button onClick={() => decreaseQuantity(item.id)}>
-                        -
-                      </button>
-                      <p>{item.quantity}</p>
-                      <button onClick={() => increaseQuantity(item.id)}>
-                        +
-                      </button>
-                    </div>
+
                     <p>Price: {item.quantity * item.price} €</p>
                   </div>
                 </div>

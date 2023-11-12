@@ -1,8 +1,6 @@
-import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { basket } from "../../components/Axios"
-import { useAuthContext } from "../../components/contexts/AuthContext"
+import { instance } from "../../components/Axios"
 import BasketContext from "../../components/contexts/BasketContext"
 import "./Details.scss"
 
@@ -11,13 +9,11 @@ function Details() {
   const [detail, setDetail] = useState([])
   const [quantity, setQuantity] = useState(1)
   const [total, setTotal] = useState(0)
-  const { triggerBasketChange } = useContext(BasketContext)
-  const { userLog } = useAuthContext()
-  const usersId = userLog.usersId
+  const { setBasketItems } = useContext(BasketContext)
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/products/${id}`)
+    instance
+      .get(`/products/${id}`)
       .then((res) => {
         setDetail(res.data)
       })
@@ -38,14 +34,20 @@ function Details() {
   }, [quantity, detail.price])
 
   const addToBasket = () => {
-    basket(usersId, id, quantity, total)
-      .then(() => {
+    const basketData = {
+      productsId: id,
+      quantity: quantity,
+      total: total,
+    }
+    instance
+      .post("/basket", basketData)
+      .then((updatedBasket) => {
         alert("Le produit a été ajouté au panier")
-        triggerBasketChange()
+        setBasketItems(updatedBasket) // Supposons que 'updatedBasket' est le panier mis à jour retourné par le serveur
       })
       .catch((error) => {
-        console.error(error)
-        alert("Echec de l'ajout au panier", error)
+        console.error("Erreur lors de l'ajout au panier", error)
+        alert("Echec de l'ajout au panier")
       })
   }
 

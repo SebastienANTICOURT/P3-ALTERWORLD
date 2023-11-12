@@ -9,7 +9,7 @@ function CustomerArea() {
   return (
     <div className="CustomerArea">
       <div className="ListeFactures">
-        <ListeAchats orders={ordersData} />
+        <ListeAchats />
         <ListeVentes orders={ordersData} />
       </div>
     </div>

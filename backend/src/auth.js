@@ -27,21 +27,24 @@ const verifyPassword = (req, res, next) => {
     .verify(req.user.password, req.body.password)
     .then((isVerified) => {
       if (isVerified) {
-        const payload = { sub: req.user.id }
+        const payload = { 
+          sub: req.user.usersId, 
+          isAdministrator: req.user.isAdministrator 
+        }
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
           expiresIn: "1h",
         })
         delete req.user.password
         res.cookie("token", token, {
           httpOnly: true,
-          secure: false,
+          secure: true,
           sameSite: "strict",
         })
-        res.cookie("usersId", req.user.usersId, {
-          httpOnly: false,
-          secure: false,
-          sameSite: "strict",
-        })
+        // res.cookie("usersId", req.user.usersId, {
+        //   httpOnly: true,
+        //   secure: true,
+        //   sameSite: "strict",
+        // })
         res.cookie("firstName", req.user.firstName, {
           httpOnly: false,
           secure: false,
@@ -60,16 +63,23 @@ const verifyPassword = (req, res, next) => {
 
 const verifyToken = (req, res, next) => {
   try {
-    const token = req.cookies.token; 
-    console.log("token", req.cookies.token)
+    const token = req.cookies.token
     if (!token) {
-      throw new Error("No token provided");
+      throw new Error("No token provided")
     }
-    req.payload = jwt.verify(token, process.env.JWT_SECRET);
-    next();
+    req.payload = jwt.verify(token, process.env.JWT_SECRET)
+    next()
   } catch (err) {
-    console.error(err);
-    res.sendStatus(401);
+    console.error(err)
+    res.sendStatus(401)
+  }
+}
+
+const verifyIsAdministrator = (req, res, next) => {
+  if (req.payload && req.payload.isAdministrator === 1 ) {
+    next();
+  } else {
+    res.sendStatus(401); 
   }
 };
 
@@ -77,4 +87,5 @@ module.exports = {
   hashPassword,
   verifyPassword,
   verifyToken,
+  verifyIsAdministrator
 }

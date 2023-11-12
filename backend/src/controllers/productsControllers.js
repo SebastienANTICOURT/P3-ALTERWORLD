@@ -41,7 +41,9 @@ const read = (req, res) => {
 }
 
 const add = (req, res) => {
-  const products = req.body
+  const products = {
+    ... req.body,
+  creatorId: req.payload.sub}
   models.products
     .insert(products)
     .then(([result]) => {

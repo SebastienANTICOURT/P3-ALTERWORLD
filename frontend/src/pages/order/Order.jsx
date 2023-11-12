@@ -17,7 +17,7 @@ function Order({ users, userLog }) {
 
   useEffect(() => {
     fetchBasketItems()
-  }, [fetchBasketItems])
+  }, [setBasketItems])
 
   const handleOrderAndDelete = () => {
     addToOrder()
@@ -32,7 +32,6 @@ function Order({ users, userLog }) {
         .then((responseBillNumber) => {
           const latestBillNumber = responseBillNumber.data
           const newBillNumber = latestBillNumber + 1
-          // Utilisez la fonction importée pour envoyer la commande.
           return postOrder(basketItems, newBillNumber, dateStr)
         })
         .then(() => {

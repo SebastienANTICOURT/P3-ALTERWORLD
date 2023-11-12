@@ -1,11 +1,21 @@
 import axios from "axios"
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
   withCredentials: true,
 })
 
 // GET
+export async function checkAdminRights() {
+  try {
+    const res = await instance.get("/Admin")
+    return res.data
+  } catch (error) {
+    console.error("Error axios", error)
+    throw error
+  }
+}
+
 export async function getProducts() {
   try {
     const res = await instance.get("/products")
@@ -76,6 +86,26 @@ export async function Logout() {
   }
 }
 
+export async function getListeAchats() {
+  try {
+    const res = await instance.get("/ordersByUser")
+    return res.data
+  } catch (error) {
+    console.error("Error axios", error)
+    throw error
+  }
+}
+
+export async function getListeVentes() {
+  try {
+    const res = await instance.get("/ordersByCreator")
+    return res.data
+  } catch (error) {
+    console.error("Error axios", error)
+    throw error
+  }
+}
+
 // POST
 export async function creationUser(firstName, lastName, email, password) {
   try {
@@ -95,22 +125,6 @@ export async function creationUser(firstName, lastName, email, password) {
 export async function login(email, password) {
   try {
     const response = await instance.post("/login", { email, password })
-    return response.data
-  } catch (error) {
-    console.error("Error axios", error)
-    throw error
-  }
-}
-
-export async function basket(usersId, productsId, quantity, total) {
-  try {
-    const basketData = {
-      usersId: usersId,
-      productsId: productsId,
-      quantity: quantity,
-      total: total,
-    }
-    const response = await instance.post("/basket", basketData)
     return response.data
   } catch (error) {
     console.error("Error axios", error)

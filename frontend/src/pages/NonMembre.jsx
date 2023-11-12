@@ -68,7 +68,7 @@ function NonMembre({ users }) {
         />
       </div>
       <button onClick={handleSubmit}>S'inscrire</button>
-      <Link to="membre">
+      <Link to="/membre">
         <p>Déjà membre ?</p>
       </Link>
     </div>
