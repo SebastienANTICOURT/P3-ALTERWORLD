@@ -1,7 +1,6 @@
-import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import smiley from "../../assets/smiley.png"
-import { postOrder } from "../../components/Axios"
+import { instance, postOrder } from "../../components/Axios"
 import BasketContext from "../../components/contexts/BasketContext"
 import "./Order.scss"
 import ItemsOrder from "./components/ItemsOrder"
@@ -27,8 +26,8 @@ function Order({ users, userLog }) {
 
   const addToOrder = () => {
     return new Promise((resolve, reject) => {
-      axios
-        .get("http://localhost:4242/latestBillNumber")
+      instance
+        .get("/latestBillNumber")
         .then((responseBillNumber) => {
           const latestBillNumber = responseBillNumber.data
           const newBillNumber = latestBillNumber + 1
@@ -52,8 +51,8 @@ function Order({ users, userLog }) {
       return
     }
     const usersId = basketItems[0].usersId
-    axios
-      .delete(`http://localhost:4242/basket/all?usersId=${usersId}`)
+    instance
+      .delete(`/basket/all?usersId=${usersId}`)
       .then((response) => {
         if (response.status === 204) {
           setBasketItems([])

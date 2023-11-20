@@ -23,7 +23,7 @@ function Details() {
   }, [id])
 
   const decreaseQuantity = () => {
-    setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1))
+    setQuantity((data) => Math.max(1, data - 1))
   }
   const increaseQuantity = () => {
     setQuantity(quantity + 1)
@@ -36,14 +36,14 @@ function Details() {
   const addToBasket = () => {
     const basketData = {
       productsId: id,
-      quantity: quantity,
-      total: total,
+      quantity,
+      total,
     }
     instance
       .post("/basket", basketData)
-      .then((updatedBasket) => {
+      .then((data) => {
         alert("Le produit a été ajouté au panier")
-        setBasketItems(updatedBasket) // Supposons que 'updatedBasket' est le panier mis à jour retourné par le serveur
+        setBasketItems(data)
       })
       .catch((error) => {
         console.error("Erreur lors de l'ajout au panier", error)

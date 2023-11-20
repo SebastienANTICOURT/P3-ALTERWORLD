@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import BarChart from "./BarChart"
 
 function Graph2({ orders }) {
@@ -31,11 +31,11 @@ function Graph2({ orders }) {
     const quantities = Object.values(aggregated)
 
     return {
-      labels: usersNames, // abscissa (x-axis)
+      labels: usersNames,
       datasets: [
         {
           ...chartData.datasets[0],
-          data: quantities, // ordinate (y-axis)
+          data: quantities,
         },
       ],
     }

@@ -16,34 +16,23 @@
     .rightItems {
       display: flex;
       align-items: center;
-      gap: 5%; // changed to percentage for responsiveness
-    }
-
-    .searchItem {
-      margin-right: 2%; // changed to percentage for responsiveness
+      gap: 5%; 
     }
 
     .logoNB {
-      max-width: 70%;
+      max-width: 300px;
       @media (max-width: 1000px) {
         display: none;
       }
     }
 
-    .searchContainer {
-      display: flex;
-      align-items: center;
-    }
-    .loupeNB,
     .loginNB,
     .cadiNB {
-      position: relative;
       max-width: 50px;
-      min-width: 30px;
     }
 
     .loginNB {
-      margin-right: 100px;
+      margin-right: 120px;
       font-size: 20px;
       font-weight: bold;
       color: #401f83;
@@ -56,7 +45,7 @@
     .basketCount {
       position: absolute;
       margin-top: 20px;
-      margin-right: 50px;
+      margin-right: 70px;
       // top: 10;
       // right: 0;
       background-color: red;
@@ -66,6 +55,7 @@
       font-size: 14px;
       font-weight: bold;
     }
+  
 
     .adminButton {
       height: 35px;
@@ -106,7 +96,7 @@
       position: absolute;
       height: 3px;
       width: 100%;
-      background: #333; // Choose the color you prefer for the burger lines
+      background: #333; 
       border-radius: 3px;
       opacity: 1;
       left: 0;
@@ -150,7 +140,6 @@
   }
 
   ul {
-    // ... existing styles
     @media (max-width: 1000px) {
       display: none;
     }

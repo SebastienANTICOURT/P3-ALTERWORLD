@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useState } from "react"
+import { createContext, useState } from "react"
 import { getBasket } from "../Axios"
 
 const BasketContext = createContext()
@@ -6,11 +6,11 @@ const BasketContext = createContext()
 export const BasketProvider = ({ children }) => {
   const [basketItems, setBasketItems] = useState([])
 
-  const fetchBasketItems = useCallback(() => {
+  const fetchBasketItems = () => {
     getBasket().then((data) => {
       setBasketItems(data)
     })
-  }, [])
+  }
 
   return (
     <BasketContext.Provider

@@ -13,8 +13,7 @@ const browse = (req, res) => {
 }
 
 const orderUsersId = (req, res) => {
-  const usersId = req.payload.sub;
-  console.log("usersId",usersId)
+  const usersId = req.payload.sub
   models.orders
     .findOrdersUsersId(usersId)
     .then(([rows]) => {
@@ -27,8 +26,7 @@ const orderUsersId = (req, res) => {
 }
 
 const orderCreatorId = (req, res) => {
-  const creatorId = req.payload.sub;
-  console.log("usersId",creatorId)
+  const creatorId = req.payload.sub
   models.orders
     .findOrdersCreatorId(creatorId)
     .then(([rows]) => {
@@ -60,11 +58,9 @@ const add = (req, res) => {
       })
     )
       .catch((err) => {
-        // console.error("Erreur lors de l'insertion des commandes:", err)
-        throw err // rejet pour que le catch ultérieur puisse le traiter
+        throw err 
       })
       .then((results) => {
-        // console.log("test03")
         return models.basket
           .deleteAll(orders[0].usersId)
           .then(() => results.map((result) => result.insertId))
@@ -94,7 +90,6 @@ const add = (req, res) => {
       })
   }
 }
-
 
 module.exports = {
   orderUsersId,

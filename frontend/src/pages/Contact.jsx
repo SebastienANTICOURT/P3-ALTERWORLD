@@ -40,10 +40,8 @@ function Contact() {
     const formData = new FormData()
     formData.append("image", image)
     axios.post("http://localhost:4242/upload", formData).then((res) => {
-      // Mettre à jour l'état avec le chemin de l'image
       setImagePath(res.data.path)
     })
-    // Gérer les erreurs ici
   }
 
   return (

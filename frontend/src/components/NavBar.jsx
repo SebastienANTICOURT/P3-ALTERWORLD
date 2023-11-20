@@ -12,8 +12,7 @@ import BasketContext from "./contexts/BasketContext"
 function NavBar({ isAdmin }) {
   const [isMenuOpen, setMenuOpen] = useState(false)
   const { userLog, setUserLog } = useAuthContext()
-  const { basketItems, fetchBasketItems, triggerBasketChange } =
-    useContext(BasketContext)
+  const { basketItems, fetchBasketItems } = useContext(BasketContext)
 
   useEffect(() => {
     fetchBasketItems()
@@ -21,7 +20,7 @@ function NavBar({ isAdmin }) {
 
   const handleDisconnect = () => {
     Logout().then(() => {
-      setUserLog({ usersId: null, firstName: null })
+      setUserLog({ firstName: null })
     })
   }
 
@@ -46,12 +45,9 @@ function NavBar({ isAdmin }) {
             <button className="persoButton">Espace Client</button>
           </Link>
         </div>
-        <li>
-          <Link className="logoNBL" to="/">
-            <img className="logoNB" src={alterworld} alt="logo" />
-          </Link>
-        </li>
-
+        <Link to="/">
+          <img className="logoNB" src={alterworld} alt="logo" />
+        </Link>
         <div className="rightItems">
           {userLog.firstName ? (
             <li>

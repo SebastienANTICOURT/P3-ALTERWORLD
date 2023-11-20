@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { login } from "../components/Axios"
+import { instance } from "../components/Axios"
 import { useAuthContext } from "../components/contexts/AuthContext"
 import "./Membre.scss"
 
@@ -11,7 +11,8 @@ function Membre() {
   const navigate = useNavigate()
 
   const handleClick = () => {
-    login(email, password)
+    instance
+      .post("/login", { email, password })
       .then((data) => {
         setUserLog({
           firstName: data.firstName,
@@ -20,7 +21,7 @@ function Membre() {
       })
       .catch((error) => {
         console.error(error)
-        alert("Utilisateur non trouvé")
+        alert("Utilisateur non trouvé, front")
       })
   }
 

@@ -13,8 +13,10 @@ const browse = (req, res) => {
 }
 
 const read = (req, res) => {
+  const usersId = req.payload.sub
+  console.log("payload", req.payload.sub)
   models.users
-    .find(req.params.id)
+    .find(usersId)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404)
@@ -42,6 +44,25 @@ const add = (req, res) => {
     })
 }
 
+const edit = (req, res) => {
+  console.log("update1",req.body)
+  const users = req.body
+  users.usersId =  req.payload.sub
+  models.users
+    .update(users)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404)
+      } else {
+        res.sendStatus(204)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const destroy = (req, res) => {
   models.users
     .deleteUser(req.params.id)
@@ -59,9 +80,11 @@ const destroy = (req, res) => {
 }
 
 const loginUsers = (req, res, next) => {
+  // console.log("email", req.body.email)
   models.users
     .loginUser(req.body.email)
     .then(([users]) => {
+      // console.log("email3", users)
       if (users.length > 0) {
         req.user = users[0]
         next()
@@ -76,19 +99,20 @@ const loginUsers = (req, res, next) => {
 }
 
 const logoutUsers = (req, res) => {
-  res
-    .clearCookie("token")
-    .clearCookie("usersId")
-    .clearCookie("firstName")
-    .sendStatus(200)
+  try {
+    res.clearCookie("token");
+    res.clearCookie("firstName");
+    res.sendStatus(200); 
+  } catch (error) {
+    res.status(500).send({ message: "La déconnexion a échoué" }); 
+  }
 }
-
-
 
 module.exports = {
   browse,
   read,
   add,
+  edit,
   destroy,
   loginUsers,
   logoutUsers,

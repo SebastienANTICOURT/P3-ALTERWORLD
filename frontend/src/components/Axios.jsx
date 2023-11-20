@@ -122,16 +122,6 @@ export async function creationUser(firstName, lastName, email, password) {
   }
 }
 
-export async function login(email, password) {
-  try {
-    const response = await instance.post("/login", { email, password })
-    return response.data
-  } catch (error) {
-    console.error("Error axios", error)
-    throw error
-  }
-}
-
 export function postOrder(basketItems, newBillNumber, dateStr) {
   const ordersData = basketItems.map((item) => ({
     usersId: item.usersId,
@@ -141,37 +131,13 @@ export function postOrder(basketItems, newBillNumber, dateStr) {
     total: item.quantity * item.price,
     date: dateStr,
   }))
-
   return instance.post("/orders", ordersData)
-}
-
-// PUT
-export async function updateBasketQuantity(itemId, newQuantity) {
-  try {
-    const response = await instance.put(`/basket/${itemId}`, {
-      quantity: newQuantity,
-    })
-    return response.data
-  } catch (error) {
-    console.error("Error axios", error)
-    throw error
-  }
 }
 
 // DELETE
 export async function deleteUserById(userId) {
   try {
     const res = await instance.delete(`/users/${userId}`)
-    return res.data
-  } catch (error) {
-    console.error("Error axios", error)
-    throw error
-  }
-}
-
-export async function deleteItemFromBasket(itemId) {
-  try {
-    const res = await instance.delete(`/basket/${itemId}`)
     return res.data
   } catch (error) {
     console.error("Error axios", error)

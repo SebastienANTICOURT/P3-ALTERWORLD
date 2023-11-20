@@ -33,7 +33,8 @@ function Administrator({ ordersData }) {
   }
 
   return (
-    <div className="Administrator">
+    <div className="UserContainer">
+      <h1>Espace Administrateur</h1>
       <div className="sectionButtons">
         <button onClick={() => setActiveSection("customers")}>Clients</button>
         <button onClick={() => setActiveSection("products")}>Produits</button>
@@ -51,12 +52,10 @@ function Administrator({ ordersData }) {
       )}
       {activeSection === "charts" && (
         <div className="GraphA">
-          <div className="BarChart">
-            <h1>Produits par quantités vendues.</h1>
-            <Graph orders={ordersData} />
-            <h1>clients par quantités vendues.</h1>
-            <Graph2 orders={ordersData} />
-          </div>
+          <h1>Produits par quantités vendues.</h1>
+          <Graph orders={ordersData} />
+          <h1>clients par quantités vendues.</h1>
+          <Graph2 orders={ordersData} />
         </div>
       )}
     </div>

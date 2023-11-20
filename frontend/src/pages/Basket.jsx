@@ -1,20 +1,20 @@
 import { useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { deleteItemFromBasket, getBasket } from "../components/Axios"
+import { instance } from "../components/Axios"
 import BasketContext from "../components/contexts/BasketContext"
 import "./Basket.scss"
 
 function Basket() {
-  const { basketItems, setBasketItems } = useContext(BasketContext)
+  const { basketItems, setBasketItems, fetchBasketItems } =
+    useContext(BasketContext)
 
   useEffect(() => {
-    getBasket().then((data) => {
-      setBasketItems(data)
-    })
-  }, [])
+    fetchBasketItems()
+  }, [setBasketItems])
 
   const deleteItem = (itemId) => {
-    deleteItemFromBasket(itemId)
+    instance
+      .delete(`/basket/${itemId}`)
       .then(() => {
         setBasketItems((prevItems) =>
           prevItems.filter((item) => item.id !== itemId)
@@ -56,8 +56,8 @@ function Basket() {
                   />
                   <div className="QuantityB">
                     <h2>{item.name}</h2>
-
-                    <p>Price: {item.quantity * item.price} €</p>
+                    <p>Quantité: {item.quantity}</p>
+                    <p>Prix: {item.quantity * item.price} €</p>
                   </div>
                 </div>
               )

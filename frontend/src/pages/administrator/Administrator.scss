@@ -1,16 +1,21 @@
 @import "../../Style.scss";
 
-.Administrator {
+.UserContainer {
   height: 150vh;
   width: 100%;
   background-color: whitesmoke;
   padding-left: 20px;
+  h1{
+    display:flex;
+    justify-content: center;
+    padding-top: 50px;
+  }
   .sectionButtons {
     width: 100%;
     display: flex;
     gap: 20px;
-    padding-top: 15px;
-    padding-bottom: 10px;
+    padding-top: 20px;
+    
     button {
       padding: 15px;
       font-size: 20px;
@@ -24,19 +29,20 @@
   .updateData {
     display: flex;
     gap: 50px;
-    padding-top: 20px;
+    padding-top: 10px;
   }
   .GraphA {
-    width: 100%;
-    padding-top: 50px;
+    width: 70%;
+    padding-top: 20px;
     display: flex;
+    flex-direction: column;
     h1 {
       font-size: 25px;
     }
-    .BarChart {
-      height: auto;
-      width: 50%;
-    }
+    // .BarChart {
+    //   height: auto;
+    //   width: 50%;
+    // }
   }
 }
 

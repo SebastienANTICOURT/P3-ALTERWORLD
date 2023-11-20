@@ -1,12 +1,15 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { creationUser } from "../components/Axios"
+import { instance } from "../components/Axios"
 import "./NonMembre.scss"
 
 function NonMembre({ users }) {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
+  const [address, setAddress] = useState("")
+  const [zipcode, setZipcode] = useState("")
+  const [city, setCity] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const navigate = useNavigate()
@@ -15,15 +18,24 @@ function NonMembre({ users }) {
     if (password !== confirmPassword) {
       alert("Les mots de passe ne correspondent pas")
     } else if (users.some((user) => user.email === email)) {
-      alert("L'email existe déja!")
+      alert("L'email existe déjà!")
     } else {
-      creationUser(firstName, lastName, email, password)
+      instance
+        .post("/users", {
+          firstName,
+          lastName,
+          email,
+          address,
+          zipcode,
+          city,
+          password,
+        })
         .then(() => {
           navigate("/membre")
         })
         .catch((error) => {
           console.error(error)
-          alert("Echec de la création de l'utilisateur.")
+          alert("Échec de la création de l'utilisateur.")
         })
     }
   }
@@ -34,23 +46,44 @@ function NonMembre({ users }) {
         <figcaption>Prenom:</figcaption>
         <input
           type="text"
-          placeholder="prenom"
+          placeholder="Prenom"
           value={firstName}
           onChange={(event) => setFirstName(event.target.value)}
         />
         <figcaption>Nom:</figcaption>
         <input
           type="text"
-          placeholder="nom"
+          placeholder="Nom"
           value={lastName}
           onChange={(event) => setLastName(event.target.value)}
         />
         <figcaption>Email:</figcaption>
         <input
-          type="text"
+          type="email"
           placeholder="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
+        />
+        <figcaption>Adresse:</figcaption>
+        <input
+          type="text"
+          placeholder="adresse"
+          value={address}
+          onChange={(event) => setAddress(event.target.value)}
+        />
+        <figcaption>Code postal:</figcaption>
+        <input
+          type="text"
+          placeholder="Code postal"
+          value={zipcode}
+          onChange={(event) => setZipcode(event.target.value)}
+        />
+        <figcaption>Ville:</figcaption>
+        <input
+          type="text"
+          placeholder="Ville"
+          value={city}
+          onChange={(event) => setCity(event.target.value)}
         />
         <figcaption>Mot de passe:</figcaption>
         <input

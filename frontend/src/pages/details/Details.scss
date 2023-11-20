@@ -44,7 +44,6 @@
       align-items: center;
       flex-direction: column;
       gap: 40px;
-
       figcaption {
         color: #19083b;
         font-weight: bold;
@@ -69,32 +68,9 @@
         font-weight: bold;
       }
 
-      button {
-        width: 15px;
-        color: #070a09;
-        background-color: $NBColor;
-        font-size: 20px;
-        font-weight: bold;
-        border: 0px solid black;
-      }
-
       p {
         font-size: 20px;
         font-weight: bold;
-      }
-      .buttonPurple {
-        height: 30px;
-        width: 200px;
-        background-color: #401f83;
-        display: flex;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 15px;
-        color: whitesmoke;
-        padding-top: 5px;
-        border: black 2px solid;
-        border-radius: 20px;
-        margin-bottom: 20px;
       }
     }
 
@@ -138,16 +114,4 @@
     gap: 40px;
   }
 }
-.buttonYellow {
-  height: 30px;
-  width: 200px;
-  background-color: $yellow;
-  display: flex;
-  justify-content: center;
-  font-weight: bold;
-  color: black;
-  padding-top: 5px;
-  border: black 2px solid;
-  border-radius: 20px;
-  margin-top: 20px;
-}
+

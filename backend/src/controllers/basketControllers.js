@@ -30,9 +30,9 @@ const read = (req, res) => {
 
 const add = (req, res) => {
   const basket = {
-    ...req.body, 
-    usersId: req.payload.sub, 
-  };
+    ...req.body,
+    usersId: req.payload.sub,
+  }
   models.basket
     .insert(basket)
     .then(([result]) => {

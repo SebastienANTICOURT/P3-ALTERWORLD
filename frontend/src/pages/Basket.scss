@@ -19,12 +19,12 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 30px;
+      gap: 50px;
     }
 
     .LeftColumnB {
       width: 50%;
-      margin-left: 5%;
+      margin-left: 10%;
       margin-top: 10px;
       .BasketItems {
         display: flex;
@@ -53,13 +53,17 @@
         }
       }
     }
-    .rightColumnB {
+    .RightColumnB {
       height: auto;
       width: 50%;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       gap: 20px;
+      margin-left: 100px;
+      p {
+        
+        font-size: 20px;
+      }
     }
   }
 }
