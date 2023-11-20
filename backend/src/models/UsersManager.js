@@ -6,7 +6,7 @@ class UsersManager extends AbstractManager {
   }
 
   find(usersId) {
-    console.log("usersIdM", usersId)
+    // console.log("usersIdM", usersId)
     return this.database.query(
       `select * from  ${this.table} 
     where usersId = ?`,
@@ -24,48 +24,48 @@ class UsersManager extends AbstractManager {
         users.address,
         users.zipcode,
         users.city,
-        users.password
+        users.password,
       ]
     )
   }
 
   update(users) {
+    const setParts = []
+    const queryValues = []
 
-    let setParts = [];
-    let queryValues = [];
-  
     if (users.firstName) {
-      setParts.push("firstname = ?");
-      queryValues.push(users.firstName);
+      setParts.push("firstname = ?")
+      queryValues.push(users.firstName)
     }
     if (users.lastName) {
-      setParts.push("lastName = ?");
-      queryValues.push(users.lastName);
+      setParts.push("lastName = ?")
+      queryValues.push(users.lastName)
     }
     if (users.email) {
-      setParts.push("email = ?");
-      queryValues.push(users.email);
+      setParts.push("email = ?")
+      queryValues.push(users.email)
     }
     if (users.address) {
-      setParts.push("address = ?");
-      queryValues.push(users.address);
+      setParts.push("address = ?")
+      queryValues.push(users.address)
     }
     if (users.zipcode) {
-      setParts.push("zipcode = ?");
-      queryValues.push(users.zipcode);
+      setParts.push("zipcode = ?")
+      queryValues.push(users.zipcode)
     }
     if (users.city) {
-      setParts.push("city = ?");
-      queryValues.push(users.city);
+      setParts.push("city = ?")
+      queryValues.push(users.city)
     }
-  
-    queryValues.push(users.usersId);
-  
-    let query = `UPDATE ${this.table} SET ${setParts.join(", ")} WHERE usersId = ?`;
-  
-    return this.database.query(query, queryValues);
-  }
 
+    queryValues.push(users.usersId)
+
+    const query = `UPDATE ${this.table} SET ${setParts.join(
+      ", "
+    )} WHERE usersId = ?`
+
+    return this.database.query(query, queryValues)
+  }
 
   deleteUser(id) {
     return this.database
@@ -80,7 +80,7 @@ class UsersManager extends AbstractManager {
       .catch((error) => {
         throw error
       })
-    }
+  }
 
   loginUser(email) {
     // console.log("emailManager", email)

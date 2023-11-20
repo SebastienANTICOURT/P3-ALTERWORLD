@@ -28,7 +28,7 @@ function Home({ userLog }) {
             </p>
           </div>
           <Link to="/contact">
-            <button>Proposez vos créations !</button>
+            <button className="buttonYellow">Proposez vos créations !</button>
           </Link>
         </div>
       </div>

@@ -96,8 +96,12 @@ function Contact() {
             style={{ maxWidth: "200px" }}
           />
         )}
-        <button onClick={upload}>selectionner</button>
-        <button onClick={addProducts}>Envoyer</button>
+        <button className="buttonYellow" onClick={upload}>
+          selectionner
+        </button>
+        <button className="buttonYellow" onClick={addProducts}>
+          Envoyer
+        </button>
       </div>
     </div>
   )

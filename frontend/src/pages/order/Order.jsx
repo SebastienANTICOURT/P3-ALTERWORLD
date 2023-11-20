@@ -7,7 +7,7 @@ import ItemsOrder from "./components/ItemsOrder"
 import Presentation from "./components/Presentation"
 import RightColumn from "./components/RightColumn"
 
-function Order({ users, userLog }) {
+function Order({ users, userDatas }) {
   const [date] = useState(new Date())
   const dateStr = date.toISOString().split("T")[0]
   const [showMessage, setShowMessage] = useState(false)
@@ -78,7 +78,7 @@ function Order({ users, userLog }) {
       <div className="Merci">
         {showMessage && (
           <p>
-            {userLog && `Merci, ${userLog.firstName} `}{" "}
+            {userDatas && `Merci, ${userDatas.firstName} `}{" "}
             <img src={smiley} alt="" /> à bientot pour de nouvelles aventures.
           </p>
         )}

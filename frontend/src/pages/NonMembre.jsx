@@ -100,7 +100,9 @@ function NonMembre({ users }) {
           onChange={(event) => setConfirmPassword(event.target.value)}
         />
       </div>
-      <button onClick={handleSubmit}>S'inscrire</button>
+      <button className="buttonYellow" onClick={handleSubmit}>
+        S'inscrire
+      </button>
       <Link to="/membre">
         <p>Déjà membre ?</p>
       </Link>

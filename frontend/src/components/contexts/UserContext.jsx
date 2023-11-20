@@ -13,7 +13,7 @@ export const UserProvider = ({ children }) => {
       .get("/userId")
       .then((response) => {
         const userData = response.data
-        console.log("response", response.data), setUserDatas(userData)
+        setUserDatas(userData)
       })
       .catch((error) => {
         console.error(

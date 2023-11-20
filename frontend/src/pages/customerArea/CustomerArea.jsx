@@ -14,10 +14,10 @@ function CustomerArea() {
       <h1>Espace Client</h1>
       <div className="sectionButtons">
         <button onClick={() => setActiveSection("customersData")}>
-          Mes informations
+          Informations
         </button>
         <button onClick={() => setActiveSection("operations")}>
-          Mes opérations
+          Opérations
         </button>
       </div>
       {activeSection === "customersData" && (

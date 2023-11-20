@@ -21,55 +21,68 @@ function CustomersData() {
       .then((response) => {
         setUserDatas(response.data)
       })
-      .catch((error) => {})
   }
   return (
-    <div>
-      <div>
-        <p>Prénom:{userDatas.firstName}</p>
-        <p>Nom:{userDatas.lastName}</p>
-        <p>email:{userDatas.email}</p>
-        <p>adresse:{userDatas.address}</p>
-        <p>Code postal:{userDatas.zipcode}</p>
-        <p>Ville:{userDatas.city}</p>
+    <div className="containerUser">
+      <div className="containerDatas">
+        <div>
+          <figcaption>Prénom: {userDatas.firstName}</figcaption>
+          <input
+            type="text"
+            placeholder="Prénom"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </div>
+        <div>
+          <figcaption>Nom: {userDatas.lastName}</figcaption>
+          <input
+            type="text"
+            placeholder="Nom"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </div>
+        <div>
+          <figcaption>Email: {userDatas.email}</figcaption>
+          <input
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div>
+          <figcaption>Adresse: {userDatas.address}</figcaption>
+          <input
+            type="text"
+            placeholder="Adresse"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+        </div>
+        <div>
+          <figcaption>Code postal: {userDatas.zipcode}</figcaption>
+          <input
+            type="text"
+            placeholder="Code postal"
+            value={zipcode}
+            onChange={(e) => setZipcode(e.target.value)}
+          />
+        </div>
+        <div>
+          <figcaption>Ville: {userDatas.city}</figcaption>
+          <input
+            type="text"
+            placeholder="Ville"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
+        </div>
       </div>
-      <input
-        type="text"
-        placeholder="Prénom"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Nom"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Adresse"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Code postal"
-        value={zipcode}
-        onChange={(e) => setZipcode(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Ville"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-      />
-      <button onClick={HandleClick}>Enregistrer les modifications</button>
+      <button className="buttonYellow" onClick={HandleClick}>
+        Enregistrer les modifications
+      </button>
     </div>
   )
 }

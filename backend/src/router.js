@@ -47,16 +47,16 @@ router.get("/univers", universControllers.browse)
 router.get("/types", typesControllers.browse)
 
 router.get("/users", usersControllers.browse)
-router.get("/userId",verifyToken, usersControllers.read)
+router.get("/userId", verifyToken, usersControllers.read)
 router.post("/users", validateUsers, hashPassword, usersControllers.add)
 router.put("/users", verifyToken, usersControllers.edit)
 router.delete("/users/:id", verifyToken, usersControllers.destroy)
 
 router.get("/basket", basketControllers.browse)
 router.post("/basket", verifyToken, basketControllers.add)
-router.put("/basket/:id", verifyToken,basketControllers.edit)
-router.delete("/basket/all", verifyToken,basketControllers.deleteAll)
-router.delete("/basket/:id", verifyToken,basketControllers.destroy)
+router.put("/basket/:id", verifyToken, basketControllers.edit)
+router.delete("/basket/all", verifyToken, basketControllers.deleteAll)
+router.delete("/basket/:id", verifyToken, basketControllers.destroy)
 
 router.get("/orders", ordersControllers.browse)
 router.get("/ordersByUser", verifyToken, ordersControllers.orderUsersId)
@@ -65,8 +65,6 @@ router.post("/orders", verifyToken, ordersControllers.add)
 // router.get("/listeAchats", verifyToken, ordersControllers.ListeAchat)
 
 router.get("/latestBillNumber", ordersControllers.newBillNumber)
-
-
 
 // ROUTE DE CONNEXION
 router.post("/login", usersControllers.loginUsers, verifyPassword)

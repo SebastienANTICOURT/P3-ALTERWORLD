@@ -14,7 +14,7 @@ const browse = (req, res) => {
 
 const read = (req, res) => {
   const usersId = req.payload.sub
-  console.log("payload", req.payload.sub)
+  // console.log("payload", req.payload.sub)
   models.users
     .find(usersId)
     .then(([rows]) => {
@@ -45,9 +45,9 @@ const add = (req, res) => {
 }
 
 const edit = (req, res) => {
-  console.log("update1",req.body)
+  // console.log("update1",req.body)
   const users = req.body
-  users.usersId =  req.payload.sub
+  users.usersId = req.payload.sub
   models.users
     .update(users)
     .then(([result]) => {
@@ -100,11 +100,11 @@ const loginUsers = (req, res, next) => {
 
 const logoutUsers = (req, res) => {
   try {
-    res.clearCookie("token");
-    res.clearCookie("firstName");
-    res.sendStatus(200); 
+    res.clearCookie("token")
+    res.clearCookie("firstName")
+    res.sendStatus(200)
   } catch (error) {
-    res.status(500).send({ message: "La déconnexion a échoué" }); 
+    res.status(500).send({ message: "La déconnexion a échoué" })
   }
 }
 

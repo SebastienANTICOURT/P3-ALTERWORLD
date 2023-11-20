@@ -37,12 +37,12 @@ const verifyPassword = (req, res) => {
         delete req.user.password
         res.cookie("token", token, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
+          secure: process.env.NODE_ENV === "production",
           sameSite: "strict",
         })
         res.cookie("firstName", req.user.firstName, {
           httpOnly: false,
-          secure: process.env.NODE_ENV === 'production',
+          secure: process.env.NODE_ENV === "production",
           sameSite: "strict",
         })
         res.send({ utilisateur: req.user })
@@ -57,21 +57,21 @@ const verifyPassword = (req, res) => {
 }
 
 const verifyToken = (req, res, next) => {
-  const token = req.cookies.token;
+  const token = req.cookies.token
   if (!token) {
-    return res.status(401).send("No token provided");
+    return res.status(401).send("No token provided")
   }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
-      console.error(err);
-      return res.status(401).send("Invalid token");
+      console.error(err)
+      return res.status(401).send("Invalid token")
     }
 
-    req.payload = decoded;
-    next();
-  });
-};
+    req.payload = decoded
+    next()
+  })
+}
 
 const verifyIsAdministrator = (req, res, next) => {
   if (req.payload && req.payload.isAdministrator === 1) {

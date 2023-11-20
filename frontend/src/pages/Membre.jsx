@@ -21,7 +21,7 @@ function Membre() {
       })
       .catch((error) => {
         console.error(error)
-        alert("Utilisateur non trouvé, front")
+        alert("Utilisateur non trouvé,")
       })
   }
 
@@ -46,7 +46,9 @@ function Membre() {
           placeholder="Enter your password"
         />
       </div>
-      <button onClick={handleClick}>Connection</button>
+      <button className="buttonYellow" onClick={handleClick}>
+        Connection
+      </button>
       <Link to="/nonMembre">
         <p>Pas encore inscrit ? créez votre compte</p>
       </Link>

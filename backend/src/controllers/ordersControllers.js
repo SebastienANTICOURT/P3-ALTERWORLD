@@ -58,7 +58,7 @@ const add = (req, res) => {
       })
     )
       .catch((err) => {
-        throw err 
+        throw err
       })
       .then((results) => {
         return models.basket
