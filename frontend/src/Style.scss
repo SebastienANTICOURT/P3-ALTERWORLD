@@ -20,14 +20,7 @@ ul {
   list-style-type: none;
 }
 
-button {
-  border: none;
-  outline: none;
-  background: none;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-}
+
 
 h1 {
   color: $purple;
@@ -35,6 +28,16 @@ h1 {
 
 Link {
   text-decoration: none;
+}
+
+// BUTTONS
+button {
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
 }
 
 .buttonYellow {
@@ -69,6 +72,7 @@ Link {
   border: black 2px solid;
   border-radius: 20px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 figcaption {
@@ -78,7 +82,7 @@ figcaption {
 }
 
 input {
-  height:30px;
+  height: 30px;
   width: 250px;
   border: 2px solid black;
   border-radius: 4px;

@@ -8,7 +8,7 @@ const typesControllers = require("./controllers/typesControllers")
 const basketControllers = require("./controllers/basketControllers")
 const ordersControllers = require("./controllers/ordersControllers")
 const usersControllers = require("./controllers/usersControllers")
-const { validateUsers } = require("./validators.js")
+const { validateUsers, validateUpdate } = require("./validators.js")
 const {
   hashPassword,
   verifyPassword,
@@ -49,7 +49,7 @@ router.get("/types", typesControllers.browse)
 router.get("/users", usersControllers.browse)
 router.get("/userId", verifyToken, usersControllers.read)
 router.post("/users", validateUsers, hashPassword, usersControllers.add)
-router.put("/users", verifyToken, usersControllers.edit)
+router.put("/users", verifyToken, validateUpdate, usersControllers.edit)
 router.delete("/users/:id", verifyToken, usersControllers.destroy)
 
 router.get("/basket", basketControllers.browse)
@@ -62,7 +62,7 @@ router.get("/orders", ordersControllers.browse)
 router.get("/ordersByUser", verifyToken, ordersControllers.orderUsersId)
 router.get("/ordersByCreator", verifyToken, ordersControllers.orderCreatorId)
 router.post("/orders", verifyToken, ordersControllers.add)
-// router.get("/listeAchats", verifyToken, ordersControllers.ListeAchat)
+
 
 router.get("/latestBillNumber", ordersControllers.newBillNumber)
 

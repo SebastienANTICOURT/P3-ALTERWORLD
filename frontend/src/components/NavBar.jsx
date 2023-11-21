@@ -4,7 +4,7 @@ import "../Style.scss"
 import alterworld from "../assets/alterworld.png"
 import caddie from "../assets/caddie.png"
 import login from "../assets/login.png"
-import { Logout } from "./Axios"
+import { instance } from "./Axios"
 import "./NavBar.scss"
 import { useAuthContext } from "./contexts/AuthContext"
 import BasketContext from "./contexts/BasketContext"
@@ -19,7 +19,7 @@ function NavBar({ isAdmin }) {
   }, [basketItems])
 
   const handleDisconnect = () => {
-    Logout().then(() => {
+    instance.get("/logout").then(() => {
       setUserLog({ firstName: null })
     })
   }
@@ -30,7 +30,6 @@ function NavBar({ isAdmin }) {
         className={`burger ${isMenuOpen ? "open" : ""}`}
         onClick={() => setMenuOpen(!isMenuOpen)}
       >
-        <span></span>
         <span></span>
         <span></span>
         <span></span>
@@ -50,26 +49,19 @@ function NavBar({ isAdmin }) {
         </Link>
         <div className="rightItems">
           {userLog.firstName ? (
-            <li>
-              <button className="loginNB" onClick={handleDisconnect}>
-                Deconnexion
-              </button>
-            </li>
+            <button className="DeconnexionNB" onClick={handleDisconnect}>
+              Deconnexion
+            </button>
           ) : (
             <Link to="/membre">
-              <li>
-                <img className="loginNB" src={login} alt="login" />
-              </li>
+              <img className="loginNB" src={login} alt="login" />
             </Link>
           )}
-
           <Link to="/basket">
-            <li>
-              <img className="cadiNB" src={caddie} alt="caddie" />
-              {basketItems.length > 0 && (
-                <span className="basketCount">{basketItems.length}</span>
-              )}
-            </li>
+            <img className="cadiNB" src={caddie} alt="caddie" />
+            {basketItems.length > 0 && (
+              <span className="basketCount">{basketItems.length}</span>
+            )}
           </Link>
         </div>
       </ul>

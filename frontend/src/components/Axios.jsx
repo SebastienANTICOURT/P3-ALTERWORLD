@@ -76,16 +76,6 @@ export async function getTypes() {
   }
 }
 
-export async function Logout() {
-  try {
-    const res = await instance.get("/logout")
-    return res.data
-  } catch (error) {
-    console.error("Error axios", error)
-    throw error
-  }
-}
-
 export async function getListeAchats() {
   try {
     const res = await instance.get("/ordersByUser")
@@ -107,23 +97,8 @@ export async function getListeVentes() {
 }
 
 // POST
-export async function creationUser(firstName, lastName, email, password) {
-  try {
-    const response = await instance.post("/users", {
-      firstName,
-      lastName,
-      email,
-      password,
-    })
-    return response.data
-  } catch (error) {
-    console.error("Error axios", error)
-    throw error
-  }
-}
-
 export function postOrder(basketItems, newBillNumber, dateStr) {
-  const ordersData = basketItems.map((item) => ({
+  const formattedOrdersData = basketItems.map((item) => ({
     usersId: item.usersId,
     productsId: item.productsId,
     billNumber: newBillNumber,
@@ -131,7 +106,7 @@ export function postOrder(basketItems, newBillNumber, dateStr) {
     total: item.quantity * item.price,
     date: dateStr,
   }))
-  return instance.post("/orders", ordersData)
+  return instance.post("/orders", formattedOrdersData)
 }
 
 // DELETE

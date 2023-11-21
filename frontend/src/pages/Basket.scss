@@ -1,18 +1,18 @@
 @import "../Style.scss";
 
-.Basket {
+.ContainerOrder {
   height: 120vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   background-color: $backColor;
-  .titleBasket {
+  .titleOrder {
     width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 20px;
   }
-  .countainerBasket {
+  .columnsOrders {
     display: flex;
     margin-top: 20px;
     @media (max-width: 1000px) {
@@ -21,24 +21,6 @@
       align-items: center;
       gap: 50px;
     }
-
-    .LeftColumnB {
-      width: 50%;
-      margin-left: 10%;
-      margin-top: 10px;
-      .BasketItems {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-      .deleteButton {
-        font-size: 20px;
-        font-weight: bold;
-        align-items: center;
-      }
-      img {
-        width: 30%;
-      }
       .QuantityB {
         display: flex;
         flex-direction: column;
@@ -58,26 +40,17 @@
       width: 50%;
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
       gap: 20px;
       margin-left: 100px;
       p {
         font-size: 20px;
       }
+      .buttonAchats {
+        align-items: center;
+        justify-items: center;
+      }
     }
   }
-}
 
-.buttonPurple {
-  height: 30px;
-  width: 200px;
-  background-color: #2f1369;
-  display: flex;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 15px;
-  color: whitesmoke;
-  padding-top: 5px;
-  border: black 2px solid;
-  border-radius: 20px;
-  margin-bottom: 20px;
-}
+

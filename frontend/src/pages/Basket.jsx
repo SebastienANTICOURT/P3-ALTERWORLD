@@ -1,29 +1,11 @@
-import { useContext, useEffect } from "react"
+import { useContext } from "react"
 import { Link } from "react-router-dom"
-import { instance } from "../components/Axios"
 import BasketContext from "../components/contexts/BasketContext"
 import "./Basket.scss"
+import BasketItems from "./BasketItems"
 
 function Basket() {
-  const { basketItems, setBasketItems, fetchBasketItems } =
-    useContext(BasketContext)
-
-  useEffect(() => {
-    fetchBasketItems()
-  }, [setBasketItems])
-
-  const deleteItem = (itemId) => {
-    instance
-      .delete(`/basket/${itemId}`)
-      .then(() => {
-        setBasketItems((prevItems) =>
-          prevItems.filter((item) => item.id !== itemId)
-        )
-      })
-      .catch((err) => {
-        console.error("Error deleting item:", err)
-      })
-  }
+  const { basketItems } = useContext(BasketContext)
 
   const totalPrice = basketItems
     .reduce((total, item) => {
@@ -35,34 +17,12 @@ function Basket() {
 
   return (
     <div>
-      <div className="Basket">
-        <div className="titleBasket">
+      <div className="ContainerOrder">
+        <div className="titleOrder">
           <h1>Votre panier</h1>
         </div>
-        <div className="countainerBasket">
-          <div className="LeftColumnB">
-            {basketItems.map((item) => {
-              return (
-                <div className="BasketItems" key={item.id}>
-                  <button
-                    className="deleteButton"
-                    onClick={() => deleteItem(item.id)}
-                  >
-                    X
-                  </button>
-                  <img
-                    src={`http://localhost:4242${item.image}`}
-                    alt={item.name}
-                  />
-                  <div className="QuantityB">
-                    <h2>{item.name}</h2>
-                    <p>Quantité: {item.quantity}</p>
-                    <p>Prix: {item.quantity * item.price} €</p>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+        <div className="columnsOrders">
+          <BasketItems />
           <div className="RightColumnB">
             <h1>TOTAL :{totalPrice} €</h1>
             <p>Dont TVA :{TVA} €</p>

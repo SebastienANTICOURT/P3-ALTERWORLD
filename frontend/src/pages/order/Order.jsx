@@ -2,12 +2,12 @@ import { useContext, useEffect, useState } from "react"
 import smiley from "../../assets/smiley.png"
 import { instance, postOrder } from "../../components/Axios"
 import BasketContext from "../../components/contexts/BasketContext"
+import BasketItems from "../BasketItems"
 import "./Order.scss"
-import ItemsOrder from "./components/ItemsOrder"
 import Presentation from "./components/Presentation"
 import RightColumn from "./components/RightColumn"
 
-function Order({ users, userDatas }) {
+function Order({ users, userLog }) {
   const [date] = useState(new Date())
   const dateStr = date.toISOString().split("T")[0]
   const [showMessage, setShowMessage] = useState(false)
@@ -25,42 +25,31 @@ function Order({ users, userDatas }) {
   }
 
   const addToOrder = () => {
-    return new Promise((resolve, reject) => {
-      instance
-        .get("/latestBillNumber")
-        .then((responseBillNumber) => {
-          const latestBillNumber = responseBillNumber.data
-          const newBillNumber = latestBillNumber + 1
-          return postOrder(basketItems, newBillNumber, dateStr)
-        })
-        .then(() => {
-          resolve()
-        })
-        .catch((error) => {
-          console.error("Erreur lors du traitement :", error)
-          alert(
-            "Une erreur s'est produite lors de l'ajout des produits à la commande."
-          )
-          reject(error)
-        })
-    })
+    instance
+      .get("/latestBillNumber")
+      .then((responseBillNumber) => {
+        const latestBillNumber = responseBillNumber.data
+        const newBillNumber = latestBillNumber + 1
+        return postOrder(basketItems, newBillNumber, dateStr)
+      })
+      .then(() => {})
+      .catch((error) => {
+        console.error(error)
+        alert(
+          "Une erreur s'est produite lors de l'ajout des produits à la commande."
+        )
+      })
   }
 
   const deleteBasket = () => {
-    if (basketItems.length === 0) {
-      return
-    }
     const usersId = basketItems[0].usersId
     instance
       .delete(`/basket/all?usersId=${usersId}`)
-      .then((response) => {
-        if (response.status === 204) {
-          setBasketItems([])
-        }
+      .then(() => {
+        setBasketItems([])
       })
       .catch((error) => {
         console.error("Error deleting the basket:", error)
-        alert("Une erreur s'est produite lors de la suppression du panier.")
       })
   }
 
@@ -78,7 +67,7 @@ function Order({ users, userDatas }) {
       <div className="Merci">
         {showMessage && (
           <p>
-            {userDatas && `Merci, ${userDatas.firstName} `}{" "}
+            {userLog && `Merci, ${userLog.firstName} `}{" "}
             <img src={smiley} alt="" /> à bientot pour de nouvelles aventures.
           </p>
         )}
@@ -86,7 +75,7 @@ function Order({ users, userDatas }) {
       <div className="countainerOrder">
         <div className="LeftColumnO">
           <Presentation users={users} basketItems={basketItems} />
-          <ItemsOrder basketItems={basketItems} />
+          <BasketItems />
         </div>
         <div className="RightColumnO" style={{ opacity: showMessage ? 0 : 1 }}>
           <RightColumn

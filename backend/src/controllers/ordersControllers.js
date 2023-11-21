@@ -49,47 +49,22 @@ const newBillNumber = (req, res) => {
       res.sendStatus(500)
     })
 }
+
 const add = (req, res) => {
+  console.log("test01", req.body)
   const orders = req.body
-  if (Array.isArray(orders)) {
-    Promise.all(
-      orders.map((order) => {
-        return models.orders.insert(order)
-      })
-    )
-      .catch((err) => {
-        throw err
-      })
-      .then((results) => {
-        return models.basket
-          .deleteAll(orders[0].usersId)
-          .then(() => results.map((result) => result.insertId))
-      })
-      .then((response) => {
-        res.json(response)
-      })
-      .catch((err) => {
-        console.error(err)
-        res.sendStatus(500)
-      })
-  } else {
-    models.orders
-      .insert([orders])
-      .then(([result]) => {
-        // console.log("Before deleteAll:", orders[0].usersId)
-        return models.basket
-          .deleteAll(orders[0].usersId)
-          .then(() => result.insertId)
-      })
-      .then((response) => {
-        res.json(response)
-      })
-      .catch((err) => {
-        console.error(err)
-        res.sendStatus(500)
-      })
-  }
+  models.orders
+    .insert(orders)
+    .then(([result]) => {
+      console.log("test02", result)
+      res.json(result.insertId)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
 }
+
 
 module.exports = {
   orderUsersId,

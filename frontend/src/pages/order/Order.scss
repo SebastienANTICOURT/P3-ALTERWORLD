@@ -31,7 +31,6 @@
     .LeftColumnO {
       width: 50%;
       margin-left: 10%;
-
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -48,19 +47,6 @@
         button {
           margin-bottom: 5px;
         }
-      }
-      .BasketItem {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-      .deleteButton {
-        font-size: 20px;
-        font-weight: bold;
-        align-items: center;
-      }
-      img {
-        width: 30%;
       }
     }
 

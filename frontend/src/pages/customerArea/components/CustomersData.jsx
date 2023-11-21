@@ -19,7 +19,7 @@ function CustomersData() {
     instance
       .put("/users", { firstName, lastName, email, address, zipcode, city })
       .then((response) => {
-        setUserDatas(response.data)
+        // setUserDatas(response.data)
       })
   }
   return (
