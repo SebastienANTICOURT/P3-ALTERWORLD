@@ -1,4 +1,4 @@
-@import "../../../../Style.scss";
+@import "../../../Style.scss";
 
 .ProductList {
   background-color: $backColor;
@@ -34,7 +34,7 @@
 
     .CartProductsH {
       background-color: $NBColor;
-      height: 310px;
+      height: 320px;
       width: 270px;
       border: black solid 0px;
       box-shadow: 6px 5px 0px 0px rgba(0, 0, 0, 0.5);

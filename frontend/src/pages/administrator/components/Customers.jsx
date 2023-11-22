@@ -22,35 +22,41 @@ function Customers({ users, deleteUser }) {
 
   return (
     <div className="container">
-      <div className="searchBar">
-        <input
-          type="text"
-          placeholder="User ID"
-          value={searchUserId}
-          onChange={(e) => setSearchUserId(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Email"
-          value={searchEmail}
-          onChange={(e) => setSearchEmail(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Last Name"
-          value={searchLastName}
-          onChange={(e) => setSearchLastName(e.target.value)}
-        />
-        <button onClick={handleSearch}>Search</button>
+      <div className="BarAdminUsers">
+        <div className="searchBar">
+          <input
+            type="text"
+            placeholder="User ID"
+            value={searchUserId}
+            onChange={(e) => setSearchUserId(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Email"
+            value={searchEmail}
+            onChange={(e) => setSearchEmail(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Last Name"
+            value={searchLastName}
+            onChange={(e) => setSearchLastName(e.target.value)}
+          />
+        </div>
+        <div>
+          <button className="buttonYellow" onClick={handleSearch}>
+            Search
+          </button>
+        </div>
       </div>
       <div>
         <table className="listUsers">
           <thead>
             <tr>
-              <th>Action</th>
-              <th>User ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
+              <th>Actions</th>
+              <th>ID Utilisateurs</th>
+              <th>Prénoms</th>
+              <th>Noms</th>
               <th>Email</th>
             </tr>
           </thead>

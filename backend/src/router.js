@@ -63,7 +63,6 @@ router.get("/ordersByUser", verifyToken, ordersControllers.orderUsersId)
 router.get("/ordersByCreator", verifyToken, ordersControllers.orderCreatorId)
 router.post("/orders", verifyToken, ordersControllers.add)
 
-
 router.get("/latestBillNumber", ordersControllers.newBillNumber)
 
 // ROUTE DE CONNEXION

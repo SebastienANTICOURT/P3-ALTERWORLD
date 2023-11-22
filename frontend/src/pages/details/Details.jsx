@@ -58,22 +58,25 @@ function Details() {
           <img src={`http://localhost:4242${detail.image}`} alt={detail.name} />
         </div>
         <div className="rightContainerD">
-          <figcaption>{detail.name}</figcaption>
-          <p className="PricesD">{detail.price} €</p>
-          <div className="quantityD">
-            <button onClick={decreaseQuantity}>-</button>
-            <p>{quantity}</p>
-            <button onClick={increaseQuantity}>+</button>
+          <figcaption>{detail.prName}</figcaption>
+          <p>
+            Créateur: {detail.firstName} {detail.lastName}
+          </p>
+          <p>Univers: {detail.uniName}</p>
+          <p>Nature: {detail.typName}</p>
+          <div className="totalD">
+            <p className="PricesD">Prix: {detail.price} €</p>
+            <div className="quantityD">
+              <button onClick={decreaseQuantity}>-</button>
+              <p>{quantity}</p>
+              <button onClick={increaseQuantity}>+</button>
+            </div>
+            <p>Total : {total} €</p>
           </div>
-          <p>Total : {total} €</p>
           <button className="buttonPurple" onClick={addToBasket}>
             Ajouter au panier
           </button>
-          <button className="buttonPurple">Acheter maintenant</button>
         </div>
-      </div>
-      <div className="buttonsD">
-        <button className="buttonYellow">Revenir à la selection</button>
       </div>
     </div>
   )

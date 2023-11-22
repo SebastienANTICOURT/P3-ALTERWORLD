@@ -13,7 +13,7 @@ class OrdersManager extends AbstractManager {
 
   findOrdersWithName() {
     return this.database.query(
-      `SELECT orders.*, products.name, products.creatorId, users.firstname, users.isAdministrator
+      `SELECT orders.*, products.prName, products.creatorId, users.firstname, users.isAdministrator
       FROM ${this.table}
       JOIN p2alterworld.products ON orders.productsId = products.id
       JOIN p2alterworld.users ON orders.usersId = users.usersId
@@ -23,7 +23,7 @@ class OrdersManager extends AbstractManager {
 
   findOrdersUsersId(usersId) {
     return this.database.query(
-      `SELECT orders.*, products.name, products.creatorId, users.usersId, users.firstname, users.isAdministrator
+      `SELECT orders.*, products.prName, products.creatorId, users.usersId, users.firstname, users.isAdministrator
       FROM ${this.table}
       JOIN p2alterworld.products ON orders.productsId = products.id
       JOIN p2alterworld.users ON orders.usersId = users.usersId
@@ -35,7 +35,7 @@ class OrdersManager extends AbstractManager {
 
   findOrdersCreatorId(creatorId) {
     return this.database.query(
-      `SELECT orders.*, products.name, products.creatorId, users.usersId, users.firstname, users.isAdministrator
+      `SELECT orders.*, products.prName, products.creatorId, users.usersId, users.firstname, users.isAdministrator
       FROM ${this.table}
       JOIN p2alterworld.products ON orders.productsId = products.id
       JOIN p2alterworld.users ON orders.usersId = users.usersId
@@ -46,16 +46,16 @@ class OrdersManager extends AbstractManager {
   }
 
   insert(orders) {
-    const query = `INSERT INTO ${this.table} (billNumber, date, usersId, productsId, quantity, total) VALUES ?`;
-    const values = orders.map(order => [
+    const query = `INSERT INTO ${this.table} (billNumber, date, usersId, productsId, quantity, total) VALUES ?`
+    const values = orders.map((order) => [
       order.billNumber,
       order.date,
       order.usersId,
       order.productsId,
       order.quantity,
-      order.total
-    ]);
-    return this.database.query(query, [values]);
+      order.total,
+    ])
+    return this.database.query(query, [values])
   }
 }
 

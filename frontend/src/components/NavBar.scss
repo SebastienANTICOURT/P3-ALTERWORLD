@@ -23,20 +23,20 @@
 
     .logoNB {
       max-width: 300px;
-      justify-self: center; 
+      justify-self: center;
       margin-top: 5px;
       @media (max-width: 1000px) {
         width: 200px;
       }
     }
-    .DeconnexionNB{
+    .DeconnexionNB {
       font-size: 20px;
       font-weight: bold;
       color: #401f83;
     }
     .cadiNB,
     .loginNB {
-      width:50px
+      width: 50px;
     }
     .basketCount {
       position: absolute;
@@ -70,7 +70,7 @@
       border-radius: 50px;
     }
   }
-  
+
   .burger {
     width: 25px;
     height: 20px;
@@ -95,18 +95,17 @@
       opacity: 1;
       left: 0;
       transform: rotate(0deg);
-      transition: 0.25s ;
+      transition: 0.25s;
 
       &:nth-child(1) {
         top: 0px;
       }
-      &:nth-child(2){
-        top:8px
+      &:nth-child(2) {
+        top: 8px;
       }
       &:nth-child(3) {
         top: 16px;
       }
-      
     }
 
     &.open {
@@ -133,10 +132,10 @@
     }
   }
   ul.open {
-    display: flex; 
-    
+    display: flex;
+
     flex-wrap: wrap;
-    width: 90%; 
+    width: 90%;
     justify-content: space-around; /* Space out items evenly */
     align-items: center;
   }

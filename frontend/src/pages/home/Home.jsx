@@ -2,13 +2,14 @@ import { Link } from "react-router-dom"
 import hydreHome from "../../assets/hydreHome.png"
 import smiley from "../../assets/smiley.png"
 import "./Home.scss"
-import FiltresBar from "./components/filtres_bar/FiltresBar"
+import FiltresBar from "./components/FiltresBar"
 
 function Home({ userLog }) {
   return (
     <div className="Home">
-      <div className="imageHome">
+      <div className="containerHome">
         <img className="hydreHome" src={hydreHome} alt="hydreHome" />
+
         <div className="ContainerText">
           <div className="bienvenu">
             <p>
@@ -20,12 +21,12 @@ function Home({ userLog }) {
               ) : null}{" "}
               Vivez votre propre aventure avec ALTERWORLD !
             </p>
-            <p className="textHome">
+            <text className="textHome">
               Enfin une boutique où les fans de RPG peuvent accéder à du contenu
               de qualité et proposer leurs créations. dans tous les univers
               possible. Sélectionner les univers et les objets desirés et
               commencez l'aventure.
-            </p>
+            </text>
           </div>
           <Link to="/contact">
             <button className="buttonYellow">Proposez vos créations !</button>

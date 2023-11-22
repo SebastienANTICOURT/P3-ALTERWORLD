@@ -18,6 +18,18 @@ class ProductsManager extends AbstractManager {
       ]
     )
   }
+
+  find(id) {
+    return this.database.query(
+      `SELECT products.*, users.firstName, users.lastName, univers.uniName, types.typName
+      FROM  ${this.table} 
+      JOIN users ON products.creatorId = users.usersId
+      JOIN univers ON products.univerId = univers.id
+      JOIN types ON products.typesId = types.id
+      WHERE products.id = ?`,
+      [id]
+    )
+  }
 }
 
 module.exports = ProductsManager

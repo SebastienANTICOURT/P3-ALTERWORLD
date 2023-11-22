@@ -1,28 +1,26 @@
 @import "../../Style.scss";
 
 .Details {
+  height: 90vh;
   background-color: $backColor;
   padding-top: 30px;
 
   .DetailCardID {
     background-color: $NBColor;
     height: 70vh;
-    width: 850px;
-
+    width: 1000px;
     display: flex;
     // flex-wrap: wrap;
     margin-left: auto;
     margin-right: auto;
     border: black solid 0px;
     box-shadow: 8px 7px 0px 0px rgba(0, 0, 0, 0.5);
-    padding: 4px 0 0 4px;
-
+    padding: 4px;
     position: relative;
 
     .leftContainerD {
       width: 50%;
       // padding-top: 10px;
-
       img {
         width: 450px;
         height: 470px;
@@ -37,44 +35,44 @@
     }
 
     .rightContainerD {
-      width: 50%;
+      width: 60%;
       padding-top: 10px;
+      padding-left: 50px;
       display: flex;
-      text-align: center;
-      align-items: center;
+      justify-content:left;
       flex-direction: column;
-      gap: 40px;
+      gap: 20px;
+      font-weight:bold;
       figcaption {
         color: #19083b;
         font-weight: bold;
         font-size: 30px;
         margin-top: 5px;
       }
-
       .PricesD {
         height: auto;
-        width: 100%;
-        margin-top: 6px;
         color: #070a09;
-        font-size: 20px;
-        font-weight: bold;
-        justify-content: center;
       }
-
-      .quantityD {
+      .totalD {
+        width:100%;
         display: flex;
+        flex-direction: column;
+       
         gap: 10px;
         color: #070a09;
-        font-weight: bold;
       }
-
+      .quantityD {
+        display: flex;
+       
+        gap: 10px;
+      }
       p {
         font-size: 20px;
-        font-weight: bold;
+        
       }
     }
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 800px) {
       flex-direction: column;
       align-items: center;
       height: auto;
@@ -89,12 +87,13 @@
 
       .leftContainerD img {
         width: 80%;
-        height: auto; // This makes the image keep its aspect ratio
+        height: auto; 
         margin: 0 auto;
       }
 
-      .rightContainerD {
-        gap: 20px;
+      .quantityD {
+       
+       justify-content: center;
       }
 
       .panierD {

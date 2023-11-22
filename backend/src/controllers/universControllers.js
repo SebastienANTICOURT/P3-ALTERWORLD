@@ -30,7 +30,6 @@ const read = (req, res) => {
 
 const add = (req, res) => {
   const univers = req.body
-  // TODO validations (length, format...)
   models.univers
     .insert(univers)
     .then(([result]) => {

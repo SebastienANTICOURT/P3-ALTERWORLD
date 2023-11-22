@@ -15,7 +15,7 @@
     display: flex;
     gap: 20px;
     padding-top: 20px;
-
+    padding-bottom: 20px;
     button {
       padding: 15px;
       font-size: 20px;
@@ -29,7 +29,7 @@
   .updateData {
     display: flex;
     gap: 50px;
-    padding-top: 10px;
+   
   }
   .GraphA {
     width: 70%;
@@ -48,13 +48,23 @@
 
 .container {
   width: 100%;
+  .BarAdminUsers{
+    width: 80%;
+    display:flex;
+    align-items: flex-start;
+  }
   .searchBar {
-    width: 100%;
+    width: 68%;
     display: flex;
     align-items: center;
+    justify-items: center;
     gap: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
+  }
+
+  .listeUsers {
+    padding-top: 20px;
   }
   .listUsers th,
   .listUsers td {

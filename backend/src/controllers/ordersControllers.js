@@ -51,12 +51,12 @@ const newBillNumber = (req, res) => {
 }
 
 const add = (req, res) => {
-  console.log("test01", req.body)
+  // console.log("test01", req.body)
   const orders = req.body
   models.orders
     .insert(orders)
     .then(([result]) => {
-      console.log("test02", result)
+      // console.log("test02", result)
       res.json(result.insertId)
     })
     .catch((err) => {
@@ -64,7 +64,6 @@ const add = (req, res) => {
       res.sendStatus(500)
     })
 }
-
 
 module.exports = {
   orderUsersId,

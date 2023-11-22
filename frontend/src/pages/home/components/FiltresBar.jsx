@@ -4,7 +4,7 @@ import {
   getTypes,
   getUnivers,
   getUsers,
-} from "../../../../components/Axios"
+} from "../../../components/Axios"
 import Dropdown from "./Dropdown"
 import "./FiltresBar.scss"
 import ProductsList from "./ProductsList"
