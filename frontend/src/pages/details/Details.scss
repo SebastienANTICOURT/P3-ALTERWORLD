@@ -39,10 +39,10 @@
       padding-top: 10px;
       padding-left: 50px;
       display: flex;
-      justify-content:left;
+      justify-content: left;
       flex-direction: column;
       gap: 20px;
-      font-weight:bold;
+      font-weight: bold;
       figcaption {
         color: #19083b;
         font-weight: bold;
@@ -54,21 +54,20 @@
         color: #070a09;
       }
       .totalD {
-        width:100%;
+        width: 100%;
         display: flex;
         flex-direction: column;
-       
+
         gap: 10px;
         color: #070a09;
       }
       .quantityD {
         display: flex;
-       
+
         gap: 10px;
       }
       p {
         font-size: 20px;
-        
       }
     }
 
@@ -87,13 +86,12 @@
 
       .leftContainerD img {
         width: 80%;
-        height: auto; 
+        height: auto;
         margin: 0 auto;
       }
 
       .quantityD {
-       
-       justify-content: center;
+        justify-content: center;
       }
 
       .panierD {

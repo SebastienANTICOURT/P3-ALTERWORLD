@@ -1,7 +1,7 @@
 @import "../../Style.scss";
 
 .UserContainer {
-  height: 150vh;
+  // height: 150vh;
   width: 100%;
   background-color: whitesmoke;
   padding-left: 20px;
@@ -9,6 +9,7 @@
     display: flex;
     justify-content: center;
     padding-top: 50px;
+    font-size: 1.5rem;
   }
   .sectionButtons {
     width: 100%;
@@ -18,8 +19,8 @@
     padding-bottom: 20px;
     button {
       padding: 15px;
-      font-size: 20px;
       font-weight: bold;
+      font-size: 1rem;
       border: 3px black solid;
     }
   }
@@ -29,15 +30,14 @@
   .updateData {
     display: flex;
     gap: 50px;
-   
   }
   .GraphA {
     width: 70%;
-    padding-top: 20px;
+    // padding-top: 15px;
     display: flex;
     flex-direction: column;
     h1 {
-      font-size: 25px;
+      font-size: 1.3rem;
     }
     // .BarChart {
     //   height: auto;
@@ -48,9 +48,9 @@
 
 .container {
   width: 100%;
-  .BarAdminUsers{
+  .BarAdminUsers {
     width: 80%;
-    display:flex;
+    display: flex;
     align-items: flex-start;
   }
   .searchBar {

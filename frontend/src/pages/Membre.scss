@@ -1,8 +1,16 @@
 @import "../Style.scss";
 
+.countainerMembre{
+  height:90vh;
+  width:100%;
+  background-color: $backColor;
+  display:flex;
+  justify-content: center;
+  padding-top: 40px;
+}
 .Membre {
-  width: 400px;
-  margin: 50px auto;
+  height: 50vh;
+  width: 350px;
   padding: 30px;
   border: 1px solid #e0e0e0;
   border-radius: 5px;
@@ -19,7 +27,6 @@
 
   p {
     margin-top: 20px;
-    font-size: 18px;
     text-decoration: underline;
     cursor: pointer;
   }

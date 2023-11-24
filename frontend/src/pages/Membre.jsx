@@ -26,32 +26,34 @@ function Membre() {
   }
 
   return (
-    <div className="Membre">
-      <h2>Connectez vous</h2>
-      <div>
-        <figcaption>Email:</figcaption>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email"
-        />
+    <div className="countainerMembre">
+      <div className="Membre">
+        <h2>Connectez vous</h2>
+        <div>
+          <figcaption>Email:</figcaption>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
+          />
+        </div>
+        <div>
+          <figcaption>Password:</figcaption>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
+          />
+        </div>
+        <button className="buttonYellow" onClick={handleClick}>
+          Connection
+        </button>
+        <Link to="/nonMembre">
+          <p>Pas encore inscrit ? créez votre compte</p>
+        </Link>
       </div>
-      <div>
-        <figcaption>Password:</figcaption>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter your password"
-        />
-      </div>
-      <button className="buttonYellow" onClick={handleClick}>
-        Connection
-      </button>
-      <Link to="/nonMembre">
-        <p>Pas encore inscrit ? créez votre compte</p>
-      </Link>
     </div>
   )
 }

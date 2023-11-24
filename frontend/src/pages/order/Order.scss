@@ -1,26 +1,23 @@
 @import "../../Style.scss";
 
 .order {
-  height: 120vh;
+  height: auto;
   width: 100%;
   display: flex;
   flex-direction: column;
   background-color: $backColor;
-  h1 {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding-top: 40px;
-  }
+  // h1 {
+  //   width: 100%;
+  //   display: flex;
+  //   justify-content: center;
+  //   padding-top: 40px;
+  // }
   .Merci {
     // height: 90vh;
     display: flex;
     justify-content: center;
     margin-top: 50px;
-    p {
-      font-size: 30px;
-      font-weight: bold;
-    }
+   
     img {
       padding-top: 5px;
       width: 6%;
@@ -34,37 +31,6 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin-top: 10px;
-      .presentationO {
-        font-size: 25px;
-        margin-top: 10px;
-        .titleInfo {
-          font-size: 30px;
-          margin-top: auto;
-          margin-left: 0%;
-          text-decoration: underline;
-        }
-        button {
-          margin-bottom: 5px;
-        }
-      }
-    }
-
-    .RightColumnO {
-      // height: auto;
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      margin-top: 25px;
-      margin-left: 10%;
-      gap: 20px;
-      p {
-        font-size: 30px;
-        font-weight: bold;
-      }
-      .TVA {
-        font-size: 20px;
-      }
     }
   }
 }
@@ -73,5 +39,7 @@
   .countainerOrder {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }

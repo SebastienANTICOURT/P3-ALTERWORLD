@@ -49,7 +49,7 @@ function Graph2({ orders }) {
   }, [orders]) // The effect will re-run whenever the 'orders' prop changes
 
   return (
-    <div>
+    <div className="Graph">
       <BarChart data={chartData} />
     </div>
   )

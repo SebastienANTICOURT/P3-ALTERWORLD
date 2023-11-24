@@ -38,7 +38,7 @@ function BasketItems() {
               <img src={`http://localhost:4242${item.image}`} alt={item.name} />
             </div>
             <div className="QuantityB">
-              <h2>{item.name}</h2>
+              <h2>{item.prName}</h2>
               <p>Quantité: {item.quantity}</p>
               <p>Prix: {item.quantity * item.price} €</p>
             </div>

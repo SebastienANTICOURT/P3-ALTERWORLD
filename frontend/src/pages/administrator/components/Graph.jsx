@@ -20,7 +20,7 @@ function Graph({ orders }) {
     const aggregated = {}
 
     data.forEach((order) => {
-      const productName = order.name
+      const productName = order.prName
       if (aggregated[productName]) {
         aggregated[productName] += order.quantity
       } else {

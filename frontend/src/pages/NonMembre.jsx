@@ -40,72 +40,90 @@ function NonMembre({ users }) {
     }
   }
   return (
-    <div className="login-container">
-      <h2>Créez votre compte</h2>
-      <div>
-        <figcaption>Prenom:</figcaption>
-        <input
-          type="text"
-          placeholder="Prenom"
-          value={firstName}
-          onChange={(event) => setFirstName(event.target.value)}
-        />
-        <figcaption>Nom:</figcaption>
-        <input
-          type="text"
-          placeholder="Nom"
-          value={lastName}
-          onChange={(event) => setLastName(event.target.value)}
-        />
-        <figcaption>Email:</figcaption>
-        <input
-          type="email"
-          placeholder="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-        <figcaption>Adresse:</figcaption>
-        <input
-          type="text"
-          placeholder="adresse"
-          value={address}
-          onChange={(event) => setAddress(event.target.value)}
-        />
-        <figcaption>Code postal:</figcaption>
-        <input
-          type="text"
-          placeholder="Code postal"
-          value={zipcode}
-          onChange={(event) => setZipcode(event.target.value)}
-        />
-        <figcaption>Ville:</figcaption>
-        <input
-          type="text"
-          placeholder="Ville"
-          value={city}
-          onChange={(event) => setCity(event.target.value)}
-        />
-        <figcaption>Mot de passe:</figcaption>
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
-        <figcaption>Confirmation mot de passe:</figcaption>
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          value={confirmPassword}
-          onChange={(event) => setConfirmPassword(event.target.value)}
-        />
+    <div className="nonMembre">
+      <div className="login-container">
+        <h2>Créez votre compte</h2>
+        <div className="liste">
+          <div className="line">
+            <figcaption>Prenom:</figcaption>
+            <input
+              type="text"
+              placeholder="Prenom"
+              value={firstName}
+              onChange={(event) => setFirstName(event.target.value)}
+            />
+          </div>
+          <div className="line">
+            <figcaption>Nom:</figcaption>
+            <input
+              type="text"
+              placeholder="Nom"
+              value={lastName}
+              onChange={(event) => setLastName(event.target.value)}
+            />
+          </div>
+          <div className="line">
+            <figcaption>Email:</figcaption>
+            <input
+              type="email"
+              placeholder="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </div>
+          <div className="line">
+            <figcaption>Adresse:</figcaption>
+            <input
+              type="text"
+              placeholder="adresse"
+              value={address}
+              onChange={(event) => setAddress(event.target.value)}
+            />
+          </div>
+          <div className="line">
+            <figcaption>Code postal:</figcaption>
+            <input
+              type="text"
+              placeholder="Code postal"
+              value={zipcode}
+              onChange={(event) => setZipcode(event.target.value)}
+            />
+          </div>
+          <div className="line">
+            <figcaption>Ville:</figcaption>
+            <input
+              type="text"
+              placeholder="Ville"
+              value={city}
+              onChange={(event) => setCity(event.target.value)}
+            />
+          </div>
+          <div className="line">
+            <figcaption>Mot de passe:</figcaption>
+            <input
+              type="password"
+              placeholder="Mot de passe"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </div>
+          <div className="line">
+            <figcaption>Confirmation mot de passe:</figcaption>
+            <input
+              type="password"
+              placeholder="Mot de passe"
+              value={confirmPassword}
+              onChange={(event) => setConfirmPassword(event.target.value)}
+            />
+          </div>
+        </div>
+        <button className="buttonYellow" onClick={handleSubmit}>
+          S'inscrire
+        </button>
+        <Link to="/membre">
+          <p>Déjà membre ?</p>
+        </Link>
       </div>
-      <button className="buttonYellow" onClick={handleSubmit}>
-        S'inscrire
-      </button>
-      <Link to="/membre">
-        <p>Déjà membre ?</p>
-      </Link>
     </div>
   )
 }

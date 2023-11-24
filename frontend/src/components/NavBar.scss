@@ -133,10 +133,19 @@
   }
   ul.open {
     display: flex;
-
-    flex-wrap: wrap;
+    flex-direction: column;
     width: 90%;
-    justify-content: space-around; /* Space out items evenly */
+    justify-content: space-around; 
     align-items: center;
+    .leftItems {
+      display: flex;
+      flex-direction: column;
+      gap:10px;
+    }
+    .rightItems{
+      display: flex;
+      flex-direction: column;
+      gap:10px;
+    }
   }
 }

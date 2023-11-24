@@ -21,7 +21,7 @@ function CustomerArea() {
         </button>
       </div>
       {activeSection === "customersData" && (
-        <div>
+        <div className="CustomersData">
           <CustomersData />
         </div>
       )}

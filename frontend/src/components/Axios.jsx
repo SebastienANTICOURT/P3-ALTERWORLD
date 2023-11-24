@@ -31,7 +31,7 @@ export async function getUsers() {
     const res = await instance.get("/users")
     return res.data
   } catch (error) {
-    console.error("Error axios", error)
+    console.error("Error axios, getUsers", error)
     throw error
   }
 }

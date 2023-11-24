@@ -5,7 +5,7 @@ function Products({ products }) {
         <thead>
           <tr>
             <th>ID Produits</th>
-            <th>User ID</th>
+            <th>Nom produits</th>
             <th>Prix</th>
           </tr>
         </thead>
@@ -13,7 +13,7 @@ function Products({ products }) {
         {products.map((product) => (
           <tr className="listContainer" key={product.id}>
             <td>{product.id}</td>
-            <td>{product.name}</td>
+            <td>{product.prName}</td>
             <td>{product.price}</td>
           </tr>
         ))}

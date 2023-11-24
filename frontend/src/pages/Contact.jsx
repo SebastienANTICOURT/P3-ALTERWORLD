@@ -47,9 +47,9 @@ function Contact() {
   return (
     <div className="contact">
       <div className="newProduct">
-        <div className="firstLine">
-          <div className="column">
-            <figcaption>Nom de votre produit</figcaption>
+        <div className="Liste">
+          <div className="Line">
+            <figcaption>Nom de votre produit:</figcaption>
             <input
               type="text"
               placeholder="nom"
@@ -57,8 +57,8 @@ function Contact() {
               onChange={(event) => setName(event.target.value)}
             />
           </div>
-          <div className="column">
-            <figcaption>Prix</figcaption>
+          <div className="Line">
+            <figcaption>Prix:</figcaption>
             <input
               type="text"
               placeholder="prix"
@@ -66,9 +66,7 @@ function Contact() {
               onChange={(event) => setPrice(event.target.value)}
             />
           </div>
-        </div>
-        <div className="firstLine">
-          <div className="column">
+          <div className="Line">
             <figcaption>Univers souhaité</figcaption>
             <input
               type="text"
@@ -77,7 +75,7 @@ function Contact() {
               onChange={(event) => setUnivers(event.target.value)}
             />
           </div>
-          <div className="column">
+          <div className="Line">
             <figcaption>Type souhaité</figcaption>
             <input
               type="text"
@@ -86,19 +84,25 @@ function Contact() {
               onChange={(event) => setType(event.target.value)}
             />
           </div>
+          <div className="Line">
+            <figcaption>Image</figcaption>
+            <input
+              className="inputImage"
+              type="file"
+              onChange={handleImageChange}
+            />
+            {image && (
+              <img
+                src={URL.createObjectURL(image)}
+                alt="Selected"
+                style={{ maxWidth: "200px" }}
+              />
+            )}
+            <button className="buttonYellow" onClick={upload}>
+              selectionner
+            </button>
+          </div>
         </div>
-        <figcaption>Image</figcaption>
-        <input type="file" onChange={handleImageChange} />
-        {image && (
-          <img
-            src={URL.createObjectURL(image)}
-            alt="Selected"
-            style={{ maxWidth: "200px" }}
-          />
-        )}
-        <button className="buttonYellow" onClick={upload}>
-          selectionner
-        </button>
         <button className="buttonYellow" onClick={addProducts}>
           Envoyer
         </button>

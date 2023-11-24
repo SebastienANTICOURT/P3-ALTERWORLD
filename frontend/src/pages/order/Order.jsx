@@ -63,7 +63,9 @@ function Order({ users, userLog }) {
 
   return (
     <div className="order">
-      <h1>Votre commande</h1>
+      <div className="titleOrder">
+        <h1>Votre commande</h1>
+      </div>
       <div className="Merci">
         {showMessage && (
           <p>
