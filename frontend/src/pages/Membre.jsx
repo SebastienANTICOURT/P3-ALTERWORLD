@@ -10,7 +10,8 @@ function Membre() {
   const { setUserLog } = useAuthContext()
   const navigate = useNavigate()
 
-  const handleClick = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     instance
       .post("/login", { email, password })
       .then((data) => {
@@ -21,7 +22,7 @@ function Membre() {
       })
       .catch((error) => {
         console.error(error)
-        alert("Utilisateur non trouvé,")
+        alert("Utilisateur non trouvé")
       })
   }
 
@@ -29,27 +30,32 @@ function Membre() {
     <div className="countainerMembre">
       <div className="Membre">
         <h2>Connectez vous</h2>
-        <div>
-          <figcaption>Email:</figcaption>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-          />
-        </div>
-        <div>
-          <figcaption>Password:</figcaption>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
-          />
-        </div>
-        <button className="buttonYellow" onClick={handleClick}>
-          Connection
-        </button>
+        <form onSubmit={handleSubmit}>
+          {" "}
+          <div>
+            <figcaption>Email:</figcaption>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div>
+            <figcaption>Password:</figcaption>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <button type="submit" className="buttonYellow">
+            Connection
+          </button>
+        </form>
         <Link to="/nonMembre">
           <p>Pas encore inscrit ? créez votre compte</p>
         </Link>

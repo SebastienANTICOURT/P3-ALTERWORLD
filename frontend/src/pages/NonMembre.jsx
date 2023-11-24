@@ -14,7 +14,8 @@ function NonMembre({ users }) {
   const [confirmPassword, setConfirmPassword] = useState("")
   const navigate = useNavigate()
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     if (password !== confirmPassword) {
       alert("Les mots de passe ne correspondent pas")
     } else if (users.some((user) => user.email === email)) {
@@ -43,83 +44,93 @@ function NonMembre({ users }) {
     <div className="nonMembre">
       <div className="login-container">
         <h2>Créez votre compte</h2>
-        <div className="liste">
-          <div className="line">
-            <figcaption>Prenom:</figcaption>
-            <input
-              type="text"
-              placeholder="Prenom"
-              value={firstName}
-              onChange={(event) => setFirstName(event.target.value)}
-            />
+        <form onSubmit={handleSubmit}>
+          <div className="liste">
+            <div className="line">
+              <figcaption>Prenom:</figcaption>
+              <input
+                type="text"
+                placeholder="Prenom"
+                value={firstName}
+                onChange={(event) => setFirstName(event.target.value)}
+                required
+              />
+            </div>
+            <div className="line">
+              <figcaption>Nom:</figcaption>
+              <input
+                type="text"
+                placeholder="Nom"
+                value={lastName}
+                onChange={(event) => setLastName(event.target.value)}
+                required
+              />
+            </div>
+            <div className="line">
+              <figcaption>Email:</figcaption>
+              <input
+                type="email"
+                placeholder="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                required
+              />
+            </div>
+            <div className="line">
+              <figcaption>Adresse:</figcaption>
+              <input
+                type="text"
+                placeholder="adresse"
+                value={address}
+                onChange={(event) => setAddress(event.target.value)}
+                required
+              />
+            </div>
+            <div className="line">
+              <figcaption>Code postal:</figcaption>
+              <input
+                type="text"
+                placeholder="Code postal"
+                value={zipcode}
+                onChange={(event) => setZipcode(event.target.value)}
+                required
+              />
+            </div>
+            <div className="line">
+              <figcaption>Ville:</figcaption>
+              <input
+                type="text"
+                placeholder="Ville"
+                value={city}
+                onChange={(event) => setCity(event.target.value)}
+                required
+              />
+            </div>
+            <div className="line">
+              <figcaption>Mot de passe:</figcaption>
+              <input
+                type="password"
+                placeholder="Mot de passe"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                required
+              />
+            </div>
+            <div className="line">
+              <figcaption>Confirmation mot de passe:</figcaption>
+              <input
+                type="password"
+                placeholder="Mot de passe"
+                value={confirmPassword}
+                onChange={(event) => setConfirmPassword(event.target.value)}
+                required
+              />
+            </div>
           </div>
-          <div className="line">
-            <figcaption>Nom:</figcaption>
-            <input
-              type="text"
-              placeholder="Nom"
-              value={lastName}
-              onChange={(event) => setLastName(event.target.value)}
-            />
-          </div>
-          <div className="line">
-            <figcaption>Email:</figcaption>
-            <input
-              type="email"
-              placeholder="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </div>
-          <div className="line">
-            <figcaption>Adresse:</figcaption>
-            <input
-              type="text"
-              placeholder="adresse"
-              value={address}
-              onChange={(event) => setAddress(event.target.value)}
-            />
-          </div>
-          <div className="line">
-            <figcaption>Code postal:</figcaption>
-            <input
-              type="text"
-              placeholder="Code postal"
-              value={zipcode}
-              onChange={(event) => setZipcode(event.target.value)}
-            />
-          </div>
-          <div className="line">
-            <figcaption>Ville:</figcaption>
-            <input
-              type="text"
-              placeholder="Ville"
-              value={city}
-              onChange={(event) => setCity(event.target.value)}
-            />
-          </div>
-          <div className="line">
-            <figcaption>Mot de passe:</figcaption>
-            <input
-              type="password"
-              placeholder="Mot de passe"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </div>
-          <div className="line">
-            <figcaption>Confirmation mot de passe:</figcaption>
-            <input
-              type="password"
-              placeholder="Mot de passe"
-              value={confirmPassword}
-              onChange={(event) => setConfirmPassword(event.target.value)}
-            />
-          </div>
-        </div>
-        <button className="buttonYellow" onClick={handleSubmit}>
-          S'inscrire
-        </button>
+          <button className="buttonYellow" type="submit">
+            S'inscrire
+          </button>
+        </form>
         <Link to="/membre">
           <p>Déjà membre ?</p>
         </Link>

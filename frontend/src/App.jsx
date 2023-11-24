@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Route, Routes } from "react-router-dom"
 import "./Style.scss"
-import { checkAdminRights, getUsers } from "./components/Axios"
+import { getUsers, instance } from "./components/Axios"
 import NavBar from "./components/NavBar"
 import { useAuthContext } from "./components/contexts/AuthContext"
 import { useOrdersContext } from "./components/contexts/OrdersContext"
@@ -28,7 +28,8 @@ function App() {
   }, [])
 
   useEffect(() => {
-    checkAdminRights()
+    instance
+      .get("/Admin")
       .then(() => {
         setIsAdmin(true)
       })

@@ -5,6 +5,7 @@ import {
   getUnivers,
   getUsers,
 } from "../../../components/Axios"
+import { useOrdersContext } from "../../../components/contexts/OrdersContext"
 import Dropdown from "./Dropdown"
 import "./FiltresBar.scss"
 import ProductsList from "./ProductsList"
@@ -18,6 +19,7 @@ function FiltresBar() {
   const [creators, setCreators] = useState([])
   const [selectedCreators, setSelectedCreators] = useState("all")
   const [sortOrder, setSortOrder] = useState("Trier par prix")
+  const { ordersData } = useOrdersContext()
 
   useEffect(() => {
     getProducts().then((data) => {
@@ -33,6 +35,20 @@ function FiltresBar() {
       setTypes(data)
     })
   }, [])
+
+  const aggregateData = (data) => {
+    return data.reduce((aggregated, order) => {
+      const productName = order.prName
+      if (aggregated[productName]) {
+        aggregated[productName] += order.quantity
+      } else {
+        aggregated[productName] = order.quantity
+      }
+      return aggregated
+    }, {}) // Initialisation de l'accumulateur comme un objet vide
+  }
+
+  const salesQuantities = aggregateData(ordersData)
 
   const filteredProducts = () => {
     let filtered = products
@@ -58,6 +74,13 @@ function FiltresBar() {
       return filtered.sort((a, b) => a.price - b.price)
     } else if (sortOrder === "Prix décroissant") {
       return filtered.sort((a, b) => b.price - a.price)
+    } else {
+      // Tri par défaut par quantité vendue
+      filtered = filtered.sort((a, b) => {
+        const quantityA = salesQuantities[a.prName] || 0
+        const quantityB = salesQuantities[b.prName] || 0
+        return quantityB - quantityA
+      })
     }
     return filtered
   }

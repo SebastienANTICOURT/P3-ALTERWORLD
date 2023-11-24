@@ -7,9 +7,9 @@ class ProductsManager extends AbstractManager {
 
   insert(products) {
     return this.database.query(
-      `insert into ${this.table}(name, image, price, creatorId, univerId, typesId) values (?,?,?,?,?,?)`,
+      `insert into ${this.table}(prName, image, price, creatorId, univerId, typesId) values (?,?,?,?,?,?)`,
       [
-        products.name,
+        products.prName,
         products.image,
         products.price,
         products.creatorId,

@@ -2,10 +2,10 @@
 
 .nonMembre {
   height: 100vh;
-  background-color:$backColor ;
-  display:flex;
+  background-color: $backColor;
+  display: flex;
   justify-content: center;
-  padding-top:5vh ;
+  padding-top: 5vh;
   @media (max-width: 1100px) {
     height: 160vh;
   }
@@ -20,9 +20,12 @@
   border-radius: 5px;
   box-shadow: 6px 5px 0px 0px rgba(0, 0, 0, 0.5);
   background-color: #ffffff;
+  .buttonYellow {
+    margin-top: 20px;
+  }
   @media (max-width: 1100px) {
     height: 130vh;
-    width:45vh;
+    width: 45vh;
   }
   .liste {
     display: flex;
@@ -30,17 +33,14 @@
     flex-wrap: wrap;
     gap: 30px;
     @media (max-width: 1100px) {
-      gap:1px;
+      gap: 1px;
     }
   }
   h2 {
     text-align: center;
   }
 
- 
-
   p {
-    
     text-decoration: underline;
     cursor: pointer;
   }

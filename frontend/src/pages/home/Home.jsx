@@ -21,12 +21,12 @@ function Home({ userLog }) {
               ) : null}{" "}
               Vivez votre propre aventure avec ALTERWORLD !
             </p>
-            <text className="textHome">
+            <div className="textHome">
               Enfin une boutique où les fans de RPG peuvent accéder à du contenu
               de qualité et proposer leurs créations. dans tous les univers
               possible. Sélectionner les univers et les objets desirés et
               commencez l'aventure.
-            </text>
+            </div>
           </div>
           <Link to="/contact">
             <button className="buttonYellow">Proposez vos créations !</button>

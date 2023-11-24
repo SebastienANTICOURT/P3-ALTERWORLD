@@ -24,7 +24,6 @@ app.use(
 )
 app.use(cookieParser())
 
-
 // import and mount the API routes
 
 const router = require("./router")

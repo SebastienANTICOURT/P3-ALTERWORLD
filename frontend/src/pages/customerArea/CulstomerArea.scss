@@ -1,18 +1,17 @@
 @import "../../Style.scss";
 
-
-.UserContainer{
+.UserContainer {
   height: auto;
-  width:100%;
+  width: 100%;
   .CustomersData {
-    display:flex;
-    gap:30px;
+    display: flex;
+    gap: 30px;
   }
 }
 .ListeFactures {
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  gap: 50px;
   margin-left: 30px;
 }
 .containerUser {

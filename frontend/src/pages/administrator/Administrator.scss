@@ -11,22 +11,7 @@
     padding-top: 50px;
     font-size: 1.5rem;
   }
-  .sectionButtons {
-    width: 100%;
-    display: flex;
-    gap: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    button {
-      padding: 15px;
-      font-weight: bold;
-      font-size: 1rem;
-      border: 3px black solid;
-    }
-  }
-  input {
-    height: 30px;
-  }
+  
   .updateData {
     display: flex;
     gap: 50px;
@@ -36,16 +21,12 @@
     // padding-top: 15px;
     display: flex;
     flex-direction: column;
-    h1 {
-      font-size: 1.3rem;
-    }
     // .BarChart {
     //   height: auto;
     //   width: 50%;
     // }
   }
 }
-
 .container {
   width: 100%;
   .BarAdminUsers {
@@ -72,5 +53,22 @@
     padding-right: 20px;
     border: 1px solid #ddd;
     text-align: left;
+  }
+}
+
+.sectionButtons {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  @media (max-width: 1000px) {
+    width: 200px;
+  }
+  button {
+    padding: 15px;
+    font-weight: bold;
+    font-size: 1rem;
+    border: 3px black solid;
   }
 }

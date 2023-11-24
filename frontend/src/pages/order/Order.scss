@@ -1,7 +1,8 @@
 @import "../../Style.scss";
 
 .order {
-  height: auto;
+  height: 100%;
+  min-height: 90vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -17,7 +18,7 @@
     display: flex;
     justify-content: center;
     margin-top: 50px;
-   
+
     img {
       padding-top: 5px;
       width: 6%;

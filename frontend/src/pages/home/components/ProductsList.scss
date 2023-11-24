@@ -1,6 +1,8 @@
 @import "../../../Style.scss";
 
 .ProductList {
+  height: 100%;
+  min-height: 50vh;
   background-color: $backColor;
   display: flex;
   flex-direction: column;
@@ -15,11 +17,11 @@
   }
 
   hr {
-    border: none; /* Removes the default border */
+    border: none; 
     height: 3px;
     width: 50px;
-    background-color: $yellow; /* Color of the line */
-    // margin-top: 40px;
+    background-color: $yellow; 
+   
   }
 
   .BSProductsH {
