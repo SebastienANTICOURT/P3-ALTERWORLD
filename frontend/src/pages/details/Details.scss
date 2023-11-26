@@ -1,28 +1,33 @@
 @import "../../Style.scss";
 
 .Details {
+  height: 100%;
+  min-height:100vh;
   background-color: $backColor;
   padding-top: 30px;
 
   .DetailCardID {
     background-color: $NBColor;
     height: 70vh;
-    width: 850px;
-
+    width: 55vw;
     display: flex;
-    // flex-wrap: wrap;
     margin-left: auto;
     margin-right: auto;
     border: black solid 0px;
     box-shadow: 8px 7px 0px 0px rgba(0, 0, 0, 0.5);
-    padding: 4px 0 0 4px;
-
+    padding: 4px;
     position: relative;
+    @media (max-width: 900px) {
+      flex-direction: column;
+      align-items: center;
+      height: 175vw;
+      width: 80vw;
+    }
+
 
     .leftContainerD {
       width: 50%;
       // padding-top: 10px;
-
       img {
         width: 450px;
         height: 470px;
@@ -37,72 +42,47 @@
     }
 
     .rightContainerD {
-      width: 50%;
+      width: 60%;
       padding-top: 10px;
+      padding-left: 50px;
       display: flex;
-      text-align: center;
-      align-items: center;
+      justify-content: left;
       flex-direction: column;
-      gap: 40px;
-
+      gap: 20px;
+      font-weight: bold;
       figcaption {
         color: #19083b;
         font-weight: bold;
         font-size: 30px;
         margin-top: 5px;
       }
-
       .PricesD {
         height: auto;
-        width: 100%;
-        margin-top: 6px;
         color: #070a09;
-        font-size: 20px;
-        font-weight: bold;
-        justify-content: center;
       }
-
-      .quantityD {
+      .totalD {
+        width: 100%;
         display: flex;
+        flex-direction: column;
+
         gap: 10px;
         color: #070a09;
-        font-weight: bold;
       }
+      .quantityD {
+        display: flex;
 
-      button {
-        width: 15px;
-        color: #070a09;
-        background-color: $NBColor;
-        font-size: 20px;
-        font-weight: bold;
-        border: 0px solid black;
+        gap: 10px;
       }
-
       p {
         font-size: 20px;
-        font-weight: bold;
-      }
-      .buttonPurple {
-        height: 30px;
-        width: 200px;
-        background-color: #401f83;
-        display: flex;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 15px;
-        color: whitesmoke;
-        padding-top: 5px;
-        border: black 2px solid;
-        border-radius: 20px;
-        margin-bottom: 20px;
       }
     }
 
-    @media only screen and (max-width: 768px) {
-      flex-direction: column;
-      align-items: center;
-      height: auto;
-      width: 100%;
+    @media only screen and (max-width: 800px) {
+      // flex-direction: column;
+      // align-items: center;
+      // height: auto;
+      // width: 100%;
 
       .leftContainerD,
       .rightContainerD {
@@ -113,12 +93,12 @@
 
       .leftContainerD img {
         width: 80%;
-        height: auto; // This makes the image keep its aspect ratio
+        height: auto;
         margin: 0 auto;
       }
 
-      .rightContainerD {
-        gap: 20px;
+      .quantityD {
+        justify-content: center;
       }
 
       .panierD {
@@ -137,17 +117,4 @@
     margin-top: 40px;
     gap: 40px;
   }
-}
-.buttonYellow {
-  height: 30px;
-  width: 200px;
-  background-color: $yellow;
-  display: flex;
-  justify-content: center;
-  font-weight: bold;
-  color: black;
-  padding-top: 5px;
-  border: black 2px solid;
-  border-radius: 20px;
-  margin-top: 20px;
 }

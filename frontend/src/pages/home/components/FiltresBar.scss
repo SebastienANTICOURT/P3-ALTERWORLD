@@ -1,0 +1,13 @@
+@import "../../../Style.scss";
+
+.FiltresBar {
+  width: 100%;
+  background-color: $greendark;
+  display: flex;
+  flex-direction: column;
+
+  .BlocFiltre {
+    display: flex;
+    justify-content: center;
+  }
+}

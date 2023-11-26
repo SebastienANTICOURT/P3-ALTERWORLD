@@ -1,10 +1,9 @@
-import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import smiley from "../../assets/smiley.png"
-import { postOrder } from "../../components/Axios"
+import { instance, postOrder } from "../../components/Axios"
 import BasketContext from "../../components/contexts/BasketContext"
+import BasketItems from "../BasketItems"
 import "./Order.scss"
-import ItemsOrder from "./components/ItemsOrder"
 import Presentation from "./components/Presentation"
 import RightColumn from "./components/RightColumn"
 
@@ -17,7 +16,7 @@ function Order({ users, userLog }) {
 
   useEffect(() => {
     fetchBasketItems()
-  }, [fetchBasketItems])
+  }, [setBasketItems])
 
   const handleOrderAndDelete = () => {
     addToOrder()
@@ -26,43 +25,31 @@ function Order({ users, userLog }) {
   }
 
   const addToOrder = () => {
-    return new Promise((resolve, reject) => {
-      axios
-        .get("http://localhost:4242/latestBillNumber")
-        .then((responseBillNumber) => {
-          const latestBillNumber = responseBillNumber.data
-          const newBillNumber = latestBillNumber + 1
-          // Utilisez la fonction importée pour envoyer la commande.
-          return postOrder(basketItems, newBillNumber, dateStr)
-        })
-        .then(() => {
-          resolve()
-        })
-        .catch((error) => {
-          console.error("Erreur lors du traitement :", error)
-          alert(
-            "Une erreur s'est produite lors de l'ajout des produits à la commande."
-          )
-          reject(error)
-        })
-    })
+    instance
+      .get("/latestBillNumber")
+      .then((responseBillNumber) => {
+        const latestBillNumber = responseBillNumber.data
+        const newBillNumber = latestBillNumber + 1
+        return postOrder(basketItems, newBillNumber, dateStr)
+      })
+      .then(() => {})
+      .catch((error) => {
+        console.error(error)
+        alert(
+          "Une erreur s'est produite lors de l'ajout des produits à la commande."
+        )
+      })
   }
 
   const deleteBasket = () => {
-    if (basketItems.length === 0) {
-      return
-    }
     const usersId = basketItems[0].usersId
-    axios
-      .delete(`http://localhost:4242/basket/all?usersId=${usersId}`)
-      .then((response) => {
-        if (response.status === 204) {
-          setBasketItems([])
-        }
+    instance
+      .delete(`/basket/all?usersId=${usersId}`)
+      .then(() => {
+        setBasketItems([])
       })
       .catch((error) => {
         console.error("Error deleting the basket:", error)
-        alert("Une erreur s'est produite lors de la suppression du panier.")
       })
   }
 
@@ -76,7 +63,9 @@ function Order({ users, userLog }) {
 
   return (
     <div className="order">
-      <h1>Votre commande</h1>
+      <div className="titleOrder">
+        <h1>Votre commande</h1>
+      </div>
       <div className="Merci">
         {showMessage && (
           <p>
@@ -88,7 +77,7 @@ function Order({ users, userLog }) {
       <div className="countainerOrder">
         <div className="LeftColumnO">
           <Presentation users={users} basketItems={basketItems} />
-          <ItemsOrder basketItems={basketItems} />
+          <BasketItems />
         </div>
         <div className="RightColumnO" style={{ opacity: showMessage ? 0 : 1 }}>
           <RightColumn

@@ -4,24 +4,23 @@ import "../Style.scss"
 import alterworld from "../assets/alterworld.png"
 import caddie from "../assets/caddie.png"
 import login from "../assets/login.png"
-import { Logout } from "./Axios"
+import { instance } from "./Axios"
 import "./NavBar.scss"
 import { useAuthContext } from "./contexts/AuthContext"
 import BasketContext from "./contexts/BasketContext"
 
-function NavBar({ admin }) {
+function NavBar({ isAdmin }) {
   const [isMenuOpen, setMenuOpen] = useState(false)
   const { userLog, setUserLog } = useAuthContext()
-  const { basketItems, fetchBasketItems, triggerBasketChange } =
-    useContext(BasketContext)
+  const { basketItems, fetchBasketItems } = useContext(BasketContext)
 
   useEffect(() => {
     fetchBasketItems()
-  }, [triggerBasketChange])
+  }, [basketItems])
 
   const handleDisconnect = () => {
-    Logout().then(() => {
-      setUserLog({ usersId: null, firstName: null })
+    instance.get("/logout").then(() => {
+      setUserLog({ firstName: null })
     })
   }
 
@@ -34,48 +33,35 @@ function NavBar({ admin }) {
         <span></span>
         <span></span>
         <span></span>
-        <span></span>
       </div>
       <ul className={isMenuOpen ? "open" : ""}>
         <div className="leftItems">
           <Link to="/administrator">
-            {admin && admin.isAdministrator === 1 ? (
-              <button className="adminButton">A</button>
-            ) : null}
+            {isAdmin ? <button className="adminButton">A</button> : null}
           </Link>
 
           <Link to="/customerArea">
             <button className="persoButton">Espace Client</button>
           </Link>
         </div>
-        <li>
-          <Link className="logoNBL" to="/">
-            <img className="logoNB" src={alterworld} alt="logo" />
-          </Link>
-        </li>
-
+        <Link to="/">
+          <img className="logoNB" src={alterworld} alt="logo" />
+        </Link>
         <div className="rightItems">
           {userLog.firstName ? (
-            <li>
-              <button className="loginNB" onClick={handleDisconnect}>
-                Deconnexion
-              </button>
-            </li>
+            <button className="DeconnexionNB" onClick={handleDisconnect}>
+              Deconnexion
+            </button>
           ) : (
             <Link to="/membre">
-              <li>
-                <img className="loginNB" src={login} alt="login" />
-              </li>
+              <img className="loginNB" src={login} alt="login" />
             </Link>
           )}
-
           <Link to="/basket">
-            <li>
-              <img className="cadiNB" src={caddie} alt="caddie" />
-              {basketItems.length > 0 && (
-                <span className="basketCount">{basketItems.length}</span>
-              )}
-            </li>
+            <img className="cadiNB" src={caddie} alt="caddie" />
+            {basketItems.length > 0 && (
+              <span className="basketCount">{basketItems.length}</span>
+            )}
           </Link>
         </div>
       </ul>

@@ -5,6 +5,7 @@ import App from "./App"
 import { AuthProvider } from "./components/contexts/AuthContext"
 import { BasketProvider } from "./components/contexts/BasketContext"
 import { OrdersProvider } from "./components/contexts/OrdersContext"
+import { UserProvider } from "./components/contexts/UserContext"
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 
@@ -14,7 +15,9 @@ root.render(
       <AuthProvider>
         <BasketProvider>
           <OrdersProvider>
-            <App />
+            <UserProvider>
+              <App />
+            </UserProvider>
           </OrdersProvider>
         </BasketProvider>
       </AuthProvider>

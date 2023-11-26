@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+import "./Presentation.scss"
 function Presentation({ users, basketItems }) {
   return (
     <div className="presentationO">
@@ -7,13 +9,15 @@ function Presentation({ users, basketItems }) {
 
           if (user) {
             return (
-              <div key={user.usersId}>
+              <div className="Presentation" key={user.usersId}>
                 <p className="titleInfo">Vos informations:</p>
                 <p>adresse: {user.address}</p>
                 <p>code postal: {user.zipcode}</p>
                 <p>ville: {user.city}</p>
                 <p>email: {user.email}</p>
-                <button className="buttonYellow">Modifier</button>
+                <Link to="/customerArea">
+                  <button className="buttonYellow">Modifier</button>
+                </Link>
               </div>
             )
           }

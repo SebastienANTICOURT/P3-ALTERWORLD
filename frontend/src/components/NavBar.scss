@@ -6,59 +6,42 @@
   ul {
     height: auto;
     width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* Three columns with equal space on sides */
+    justify-items: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
     list-style-type: none;
     background-color: #ffffff;
     transition: all 0.3s;
+
     .leftItems,
     .rightItems {
       display: flex;
       align-items: center;
-      gap: 5%; // changed to percentage for responsiveness
-    }
-
-    .searchItem {
-      margin-right: 2%; // changed to percentage for responsiveness
+      gap: 5%;
     }
 
     .logoNB {
-      max-width: 70%;
+      max-width: 300px;
+      justify-self: center;
+      margin-top: 5px;
       @media (max-width: 1000px) {
-        display: none;
+        width: 200px;
       }
     }
-
-    .searchContainer {
-      display: flex;
-      align-items: center;
-    }
-    .loupeNB,
-    .loginNB,
-    .cadiNB {
-      position: relative;
-      max-width: 50px;
-      min-width: 30px;
-    }
-
-    .loginNB {
-      margin-right: 100px;
+    .DeconnexionNB {
       font-size: 20px;
       font-weight: bold;
       color: #401f83;
     }
-
-    .cadiNB {
-      margin-right: 10px;
+    .cadiNB,
+    .loginNB {
+      width: 50px;
     }
-
     .basketCount {
       position: absolute;
       margin-top: 20px;
-      margin-right: 50px;
-      // top: 10;
-      // right: 0;
+      margin-right: 70px;
       background-color: red;
       color: white;
       border-radius: 50%;
@@ -89,15 +72,16 @@
   }
 
   .burger {
-    width: 30px;
+    width: 25px;
     height: 20px;
     position: relative;
     display: none;
     cursor: pointer;
-    right: 10px;
+    // right: 10px;
     top: 10px;
+    margin-left: 5px;
 
-    @media (max-width: 1000px) {
+    @media (max-width: 900px) {
       display: block;
     }
 
@@ -106,21 +90,20 @@
       position: absolute;
       height: 3px;
       width: 100%;
-      background: #333; // Choose the color you prefer for the burger lines
+      background: #333;
       border-radius: 3px;
       opacity: 1;
       left: 0;
       transform: rotate(0deg);
-      transition: 0.25s ease-in-out;
+      transition: 0.25s;
 
       &:nth-child(1) {
         top: 0px;
       }
-      &:nth-child(2),
-      &:nth-child(3) {
+      &:nth-child(2) {
         top: 8px;
       }
-      &:nth-child(4) {
+      &:nth-child(3) {
         top: 16px;
       }
     }
@@ -139,24 +122,30 @@
         &:nth-child(3) {
           transform: rotate(-45deg);
         }
-        &:nth-child(4) {
-          top: 8px;
-          width: 0%;
-          left: 50%;
-          visibility: hidden;
-        }
       }
     }
   }
 
   ul {
-    // ... existing styles
-    @media (max-width: 1000px) {
+    @media (max-width: 900px) {
       display: none;
     }
   }
-
   ul.open {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    justify-content: space-around;
+    align-items: center;
+    .leftItems {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .rightItems {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
   }
 }

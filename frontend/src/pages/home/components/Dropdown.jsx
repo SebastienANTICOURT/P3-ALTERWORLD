@@ -25,7 +25,7 @@ function Dropdown({
           <option value="all">Univers</option>
           {univers.map((univer) => (
             <option key={univer.id} value={univer.id}>
-              {univer.name}
+              {univer.uniName}
             </option>
           ))}
         </select>
@@ -35,10 +35,10 @@ function Dropdown({
           value={selectedTypes}
           onChange={(e) => setSelectedTypes(e.target.value)}
         >
-          <option value="all">Types</option>
+          <option value="all">Natures</option>
           {types.map((type) => (
             <option key={type.id} value={type.id}>
-              {type.name}
+              {type.typName}
             </option>
           ))}
         </select>

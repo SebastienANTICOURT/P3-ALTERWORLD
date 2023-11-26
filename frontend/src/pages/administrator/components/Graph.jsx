@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
+import { useOrdersContext } from "../../../components/contexts/OrdersContext"
 import BarChart from "./BarChart"
 import "./Graphe.scss"
 
-function Graph({ orders }) {
+function Graph() {
+  const { salesQuantities } = useOrdersContext()
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [
@@ -16,38 +18,22 @@ function Graph({ orders }) {
     ],
   })
 
-  function aggregateData(data) {
-    const aggregated = {}
-
-    data.forEach((order) => {
-      const productName = order.name
-      if (aggregated[productName]) {
-        aggregated[productName] += order.quantity
-      } else {
-        aggregated[productName] = order.quantity
-      }
-    })
-
-    const productNames = Object.keys(aggregated)
-    const quantities = Object.values(aggregated)
-
-    return {
+  useEffect(() => {
+    const productNames = Object.keys(salesQuantities)
+    const quantities = Object.values(salesQuantities)
+    setChartData({
       labels: productNames,
       datasets: [
         {
-          ...chartData.datasets[0],
+          ...chartData.datasets,
           data: quantities,
+          backgroundColor: "rgba(75, 192, 192, 0.6)",
+          borderColor: "rgba(75, 192, 192, 1)",
+          borderWidth: 1,
         },
       ],
-    }
-  }
-
-  useEffect(() => {
-    if (orders && orders.length) {
-      const processedData = aggregateData(orders)
-      setChartData(processedData)
-    }
-  }, [orders])
+    })
+  }, [salesQuantities])
 
   return (
     <div className="Graph">

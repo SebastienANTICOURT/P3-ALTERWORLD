@@ -1,9 +1,21 @@
-import { useAuthContext } from "../../../components/contexts/AuthContext"
+import { useEffect, useState } from "react"
+import { getListeAchats } from "../../../components/Axios"
 import "./Listes.scss"
 
-function ListeAchats({ orders }) {
-  const { userLog } = useAuthContext()
-  const purchases = orders.filter((order) => order.usersId === userLog.usersId)
+function ListeAchats() {
+  const [purchases, setPurchases] = useState([])
+
+  useEffect(() => {
+    const getPurchases = async () => {
+      try {
+        const data = await getListeAchats()
+        setPurchases(data)
+      } catch (error) {
+        console.error("Erreur lors de la récupération des achats", error)
+      }
+    }
+    getPurchases()
+  }, [])
 
   const groupByBillNumber = (purchases) => {
     return purchases.reduce((acc, purchase) => {

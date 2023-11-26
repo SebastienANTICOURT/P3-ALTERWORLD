@@ -1,9 +1,21 @@
-import { useAuthContext } from "../../../components/contexts/AuthContext"
+import { useEffect, useState } from "react"
+import { getListeVentes } from "../../../components/Axios"
 import "./Listes.scss"
 
-function ListeVentes({ orders }) {
-  const { userLog } = useAuthContext()
-  const sales = orders.filter((order) => order.creatorId === userLog.usersId)
+function ListeVentes() {
+  const [sales, setSales] = useState([])
+
+  useEffect(() => {
+    const getSales = async () => {
+      try {
+        const data = await getListeVentes()
+        setSales(data)
+      } catch (error) {
+        console.error("Erreur lors de la récupération des achats", error)
+      }
+    }
+    getSales()
+  }, [])
 
   const groupByBillNumber = (sales) => {
     return sales.reduce((acc, sale) => {

@@ -1,8 +1,6 @@
-import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { basket } from "../../components/Axios"
-import { useAuthContext } from "../../components/contexts/AuthContext"
+import { instance } from "../../components/Axios"
 import BasketContext from "../../components/contexts/BasketContext"
 import "./Details.scss"
 
@@ -11,13 +9,11 @@ function Details() {
   const [detail, setDetail] = useState([])
   const [quantity, setQuantity] = useState(1)
   const [total, setTotal] = useState(0)
-  const { triggerBasketChange } = useContext(BasketContext)
-  const { userLog } = useAuthContext()
-  const usersId = userLog.usersId
+  const { setBasketItems } = useContext(BasketContext)
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/products/${id}`)
+    instance
+      .get(`/products/${id}`)
       .then((res) => {
         setDetail(res.data)
       })
@@ -27,7 +23,7 @@ function Details() {
   }, [id])
 
   const decreaseQuantity = () => {
-    setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1))
+    setQuantity((data) => Math.max(1, data - 1))
   }
   const increaseQuantity = () => {
     setQuantity(quantity + 1)
@@ -38,14 +34,20 @@ function Details() {
   }, [quantity, detail.price])
 
   const addToBasket = () => {
-    basket(usersId, id, quantity, total)
-      .then(() => {
+    const basketData = {
+      productsId: id,
+      quantity,
+      total,
+    }
+    instance
+      .post("/basket", basketData)
+      .then((data) => {
         alert("Le produit a été ajouté au panier")
-        triggerBasketChange()
+        setBasketItems(data)
       })
       .catch((error) => {
-        console.error(error)
-        alert("Echec de l'ajout au panier", error)
+        console.error("Erreur lors de l'ajout au panier", error)
+        alert("Echec de l'ajout au panier")
       })
   }
 
@@ -56,22 +58,25 @@ function Details() {
           <img src={`http://localhost:4242${detail.image}`} alt={detail.name} />
         </div>
         <div className="rightContainerD">
-          <figcaption>{detail.name}</figcaption>
-          <p className="PricesD">{detail.price} €</p>
-          <div className="quantityD">
-            <button onClick={decreaseQuantity}>-</button>
-            <p>{quantity}</p>
-            <button onClick={increaseQuantity}>+</button>
+          <figcaption>{detail.prName}</figcaption>
+          <p>
+            Créateur: {detail.firstName} {detail.lastName}
+          </p>
+          <p>Univers: {detail.uniName}</p>
+          <p>Nature: {detail.typName}</p>
+          <div className="totalD">
+            <p className="PricesD">Prix: {detail.price} €</p>
+            <div className="quantityD">
+              <button onClick={decreaseQuantity}>-</button>
+              <p>{quantity}</p>
+              <button onClick={increaseQuantity}>+</button>
+            </div>
+            <p>Total : {total} €</p>
           </div>
-          <p>Total : {total} €</p>
           <button className="buttonPurple" onClick={addToBasket}>
             Ajouter au panier
           </button>
-          <button className="buttonPurple">Acheter maintenant</button>
         </div>
-      </div>
-      <div className="buttonsD">
-        <button className="buttonYellow">Revenir à la selection</button>
       </div>
     </div>
   )

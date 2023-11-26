@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { login } from "../components/Axios"
+import { instance } from "../components/Axios"
 import { useAuthContext } from "../components/contexts/AuthContext"
 import "./Membre.scss"
 
@@ -10,12 +10,12 @@ function Membre() {
   const { setUserLog } = useAuthContext()
   const navigate = useNavigate()
 
-  const handleClick = () => {
-    login(email, password)
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    instance
+      .post("/login", { email, password })
       .then((data) => {
         setUserLog({
-          // token: data.token,
-          usersId: data.usersId,
           firstName: data.firstName,
         })
         navigate("/")
@@ -27,30 +27,39 @@ function Membre() {
   }
 
   return (
-    <div className="Membre">
-      <h2>Connectez vous</h2>
-      <div>
-        <figcaption>Email:</figcaption>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email"
-        />
+    <div className="countainerMembre">
+      <div className="Membre">
+        <h1>Connectez vous</h1>
+        <form onSubmit={handleSubmit}>
+          {" "}
+          <div>
+            <figcaption>Email:</figcaption>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div>
+            <figcaption>Password:</figcaption>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <button type="submit" className="buttonYellow">
+            Connection
+          </button>
+        </form>
+        <Link to="/nonMembre">
+          <p>Pas encore inscrit ? créez votre compte</p>
+        </Link>
       </div>
-      <div>
-        <figcaption>Password:</figcaption>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter your password"
-        />
-      </div>
-      <button onClick={handleClick}>Connection</button>
-      <Link to="/nonMembre">
-        <p>Pas encore inscrit ? créez votre compte</p>
-      </Link>
     </div>
   )
 }

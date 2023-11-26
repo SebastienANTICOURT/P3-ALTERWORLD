@@ -7,7 +7,6 @@ const hashingOptions = {
   timeCost: 5,
   parallelism: 1,
 }
-
 const hashPassword = (req, res, next) => {
   argon2
     .hash(req.body.password, hashingOptions)
@@ -22,29 +21,28 @@ const hashPassword = (req, res, next) => {
     })
 }
 
-const verifyPassword = (req, res, next) => {
+const verifyPassword = (req, res) => {
+  // console.log("req", req)
   argon2
     .verify(req.user.password, req.body.password)
     .then((isVerified) => {
       if (isVerified) {
-        const payload = { sub: req.user.id }
+        const payload = {
+          sub: req.user.usersId,
+          isAdministrator: req.user.isAdministrator,
+        }
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
-          expiresIn: "1h",
+          expiresIn: "5h",
         })
         delete req.user.password
         res.cookie("token", token, {
           httpOnly: true,
-          secure: false,
-          sameSite: "strict",
-        })
-        res.cookie("usersId", req.user.usersId, {
-          httpOnly: false,
-          secure: false,
+          secure: process.env.NODE_ENV === "production",
           sameSite: "strict",
         })
         res.cookie("firstName", req.user.firstName, {
           httpOnly: false,
-          secure: false,
+          secure: process.env.NODE_ENV === "production",
           sameSite: "strict",
         })
         res.send({ utilisateur: req.user })
@@ -59,22 +57,31 @@ const verifyPassword = (req, res, next) => {
 }
 
 const verifyToken = (req, res, next) => {
-  try {
-    const token = req.cookies.token; 
-    console.log("token", req.cookies.token)
-    if (!token) {
-      throw new Error("No token provided");
-    }
-    req.payload = jwt.verify(token, process.env.JWT_SECRET);
-    next();
-  } catch (err) {
-    console.error(err);
-    res.sendStatus(401);
+  const token = req.cookies.token
+  if (!token) {
+    return res.status(401).send("No token provided")
   }
-};
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      console.error(err)
+      return res.status(401).send("Invalid token")
+    }
+    req.payload = decoded
+    next()
+  })
+}
+
+const verifyIsAdministrator = (req, res, next) => {
+  if (req.payload && req.payload.isAdministrator === 1) {
+    next()
+  } else {
+    res.sendStatus(401)
+  }
+}
 
 module.exports = {
   hashPassword,
   verifyPassword,
   verifyToken,
+  verifyIsAdministrator,
 }

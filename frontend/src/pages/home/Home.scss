@@ -1,44 +1,46 @@
 @import "../../Style.scss";
 .Home {
-  height: 200vh;
+  height: 100%;
   width: 100%;
 }
-.imageHome {
-  // height: 70vh;
+.containerHome {
+  height: 60vh;
   width: 100%;
   display: flex;
   justify-content: space-around;
   padding-top: 50px;
   padding-bottom: 50px;
   background-color: whitesmoke;
-  @media (max-width: 900px) {
-    height: 100vh;
+  @media (max-width: 1500px) {
+    height: 55vh;
     flex-direction: column;
     justify-content: center;
+    gap: 10px;
     align-items: center;
+    padding-bottom: 100px;
   }
 }
 
 .hydreHome {
-  width: 30%;
-  @media (max-width: 700px) {
-    display: none;
-  }
+  width: 30vw;
 }
 
 .ContainerText {
-  height: 100px;
-  width: 40%;
+  height: auto;
+  width: 40vw;
   display: flex;
   justify-content: center;
   flex-direction: column;
   background-color: whitesmoke;
-  padding-top: 100px;
+  font-size: 1.2rem;
   padding-right: 50px;
+  @media (max-width: 700px) {
+    width: 70%;
+    // margin-bottom: 10px;
+  }
   .bienvenu {
-    // display: flex;
     p {
-      font-size: 30px;
+      font-size: 1.2rem;
       font-weight: bold;
       img {
         height: 35px;
@@ -47,48 +49,12 @@
     }
     .textHome {
       display: flex;
+      font-size: 1rem;
       justify-content: center;
-      font-size: 20px;
-      font-weight: lighter;
       background-color: whitesmoke;
     }
   }
   a {
-    text-decoration: none; /* This removes the underline */
+    text-decoration: none;
   }
-  button {
-    height: 35px;
-    width: 250px;
-    background-color: $yellow;
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    justify-content: center;
-    font-size: 16px;
-    font-weight: bold;
-    padding-top: 5px;
-    border: black 2px solid;
-    border-radius: 20px;
-    cursor: pointer;
-  }
-
-  .buttonPurple {
-    height: 35px;
-    width: 250px;
-    background-color: #401f83;
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 15px;
-    color: whitesmoke;
-    padding-top: 5px;
-    border: black 2px solid;
-    border-radius: 20px;
-    margin-bottom: 20px;
-  }
-}
-
-.FiltresBarH {
-  height: 500px;
 }

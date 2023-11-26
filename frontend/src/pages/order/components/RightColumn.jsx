@@ -1,8 +1,9 @@
+import "../../Basket.scss"
 function RightColumn({ handleOrderAndDelete, totalPrice, TVA }) {
   return (
-    <div>
-      <p>TOTAL :{totalPrice} €</p>
-      <p className="TVA">Dont TVA :{TVA} €</p>
+    <div className="RightColumnB">
+      <h1>TOTAL :{totalPrice} €</h1>
+      <p>Dont TVA :{TVA} €</p>
       <div className="buttonOrder">
         <button className="buttonPurple" onClick={handleOrderAndDelete}>
           Commander!

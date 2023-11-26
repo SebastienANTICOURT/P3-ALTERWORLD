@@ -1,0 +1,45 @@
+@import "../Style.scss";
+
+.LeftColumnB {
+  width: 50%;
+  margin-left: 10%;
+  margin-top: 10px;
+  @media (max-width: 800px) {
+    margin-left: 0%;
+  }
+  .itemsOrder {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    @media (max-width: 800px) {
+      flex-direction: column;
+      margin-left: 0%;
+      gap: 1px;
+      padding-bottom: 10px;
+    }
+  }
+  .imageOrder {
+    display: flex;
+    gap: 20px;
+    .deleteButton {
+      font-size: 20px;
+      font-weight: bold;
+      align-items: center;
+    }
+    img {
+      width: 300px;
+      @media (max-width: 800px) {
+        width: 250px;
+      }
+    }
+  }
+  .QuantityB {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    gap: 20px;
+    @media (max-width: 750px) {
+      gap: 1px;
+    }
+  }
+}

@@ -13,8 +13,22 @@ const browse = (req, res) => {
 }
 
 const orderUsersId = (req, res) => {
+  const usersId = req.payload.sub
   models.orders
-    .findOrdersUsersId(req.params.usersId)
+    .findOrdersUsersId(usersId)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
+const orderCreatorId = (req, res) => {
+  const creatorId = req.payload.sub
+  models.orders
+    .findOrdersCreatorId(creatorId)
     .then(([rows]) => {
       res.send(rows)
     })
@@ -35,48 +49,20 @@ const newBillNumber = (req, res) => {
       res.sendStatus(500)
     })
 }
+
 const add = (req, res) => {
+  // console.log("test01", req.body)
   const orders = req.body
-  if (Array.isArray(orders)) {
-    Promise.all(
-      orders.map((order) => {
-        return models.orders.insert(order)
-      })
-    )
-      .catch((err) => {
-        // console.error("Erreur lors de l'insertion des commandes:", err)
-        throw err // rejet pour que le catch ultérieur puisse le traiter
-      })
-      .then((results) => {
-        // console.log("test03")
-        return models.basket
-          .deleteAll(orders[0].usersId)
-          .then(() => results.map((result) => result.insertId))
-      })
-      .then((response) => {
-        res.json(response)
-      })
-      .catch((err) => {
-        console.error(err)
-        res.sendStatus(500)
-      })
-  } else {
-    models.orders
-      .insert([orders])
-      .then(([result]) => {
-        // console.log("Before deleteAll:", orders[0].usersId)
-        return models.basket
-          .deleteAll(orders[0].usersId)
-          .then(() => result.insertId)
-      })
-      .then((response) => {
-        res.json(response)
-      })
-      .catch((err) => {
-        console.error(err)
-        res.sendStatus(500)
-      })
-  }
+  models.orders
+    .insert(orders)
+    .then(([result]) => {
+      // console.log("test02", result)
+      res.json(result.insertId)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
 }
 
 module.exports = {
@@ -84,4 +70,5 @@ module.exports = {
   browse,
   newBillNumber,
   add,
+  orderCreatorId,
 }

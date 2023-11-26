@@ -1,31 +1,29 @@
 import axios from "axios"
 import { useState } from "react"
-import { useAuthContext } from "../components/contexts/AuthContext"
+import { instance } from "../components/Axios"
 import "./Contact.scss"
 
 function Contact() {
-  const { userLog } = useAuthContext()
-  const [name, setName] = useState("")
+  const [prName, setName] = useState("")
   const [imagePath, setImagePath] = useState("")
   const [price, setPrice] = useState("")
   const [univers, setUnivers] = useState("")
   const [type, setType] = useState("")
   const [image, setImage] = useState()
 
-  const creatorId = userLog.usersId
   const productData = {
-    name,
+    prName,
     image: imagePath,
     price,
-    creatorId,
     univerId: univers,
     typesId: type,
   }
-  const addProducts = () => {
-    axios
-      .post("http://localhost:4242/products", productData)
-      .then((response) => {
-        // console.log(response.data)
+  const submitProducts = (e) => {
+    e.preventDefault()
+    instance
+      .post("/products", productData)
+      .then(() => {
+        alert("produit créé avec succés")
       })
       .catch((error) => {
         console.error("Erreur lors de la création de l'utilisateur:", error)
@@ -43,66 +41,78 @@ function Contact() {
     const formData = new FormData()
     formData.append("image", image)
     axios.post("http://localhost:4242/upload", formData).then((res) => {
-      // Mettre à jour l'état avec le chemin de l'image
       setImagePath(res.data.path)
     })
-    // Gérer les erreurs ici
   }
 
   return (
     <div className="contact">
       <div className="newProduct">
-        <div className="firstLine">
-          <div className="column">
-            <figcaption>Nom de votre produit</figcaption>
-            <input
-              type="text"
-              placeholder="nom"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-            />
+        <form onSubmit={submitProducts}>
+          <div className="Liste">
+            <div className="Line">
+              <figcaption>Nom de votre produit:</figcaption>
+              <input
+                type="text"
+                placeholder="nom"
+                value={prName}
+                onChange={(event) => setName(event.target.value)}
+                required
+              />
+            </div>
+            <div className="Line">
+              <figcaption>Prix:</figcaption>
+              <input
+                type="text"
+                placeholder="prix"
+                value={price}
+                onChange={(event) => setPrice(event.target.value)}
+                required
+              />
+            </div>
+            <div className="Line">
+              <figcaption>Univers souhaité</figcaption>
+              <input
+                type="text"
+                placeholder="Univers"
+                value={univers}
+                onChange={(event) => setUnivers(event.target.value)}
+                required
+              />
+            </div>
+            <div className="Line">
+              <figcaption>Type souhaité</figcaption>
+              <input
+                type="text"
+                placeholder="Type"
+                value={type}
+                onChange={(event) => setType(event.target.value)}
+                required
+              />
+            </div>
+            <div className="Line">
+              <figcaption>Image</figcaption>
+              <input
+                className="inputImage"
+                type="file"
+                onChange={handleImageChange}
+              />
+              {image && (
+                <img
+                  src={URL.createObjectURL(image)}
+                  alt="Selected"
+                  style={{ maxWidth: "200px" }}
+                />
+              )}
+              <button className="buttonYellow" onClick={upload}>
+                selectionner
+              </button>
+            </div>
           </div>
-          <div className="column">
-            <figcaption>Prix</figcaption>
-            <input
-              type="text"
-              placeholder="prix"
-              value={price}
-              onChange={(event) => setPrice(event.target.value)}
-            />
-          </div>
-        </div>
-        <div className="firstLine">
-          <div className="column">
-            <figcaption>Univers souhaité</figcaption>
-            <input
-              type="text"
-              placeholder="Univers"
-              value={univers}
-              onChange={(event) => setUnivers(event.target.value)}
-            />
-          </div>
-          <div className="column">
-            <figcaption>Type souhaité</figcaption>
-            <input
-              type="text"
-              placeholder="Type"
-              value={type}
-              onChange={(event) => setType(event.target.value)}
-            />
-          </div>
-        </div>
-        <figcaption>Image</figcaption>
-        <input type="file" onChange={handleImageChange} />
-        {image && (
-          <img
-            src={URL.createObjectURL(image)}
-            alt="Selected"
-            style={{ maxWidth: "200px" }}
-          />
-        )}
-        <button onClick={upload}>selectionner</button>
-        <button onClick={addProducts}>Envoyer</button>
+          <button className="buttonYellow" type="submit">
+            Envoyer
+          </button>
+        </form>
       </div>
     </div>
   )

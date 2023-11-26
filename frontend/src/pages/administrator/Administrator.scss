@@ -1,54 +1,51 @@
 @import "../../Style.scss";
 
-.Administrator {
-  height: 150vh;
+.UserContainer {
+  // height: 150vh;
   width: 100%;
   background-color: whitesmoke;
   padding-left: 20px;
-  .sectionButtons {
-    width: 100%;
+  h1 {
     display: flex;
-    gap: 20px;
-    padding-top: 15px;
-    padding-bottom: 10px;
-    button {
-      padding: 15px;
-      font-size: 20px;
-      font-weight: bold;
-      border: 3px black solid;
-    }
+    justify-content: center;
+    padding-top: 50px;
+    font-size: 1.5rem;
   }
-  input {
-    height: 30px;
-  }
+
   .updateData {
     display: flex;
     gap: 50px;
-    padding-top: 20px;
   }
   .GraphA {
-    width: 100%;
-    padding-top: 50px;
+    width: 70%;
+    // padding-top: 15px;
     display: flex;
-    h1 {
-      font-size: 25px;
-    }
-    .BarChart {
-      height: auto;
-      width: 50%;
-    }
+    flex-direction: column;
+    // .BarChart {
+    //   height: auto;
+    //   width: 50%;
+    // }
   }
 }
-
 .container {
   width: 100%;
+  .BarAdminUsers {
+    width: 80%;
+    display: flex;
+    align-items: flex-start;
+  }
   .searchBar {
-    width: 100%;
+    width: 68%;
     display: flex;
     align-items: center;
+    justify-items: center;
     gap: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
+  }
+
+  .listeUsers {
+    padding-top: 20px;
   }
   .listUsers th,
   .listUsers td {
@@ -56,5 +53,22 @@
     padding-right: 20px;
     border: 1px solid #ddd;
     text-align: left;
+  }
+}
+
+.sectionButtons {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  @media (max-width: 1000px) {
+    width: 200px;
+  }
+  button {
+    padding: 15px;
+    font-weight: bold;
+    font-size: 1rem;
+    border: 3px black solid;
   }
 }
