@@ -12,9 +12,22 @@ const browse = (req, res) => {
     })
 }
 
+const add = (req, res) => {
+  const users = req.body
+  users.password = req.body.hashedPassword
+  models.users
+    .insert(users)
+    .then(([result]) => {
+      res.json(result.insertId)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const read = (req, res) => {
   const usersId = req.payload.sub
-  // console.log("payload", req.payload.sub)
   models.users
     .find(usersId)
     .then(([rows]) => {
@@ -30,22 +43,9 @@ const read = (req, res) => {
     })
 }
 
-const add = (req, res) => {
-  const users = req.body
-  users.password = req.body.hashedPassword
-  models.users
-    .insert(users)
-    .then(([result]) => {
-      res.json(result.insertId)
-    })
-    .catch((err) => {
-      console.error(err)
-      res.sendStatus(500)
-    })
-}
+
 
 const edit = (req, res) => {
-  // console.log("update1",req.body)
   const users = req.body
   users.usersId = req.payload.sub
   models.users
@@ -104,7 +104,7 @@ const logoutUsers = (req, res) => {
     res.clearCookie("firstName")
     res.sendStatus(200)
   } catch (error) {
-    res.status(500).send({ message: "La déconnexion a échoué" })
+    res.status(500).send("La déconnexion a échoué")
   }
 }
 

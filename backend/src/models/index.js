@@ -37,8 +37,8 @@ const BasketManager = require("./BasketManager")
 const OrdersManager = require("./OrdersManager")
 const UsersManager = require("./UsersManager")
 
-models.characters = new CharactersManager()
-models.characters.setDatabase(pool)
+models.users = new UsersManager()
+models.users.setDatabase(pool)
 
 models.products = new ProductsManager()
 models.products.setDatabase(pool)
@@ -55,8 +55,10 @@ models.basket.setDatabase(pool)
 models.orders = new OrdersManager()
 models.orders.setDatabase(pool)
 
-models.users = new UsersManager()
-models.users.setDatabase(pool)
+models.characters = new CharactersManager()
+models.characters.setDatabase(pool)
+
+
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model

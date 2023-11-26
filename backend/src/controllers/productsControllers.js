@@ -12,6 +12,22 @@ const browse = (req, res) => {
     })
 }
 
+const add = (req, res) => {
+  const products = {
+    ...req.body,
+    creatorId: req.payload.sub,
+  }
+  models.products
+    .insert(products)
+    .then(([result]) => {
+      res.json(result.insertId)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const productsN = (req, res) => {
   models.products
     .findProduct()
@@ -40,21 +56,7 @@ const read = (req, res) => {
     })
 }
 
-const add = (req, res) => {
-  const products = {
-    ...req.body,
-    creatorId: req.payload.sub,
-  }
-  models.products
-    .insert(products)
-    .then(([result]) => {
-      res.json(result.insertId)
-    })
-    .catch((err) => {
-      console.error(err)
-      res.sendStatus(500)
-    })
-}
+
 
 const destroy = (req, res) => {
   models.products

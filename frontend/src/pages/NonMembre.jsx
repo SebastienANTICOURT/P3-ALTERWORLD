@@ -43,7 +43,7 @@ function NonMembre({ users }) {
   return (
     <div className="nonMembre">
       <div className="login-container">
-        <h2>Créez votre compte</h2>
+        <h1>Créez votre compte</h1>
         <form onSubmit={handleSubmit}>
           <div className="liste">
             <div className="line">

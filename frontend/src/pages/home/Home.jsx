@@ -15,7 +15,7 @@ function Home({ userLog }) {
             <p>
               {userLog && userLog.firstName ? (
                 <>
-                  Bienvenu, {userLog.firstName}{" "}
+                  Bienvenue {userLog.firstName},{" "}
                   <img src={smiley} alt="smiley" />
                 </>
               ) : null}{" "}
@@ -23,9 +23,8 @@ function Home({ userLog }) {
             </p>
             <div className="textHome">
               Enfin une boutique où les fans de RPG peuvent accéder à du contenu
-              de qualité et proposer leurs créations. dans tous les univers
-              possible. Sélectionner les univers et les objets desirés et
-              commencez l'aventure.
+              de qualité et proposer leurs créations. Sélectionnez les univers
+              et les objets desirés et écrivez votre propre aventure.
             </div>
           </div>
           <Link to="/contact">

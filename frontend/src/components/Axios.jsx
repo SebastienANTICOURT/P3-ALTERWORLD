@@ -6,16 +6,6 @@ export const instance = axios.create({
 })
 
 // GET
-// export async function checkAdminRights() {
-//   try {
-//     const res = await instance.get("/Admin")
-//     return res.data
-//   } catch (error) {
-//     console.error("Error axios", error)
-//     throw error
-//   }
-// }
-
 export async function getProducts() {
   try {
     const res = await instance.get("/products")

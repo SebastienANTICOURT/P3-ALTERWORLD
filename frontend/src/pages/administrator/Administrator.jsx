@@ -1,20 +1,16 @@
 import { useEffect, useState } from "react"
-import { deleteUserById, getProducts, getUsers } from "../../components/Axios"
+import { deleteUserById, getProducts } from "../../components/Axios"
 import "./Administrator.scss"
 import Customers from "./components/Customers"
 import Graph from "./components/Graph"
 import Graph2 from "./components/Graph2"
 import Products from "./components/Products"
 
-function Administrator({ ordersData }) {
-  const [users, setUsers] = useState([])
+function Administrator({ users }) {
   const [products, setProducts] = useState([])
   const [activeSection, setActiveSection] = useState("customers")
 
   useEffect(() => {
-    getUsers().then((data) => {
-      setUsers(data)
-    })
     getProducts().then((data) => {
       setProducts(data)
     })
@@ -53,9 +49,9 @@ function Administrator({ ordersData }) {
       {activeSection === "charts" && (
         <div className="GraphA">
           <h1>Produits par quantités vendues.</h1>
-          <Graph orders={ordersData} />
+          <Graph />
           <h1>clients par quantités vendues.</h1>
-          <Graph2 orders={ordersData} />
+          <Graph2 />
         </div>
       )}
     </div>

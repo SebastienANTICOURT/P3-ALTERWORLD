@@ -4,7 +4,6 @@ import "./Style.scss"
 import { getUsers, instance } from "./components/Axios"
 import NavBar from "./components/NavBar"
 import { useAuthContext } from "./components/contexts/AuthContext"
-import { useOrdersContext } from "./components/contexts/OrdersContext"
 import Order from "./pages//order/Order"
 import Basket from "./pages/Basket"
 import Contact from "./pages/Contact"
@@ -19,7 +18,6 @@ function App() {
   const [users, setUsers] = useState([])
   const [isAdmin, setIsAdmin] = useState(false)
   const { userLog } = useAuthContext()
-  const { ordersData } = useOrdersContext()
 
   useEffect(() => {
     getUsers().then((data) => {
@@ -57,7 +55,7 @@ function App() {
         {isAdmin ? (
           <Route
             path="/administrator"
-            element={<Administrator ordersData={ordersData} users={users} />}
+            element={<Administrator users={users} />}
           />
         ) : (
           ""

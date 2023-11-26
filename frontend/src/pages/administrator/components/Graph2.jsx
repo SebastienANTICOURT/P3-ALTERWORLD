@@ -1,52 +1,45 @@
 import React, { useEffect, useState } from "react"
+import { useOrdersContext } from "../../../components/contexts/OrdersContext"
 import BarChart from "./BarChart"
 
-function Graph2({ orders }) {
+function Graph2() {
+  const { ordersData } = useOrdersContext()
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [
       {
-        label: "Quantité vendue",
         data: [],
-        backgroundColor: "rgba(145, 52, 52, 0.5)", // color of the bars
+        backgroundColor: "rgba(145, 52, 52, 0.5)",
         borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 1,
       },
     ],
   })
 
-  function aggregateData(data) {
-    const aggregated = {}
-
-    data.forEach((order) => {
+  const aggregateData = (data) => {
+    return data.reduce((aggregated, order) => {
       const usersName = order.firstname
-      if (aggregated[usersName]) {
-        aggregated[usersName] += order.quantity // Sum up the quantities if the user exists
-      } else {
-        aggregated[usersName] = order.quantity // Initialize the quantity if the user does not exist
-      }
-    })
-
-    const usersNames = Object.keys(aggregated)
-    const quantities = Object.values(aggregated)
-
-    return {
-      labels: usersNames,
-      datasets: [
-        {
-          ...chartData.datasets[0],
-          data: quantities,
-        },
-      ],
-    }
+      aggregated[usersName] = (aggregated[usersName] || 0) + order.quantity
+      return aggregated
+    }, {})
   }
 
   useEffect(() => {
-    if (orders && orders.length) {
-      const processedData = aggregateData(orders)
-      setChartData(processedData)
+    if (ordersData && ordersData.length) {
+      const aggregatedData = aggregateData(ordersData)
+      const usersNames = Object.keys(aggregatedData)
+      const quantities = Object.values(aggregatedData)
+      setChartData({
+        labels: usersNames,
+        datasets: [
+          {
+            ...chartData.datasets,
+            data: quantities,
+          },
+        ],
+      })
     }
-  }, [orders]) // The effect will re-run whenever the 'orders' prop changes
+  }, [ordersData])
 
   return (
     <div className="Graph">

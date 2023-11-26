@@ -8,8 +8,13 @@ $greenD: #2a8795;
 $greendark: #325068;
 $purple: #0e0424;
 
+// Font-size
 html {
   font-size: 20px;
+}
+
+h1 {
+  font-size: 1.5rem;
 }
 
 * {
@@ -24,10 +29,7 @@ ul {
   list-style-type: none;
 }
 
-h1 {
-  color: $purple;
-  font-size: 1.5rem;
-}
+
 
 Link {
   text-decoration: none;

@@ -19,7 +19,7 @@ function FiltresBar() {
   const [creators, setCreators] = useState([])
   const [selectedCreators, setSelectedCreators] = useState("all")
   const [sortOrder, setSortOrder] = useState("Trier par prix")
-  const { ordersData } = useOrdersContext()
+  const { salesQuantities } = useOrdersContext()
 
   useEffect(() => {
     getProducts().then((data) => {
@@ -35,20 +35,6 @@ function FiltresBar() {
       setTypes(data)
     })
   }, [])
-
-  const aggregateData = (data) => {
-    return data.reduce((aggregated, order) => {
-      const productName = order.prName
-      if (aggregated[productName]) {
-        aggregated[productName] += order.quantity
-      } else {
-        aggregated[productName] = order.quantity
-      }
-      return aggregated
-    }, {}) // Initialisation de l'accumulateur comme un objet vide
-  }
-
-  const salesQuantities = aggregateData(ordersData)
 
   const filteredProducts = () => {
     let filtered = products

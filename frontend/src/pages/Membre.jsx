@@ -29,7 +29,7 @@ function Membre() {
   return (
     <div className="countainerMembre">
       <div className="Membre">
-        <h2>Connectez vous</h2>
+        <h1>Connectez vous</h1>
         <form onSubmit={handleSubmit}>
           {" "}
           <div>
