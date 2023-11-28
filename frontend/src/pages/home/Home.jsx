@@ -8,24 +8,25 @@ function Home({ userLog }) {
   return (
     <div className="Home">
       <div className="containerHome">
-        <img className="hydreHome" src={hydreHome} alt="hydreHome" />
+        <img className="hydreHome" src={hydreHome} alt="hydre" />
 
         <div className="ContainerText">
           <div className="bienvenu">
-            <p>
+            <h1>
               {userLog && userLog.firstName ? (
                 <>
                   Bienvenue {userLog.firstName},{" "}
                   <img src={smiley} alt="smiley" />
                 </>
               ) : null}{" "}
-              Vivez votre propre aventure avec ALTERWORLD !
-            </p>
-            <div className="textHome">
+              Vivez votre propre aventure dans le monde du jeux de rôle avec
+              ALTERWORLD !
+            </h1>
+            <p className="textHome">
               Enfin une boutique où les fans de RPG peuvent accéder à du contenu
               de qualité et proposer leurs créations. Sélectionnez les univers
               et les objets desirés et écrivez votre propre aventure.
-            </div>
+            </p>
           </div>
           <Link to="/contact">
             <button className="buttonYellow">Proposez vos créations !</button>

@@ -12,9 +12,8 @@ $purple: #0e0424;
 html {
   font-size: 20px;
 }
-
 h1 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 * {
@@ -28,8 +27,6 @@ ul {
   display: flex;
   list-style-type: none;
 }
-
-
 
 Link {
   text-decoration: none;
@@ -50,15 +47,10 @@ button {
   height: 30px;
   background-color: $yellow;
   display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  justify-content: center;
+  margin: 10px auto;
   font-size: 0.8rem;
   font-weight: bold;
-  padding-top: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 5px 20px;
   border: black 2px solid;
   border-radius: 20px;
   cursor: pointer;
@@ -74,9 +66,7 @@ button {
   font-weight: bold;
   font-size: 0.8rem;
   color: whitesmoke;
-  padding-top: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 5px 20px;
   border: black 2px solid;
   border-radius: 20px;
   margin-bottom: 20px;

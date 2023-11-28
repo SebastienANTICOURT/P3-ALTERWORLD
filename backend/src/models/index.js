@@ -58,8 +58,6 @@ models.orders.setDatabase(pool)
 models.characters = new CharactersManager()
 models.characters.setDatabase(pool)
 
-
-
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 

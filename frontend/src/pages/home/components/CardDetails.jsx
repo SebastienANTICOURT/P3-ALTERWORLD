@@ -6,6 +6,7 @@ function CardDetails({ cardProduct }) {
       <img
         className="imageProd"
         src={`http://localhost:4242${cardProduct.image}`}
+        alt={cardProduct.prName}
       />
       <figcaption>{cardProduct.prName}</figcaption>
       <p className="PriceH">{cardProduct.price} €</p>

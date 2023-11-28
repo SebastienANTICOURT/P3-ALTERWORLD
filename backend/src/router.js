@@ -16,8 +16,6 @@ const {
   verifyIsAdministrator,
 } = require("./auth")
 
-
-
 router.get("/products", productsControllers.browse)
 router.get("/products", productsControllers.productsN)
 router.get("/products/:id", productsControllers.read)
@@ -35,7 +33,7 @@ router.post("/users", validateUsers, hashPassword, usersControllers.add)
 router.put("/users", verifyToken, validateUpdate, usersControllers.edit)
 router.delete("/users/:id", verifyToken, usersControllers.destroy)
 
-router.get("/basket", basketControllers.browse)
+router.get("/basket", verifyToken, basketControllers.browse)
 router.post("/basket", verifyToken, basketControllers.add)
 router.put("/basket/:id", verifyToken, basketControllers.edit)
 router.delete("/basket/all", verifyToken, basketControllers.deleteAll)
@@ -58,10 +56,10 @@ router.get("/Admin", verifyToken, verifyIsAdministrator, (req, res) => {
 
 // UPLOAD IMAGE MULTER
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
+  destination: function ( cb) {
     cb(null, "./public/assets/images")
   },
-  filename: function (req, file, cb) {
+  filename: function ( file, cb) {
     cb(null, file.originalname)
   },
 })

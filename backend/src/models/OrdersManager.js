@@ -45,6 +45,7 @@ class OrdersManager extends AbstractManager {
     )
   }
 
+  // Permet d'inseret plusieurs lignes en une requète. Transforme un tableau d'objet en plusieurs tableau
   insert(orders) {
     const query = `INSERT INTO ${this.table} (billNumber, date, usersId, productsId, quantity, total) VALUES ?`
     const values = orders.map((order) => [

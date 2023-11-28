@@ -22,7 +22,6 @@ const hashPassword = (req, res, next) => {
 }
 
 const verifyPassword = (req, res) => {
-  // console.log("req", req)
   argon2
     .verify(req.user.password, req.body.password)
     .then((isVerified) => {
@@ -38,12 +37,12 @@ const verifyPassword = (req, res) => {
         res.cookie("token", token, {
           httpOnly: true,
           secure: process.env.NODE_ENV === "production",
-          sameSite: "strict",
+          sameSite: "lax",
         })
         res.cookie("firstName", req.user.firstName, {
           httpOnly: false,
           secure: process.env.NODE_ENV === "production",
-          sameSite: "strict",
+          sameSite: "lax",
         })
         res.send({ utilisateur: req.user })
       } else {

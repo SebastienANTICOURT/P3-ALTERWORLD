@@ -43,8 +43,6 @@ const read = (req, res) => {
     })
 }
 
-
-
 const edit = (req, res) => {
   const users = req.body
   users.usersId = req.payload.sub

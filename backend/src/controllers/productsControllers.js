@@ -7,7 +7,7 @@ const browse = (req, res) => {
       res.send(rows)
     })
     .catch((err) => {
-      console.error(err)
+      console.error("Erreur statut 500", err)
       res.sendStatus(500)
     })
 }
@@ -23,7 +23,7 @@ const add = (req, res) => {
       res.json(result.insertId)
     })
     .catch((err) => {
-      console.error(err)
+      console.error("Erreur statut 500", err)
       res.sendStatus(500)
     })
 }
@@ -35,7 +35,7 @@ const productsN = (req, res) => {
       res.send(rows)
     })
     .catch((err) => {
-      console.error(err)
+      console.error("Erreur statut 500", err)
       res.sendStatus(500)
     })
 }
@@ -55,8 +55,6 @@ const read = (req, res) => {
       res.sendStatus(500)
     })
 }
-
-
 
 const destroy = (req, res) => {
   models.products

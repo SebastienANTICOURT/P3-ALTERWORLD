@@ -1,15 +1,10 @@
-import { useContext, useEffect } from "react"
+import { useContext } from "react"
 import { instance } from "../components/Axios"
 import BasketContext from "../components/contexts/BasketContext"
 import "./BasketItems.scss"
 
 function BasketItems() {
-  const { basketItems, setBasketItems, fetchBasketItems } =
-    useContext(BasketContext)
-
-  useEffect(() => {
-    fetchBasketItems()
-  }, [setBasketItems])
+  const { basketItems, setBasketItems } = useContext(BasketContext)
 
   const deleteItem = (itemId) => {
     instance
@@ -20,7 +15,7 @@ function BasketItems() {
         )
       })
       .catch((err) => {
-        console.error("Error deleting item:", err)
+        console.error("Erreur pendant la suppression de l'élément", err)
       })
   }
   return (
@@ -35,10 +30,13 @@ function BasketItems() {
               >
                 X
               </button>
-              <img src={`http://localhost:4242${item.image}`} alt={item.name} />
+              <img
+                src={`http://localhost:4242${item.image}`}
+                alt={item.prName}
+              />
             </div>
             <div className="QuantityB">
-              <h2>{item.prName}</h2>
+              <h1>{item.prName}</h1>
               <p>Quantité: {item.quantity}</p>
               <p>Prix: {item.quantity * item.price} €</p>
             </div>

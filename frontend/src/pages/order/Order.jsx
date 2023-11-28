@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import smiley from "../../assets/smiley.png"
-import { instance, postOrder } from "../../components/Axios"
+import { instance } from "../../components/Axios"
 import BasketContext from "../../components/contexts/BasketContext"
 import BasketItems from "../BasketItems"
 import "./Order.scss"
@@ -9,48 +9,41 @@ import RightColumn from "./components/RightColumn"
 
 function Order({ users, userLog }) {
   const [date] = useState(new Date())
-  const dateStr = date.toISOString().split("T")[0]
+  const dateStr = date.toISOString().substring(0, 10)
   const [showMessage, setShowMessage] = useState(false)
-  const { basketItems, fetchBasketItems, setBasketItems } =
-    useContext(BasketContext)
+  const { basketItems, setBasketItems } = useContext(BasketContext)
 
-  useEffect(() => {
-    fetchBasketItems()
-  }, [setBasketItems])
-
-  const handleOrderAndDelete = () => {
-    addToOrder()
-    deleteBasket()
-    setShowMessage(true)
+  const addToOrder = async () => {
+    try {
+      const responseBillNumber = await instance.get("/latestBillNumber")
+      const latestBillNumber = responseBillNumber.data
+      const newBillNumber = latestBillNumber + 1
+      const formattedOrdersData = basketItems.map((item) => ({
+        usersId: item.usersId,
+        productsId: item.productsId,
+        billNumber: newBillNumber,
+        quantity: item.quantity,
+        total: item.quantity * item.price,
+        date: dateStr,
+      }))
+      await instance.post("/orders", formattedOrdersData)
+      await deleteBasket()
+      setShowMessage(true)
+    } catch (error) {
+      console.error(error)
+      alert(
+        "Une erreur s'est produite lors de l'ajout des produits à la commande."
+      )
+    }
   }
-
-  const addToOrder = () => {
-    instance
-      .get("/latestBillNumber")
-      .then((responseBillNumber) => {
-        const latestBillNumber = responseBillNumber.data
-        const newBillNumber = latestBillNumber + 1
-        return postOrder(basketItems, newBillNumber, dateStr)
-      })
-      .then(() => {})
-      .catch((error) => {
-        console.error(error)
-        alert(
-          "Une erreur s'est produite lors de l'ajout des produits à la commande."
-        )
-      })
-  }
-
-  const deleteBasket = () => {
-    const usersId = basketItems[0].usersId
-    instance
-      .delete(`/basket/all?usersId=${usersId}`)
-      .then(() => {
-        setBasketItems([])
-      })
-      .catch((error) => {
-        console.error("Error deleting the basket:", error)
-      })
+  const deleteBasket = async () => {
+    try {
+      const usersId = basketItems[0].usersId
+      await instance.delete(`/basket/all?usersId=${usersId}`)
+      setBasketItems([])
+    } catch (error) {
+      console.error("Error deleting the basket:", error)
+    }
   }
 
   const totalPrice = basketItems
@@ -68,10 +61,11 @@ function Order({ users, userLog }) {
       </div>
       <div className="Merci">
         {showMessage && (
-          <p>
+          <h1>
             {userLog && `Merci, ${userLog.firstName} `}{" "}
-            <img src={smiley} alt="" /> à bientot pour de nouvelles aventures.
-          </p>
+            <img src={smiley} alt="smiley" /> à bientot pour de nouvelles
+            aventures.
+          </h1>
         )}
       </div>
       <div className="countainerOrder">
@@ -81,7 +75,7 @@ function Order({ users, userLog }) {
         </div>
         <div className="RightColumnO" style={{ opacity: showMessage ? 0 : 1 }}>
           <RightColumn
-            handleOrderAndDelete={handleOrderAndDelete}
+            handleOrderAndDelete={addToOrder}
             totalPrice={totalPrice}
             TVA={TVA}
           />

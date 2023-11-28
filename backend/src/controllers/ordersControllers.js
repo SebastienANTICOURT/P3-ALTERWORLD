@@ -56,7 +56,6 @@ const add = (req, res) => {
   models.orders
     .insert(orders)
     .then(([result]) => {
-      // console.log("test02", result)
       res.json(result.insertId)
     })
     .catch((err) => {
